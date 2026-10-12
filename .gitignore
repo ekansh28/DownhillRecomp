@@ -2,3 +2,8 @@ game/
 PS2 BIOS/
 Downhill Domination (USA)/
 PS2Recomp/
+ghidra/
+config/
+*.log
+imgui.ini
+ps2_log.txt
