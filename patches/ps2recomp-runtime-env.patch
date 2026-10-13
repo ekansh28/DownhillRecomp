@@ -1,8 +1,68 @@
+diff --git i/ps2xRecomp/src/lib/control_flow_emitter.cpp w/ps2xRecomp/src/lib/control_flow_emitter.cpp
+index 4bf8dc5..35d9e74 100644
+--- i/ps2xRecomp/src/lib/control_flow_emitter.cpp
++++ w/ps2xRecomp/src/lib/control_flow_emitter.cpp
+@@ -435,6 +435,14 @@ namespace ps2recomp
+                            : "(ctx->fcr31 & 0x800000)";
+             }
+             break;
++        case OPCODE_COP0:
++            if (m_branchInst.rs == COP0_BC)
++            {
++                // shortcut: CPCOND0 fixo em "DMA ocioso" porque o runtime conclui os DMAs na hora; modelar D_PCR se isso mudar.
++                const uint8_t bcCond = static_cast<uint8_t>(m_branchInst.rt);
++                return (bcCond == COP0_BC_BCF || bcCond == COP0_BC_BCFL) ? "false" : "true";
++            }
++            break;
+         case OPCODE_COP2:
+             if (m_branchInst.rs == COP2_BC)
+             {
+diff --git i/ps2xRuntime/include/runtime/ee_scheduler.h w/ps2xRuntime/include/runtime/ee_scheduler.h
+index f247ff9..e41fe96 100644
+--- i/ps2xRuntime/include/runtime/ee_scheduler.h
++++ w/ps2xRuntime/include/runtime/ee_scheduler.h
+@@ -420,6 +420,7 @@ private:
+     int m_dmacTailOrder = 1000;
+     uint32_t m_enabledIntcMask = 0xFFFFFFFFu;
+     uint32_t m_enabledDmacMask = 0xFFFFFFFFu;
++    uint32_t m_pendingDmacCauses = 0u; // D_STAT latcha a causa enquanto desabilitada; entrega no EnableDmac
+     int m_currentThreadId = 0;
+     bool m_rescheduleRequested = false;
+     bool m_timeSliceExpired = false;
+diff --git i/ps2xRuntime/include/runtime/gs/gs_frontend.h w/ps2xRuntime/include/runtime/gs/gs_frontend.h
+index 4c3f641..8da9836 100644
+--- i/ps2xRuntime/include/runtime/gs/gs_frontend.h
++++ w/ps2xRuntime/include/runtime/gs/gs_frontend.h
+@@ -191,6 +191,16 @@ private:
+ 
+     uint8_t m_curR = 0x80, m_curG = 0x80, m_curB = 0x80, m_curA = 0x80;
+     float m_curQ = 1.0f;
++    struct GifResume
++    {
++        bool active = false;
++        uint8_t flg = 0;
++        uint32_t nreg = 0;
++        uint32_t regIdx = 0;
++        uint32_t loopsLeft = 0;
++        uint32_t padBytes = 0;
++        uint8_t regs[16]{};
++    } m_gifResume;
+     float m_curS = 0.0f, m_curT = 0.0f;
+     uint16_t m_curU = 0, m_curV = 0;
+     uint8_t m_curFog = 0;
 diff --git i/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp w/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
-index c5e31c4..0612eec 100644
+index c5e31c4..0fad2ab 100644
 --- i/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
 +++ w/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
-@@ -141,11 +141,13 @@ void EeScheduler::reset(uint8_t *rdram, const R5900Context &mainContext)
+@@ -106,6 +106,7 @@ void EeScheduler::reset(uint8_t *rdram, const R5900Context &mainContext)
+     m_dmacTailOrder = 1000;
+     m_enabledIntcMask = 0xFFFFFFFFu;
+     m_enabledDmacMask = 0xFFFFFFFFu;
++    m_pendingDmacCauses = 0u;
+     m_currentThreadId = 0;
+     m_rescheduleRequested = false;
+     m_timeSliceExpired = false;
+@@ -141,11 +142,13 @@ void EeScheduler::reset(uint8_t *rdram, const R5900Context &mainContext)
      // returned by ReferThreadStatus. SetupThread records that metadata.
      main.stack = 0u;
      main.gp = getRegU32(&mainContext, 28);
@@ -19,7 +79,7 @@ index c5e31c4..0612eec 100644
      scheduleEvent(m_eeCycle + kVBlankPeriodCycles,
                    std::chrono::steady_clock::now() + kVBlankPeriod,
                    EeEvent{EeEventType::VBlankStart, 0, 0});
-@@ -423,7 +425,7 @@ void EeScheduler::setupCurrentThread(uint32_t stack, uint32_t stackSize, uint32_
+@@ -423,7 +426,7 @@ void EeScheduler::setupCurrentThread(uint32_t stack, uint32_t stackSize, uint32_
  int EeScheduler::createThread(const EeThreadCreateParams &params)
  {
      assertExecutor();
@@ -28,7 +88,7 @@ index c5e31c4..0612eec 100644
      {
          return KE_ILLEGAL_PRIORITY;
      }
-@@ -701,7 +703,7 @@ int EeScheduler::cancelWakeup(int id)
+@@ -701,7 +704,7 @@ int EeScheduler::cancelWakeup(int id)
  int EeScheduler::changePriority(int id, int priority, bool interruptSafe, int &oldPriority)
  {
      assertExecutor();
@@ -37,6 +97,27 @@ index c5e31c4..0612eec 100644
      {
          return KE_ILLEGAL_PRIORITY;
      }
+@@ -1243,6 +1246,11 @@ int EeScheduler::setIrqCauseEnabled(bool dmac, uint32_t cause, bool enabled)
+         if (enabled)
+         {
+             mask |= 1u << cause;
++            if (dmac && (m_pendingDmacCauses & (1u << cause)) != 0u)
++            {
++                m_pendingDmacCauses &= ~(1u << cause);
++                dispatchIrq(true, cause);
++            }
+         }
+         else
+         {
+@@ -1258,6 +1266,8 @@ void EeScheduler::dispatchIrq(bool dmac, uint32_t cause)
+     const uint32_t mask = dmac ? m_enabledDmacMask : m_enabledIntcMask;
+     if (cause < 32u && (mask & (1u << cause)) == 0u)
+     {
++        if (dmac)
++            m_pendingDmacCauses |= 1u << cause;
+         return;
+     }
+     const auto &handlers = dmac ? m_dmacHandlers : m_intcHandlers;
 diff --git i/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp w/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
 index 56a978e..b3fc5a3 100644
 --- i/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
@@ -57,7 +138,7 @@ index 56a978e..b3fc5a3 100644
  
          setReturnS32(ctx, 0);
 diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h w/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
-index c0b13bf..ddcc2e4 100644
+index c0b13bf..260ccae 100644
 --- i/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
 +++ w/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
 @@ -22,6 +22,7 @@
@@ -68,22 +149,24 @@ index c0b13bf..ddcc2e4 100644
  
  #ifndef _WIN32
  #include <unistd.h>
-@@ -84,3 +85,20 @@ inline T *getEeGuestStruct(uint8_t *rdram, uint32_t address)
+@@ -84,3 +85,22 @@ inline T *getEeGuestStruct(uint8_t *rdram, uint32_t address)
  {
      return const_cast<T *>(getEeGuestStruct<T>(static_cast<const uint8_t *>(rdram), address));
  }
 +
-+// PS2X_TRACE_SYSCALLS=1: prints the first calls of thread/semaphore/interrupt syscalls (debug aid).
++// PS2X_TRACE_SYSCALLS=N: prints the first N (default 3000 when N<=1) thread/semaphore/interrupt syscalls (debug aid).
 +inline void traceSyscall(const char *name, const R5900Context *ctx)
 +{
-+    static const bool enabled = std::getenv("PS2X_TRACE_SYSCALLS") != nullptr;
++    static const char *const env = std::getenv("PS2X_TRACE_SYSCALLS");
++    static const bool enabled = env != nullptr;
++    static const int limit = (env && std::atoi(env) > 1) ? std::atoi(env) : 3000;
 +    static std::atomic<int> printed{0};
 +    if (!enabled)
 +        return;
 +    const std::string_view n(name);
 +    if (n == "FlushCache" || n == "iFlushCache" || n == "EnableDmac" || n == "DisableDmac" || n == "GetThreadId")
 +        return;
-+    if (printed.fetch_add(1) >= 3000)
++    if (printed.fetch_add(1) >= limit)
 +        return;
 +    std::fprintf(stderr, "[syscall] %s a0=%x a1=%x a2=%x a3=%x ra=%x\n", name, getRegU32(const_cast<R5900Context *>(ctx), 4),
 +                 getRegU32(const_cast<R5900Context *>(ctx), 5), getRegU32(const_cast<R5900Context *>(ctx), 6),
@@ -652,6 +735,147 @@ index 1e38bd4..7d51085 100644
  
          std::vector<Descriptor> descriptors;
          {
+diff --git i/ps2xRuntime/src/lib/gs/gs_frontend.cpp w/ps2xRuntime/src/lib/gs/gs_frontend.cpp
+index 5658928..ef0df5f 100644
+--- i/ps2xRuntime/src/lib/gs/gs_frontend.cpp
++++ w/ps2xRuntime/src/lib/gs/gs_frontend.cpp
+@@ -668,70 +668,88 @@ void GS::processGIFPacket(const uint8_t *data, uint32_t sizeBytes)
+         }
+     });
+ 
++    // O DMA em cadeia entrega a tag e os dados em pacotes separados, entao o
++    // estado da tag corrente sobrevive entre chamadas (m_gifResume).
++    GifResume &st = m_gifResume;
+     uint32_t offset = 0;
+-    while (offset + 16 <= sizeBytes)
++    while (offset < sizeBytes)
+     {
+-        uint64_t tagLo = loadLE64(data + offset);
+-        uint64_t tagHi = loadLE64(data + offset + 8);
+-        offset += 16;
+-
+-        m_curQ = 1.0f;
+-
+-        uint32_t nloop = static_cast<uint32_t>(tagLo & 0x7FFF);
+-        uint8_t flg = static_cast<uint8_t>((tagLo >> 58) & 0x3);
+-        uint32_t nreg = static_cast<uint32_t>((tagLo >> 60) & 0xF);
+-        if (nreg == 0)
+-            nreg = 16;
+-
+-        recordGifTagDebugEventUnlocked(sizeBytes, nloop, flg, nreg);
+-
+-        bool pre = ((tagLo >> 46) & 1) != 0;
+-        if (pre)
++        if (!st.active)
+         {
+-            writeRegisterUnlocked(GS_REG_PRIM, (tagLo >> 47) & 0x7FF);
++            if (offset + 16 > sizeBytes)
++                return;
++            const uint64_t tagLo = loadLE64(data + offset);
++            const uint64_t tagHi = loadLE64(data + offset + 8);
++            offset += 16;
++
++            m_curQ = 1.0f;
++
++            const uint32_t nloop = static_cast<uint32_t>(tagLo & 0x7FFF);
++            const uint8_t flg = static_cast<uint8_t>((tagLo >> 58) & 0x3);
++            uint32_t nreg = static_cast<uint32_t>((tagLo >> 60) & 0xF);
++            if (nreg == 0)
++                nreg = 16;
++
++            recordGifTagDebugEventUnlocked(sizeBytes, nloop, flg, nreg);
++
++            if ((tagLo >> 46) & 1)
++                writeRegisterUnlocked(GS_REG_PRIM, (tagLo >> 47) & 0x7FF);
++
++            for (uint32_t i = 0; i < nreg; ++i)
++                st.regs[i] = static_cast<uint8_t>((tagHi >> (i * 4)) & 0xF);
++            st.flg = flg;
++            st.nreg = nreg;
++            st.regIdx = 0;
++            st.loopsLeft = nloop;
++            st.padBytes = (flg != GIF_FMT_PACKED && flg != GIF_FMT_IMAGE && ((nloop * nreg) & 1)) ? 8u : 0u;
++            st.active = nloop != 0;
++            continue;
+         }
+ 
+-        uint8_t regs[16];
+-        for (uint32_t i = 0; i < nreg; ++i)
+-            regs[i] = static_cast<uint8_t>((tagHi >> (i * 4)) & 0xF);
+-
+-        if (flg == GIF_FMT_PACKED)
++        if (st.flg == GIF_FMT_PACKED)
+         {
+-            for (uint32_t loop = 0; loop < nloop; ++loop)
++            while (st.loopsLeft && offset + 16 <= sizeBytes)
+             {
+-                for (uint32_t r = 0; r < nreg; ++r)
++                writeRegisterPacked(st.regs[st.regIdx], loadLE64(data + offset), loadLE64(data + offset + 8));
++                offset += 16;
++                if (++st.regIdx == st.nreg)
+                 {
+-                    if (offset + 16 > sizeBytes)
+-                        return;
+-                    uint64_t lo = loadLE64(data + offset);
+-                    uint64_t hi = loadLE64(data + offset + 8);
+-                    offset += 16;
+-                    writeRegisterPacked(regs[r], lo, hi);
++                    st.regIdx = 0;
++                    --st.loopsLeft;
+                 }
+             }
+         }
+-        else if (flg == GIF_FMT_REGLIST)
++        else if (st.flg == GIF_FMT_IMAGE)
+         {
+-            for (uint32_t loop = 0; loop < nloop; ++loop)
++            const uint32_t qw = std::min<uint32_t>(st.loopsLeft, (sizeBytes - offset) / 16);
++            if (qw == 0)
++                return;
++            processImageData(data + offset, qw * 16);
++            offset += qw * 16;
++            st.loopsLeft -= qw;
++        }
++        else
++        {
++            while (st.loopsLeft && offset + 8 <= sizeBytes)
+             {
+-                for (uint32_t r = 0; r < nreg; ++r)
+-                {
+-                    if (offset + 8 > sizeBytes)
+-                        return;
+-                    writeRegisterUnlocked(regs[r], loadLE64(data + offset));
+-                    offset += 8;
+-                }
+-            }
+-            if ((nloop * nreg) & 1)
++                writeRegisterUnlocked(st.regs[st.regIdx], loadLE64(data + offset));
+                 offset += 8;
++                if (++st.regIdx == st.nreg)
++                {
++                    st.regIdx = 0;
++                    --st.loopsLeft;
++                }
++            }
+         }
+-        else if (flg == GIF_FMT_IMAGE)
++
++        if (st.loopsLeft == 0)
+         {
+-            uint32_t imageBytes = nloop * 16;
+-            if (offset + imageBytes > sizeBytes)
+-                imageBytes = sizeBytes - offset;
+-            processImageData(data + offset, imageBytes);
+-            offset += imageBytes;
++            offset += std::min(st.padBytes, sizeBytes - offset);
++            st.active = false;
++        }
++        else
++        {
++            return; // pacote acabou no meio da tag
+         }
+     }
+ }
 diff --git i/ps2xRuntime/src/lib/ps2_runtime.cpp w/ps2xRuntime/src/lib/ps2_runtime.cpp
 index 45cb9d2..0397889 100644
 --- i/ps2xRuntime/src/lib/ps2_runtime.cpp
