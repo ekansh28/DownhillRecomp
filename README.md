@@ -4,8 +4,9 @@ Static recompilation of *Downhill Domination* (PS2, USA, SCUS-971.77) to native
 Linux x86, built on [PS2Recomp](https://github.com/ran-j/PS2Recomp).
 
 **Status:** work in progress, not playable. The recompiled game boots, loads
-its data from the disc and reaches the front-end menu, but the picture is still
-wrong (see [Progress](#progress)).
+its data from the disc, and draws textured graphics up to the "PRESS X TO
+START" title screen, followed by a controller-disconnected warning (see
+[Progress](#progress)).
 
 ## Legal
 
@@ -30,18 +31,27 @@ Done (the game runs on the PS2Recomp runtime):
   from the disc.
 - Disc reads and file I/O, CD streaming, memory card (host folder), pad
   initialisation.
-- Front-end menu reached; the per-frame render thread draws through VU1 and the
-  GS.
+- Textures reach the GS: the GIF parser keeps its state across DMA packets, so
+  an IMAGE upload split over several packets no longer turns texture data into
+  bogus tags.
+- The title screen with "PRESS X TO START" renders with textures; after it the
+  game shows a controller-disconnected warning.
+- Render hand-off between the game and its DMA interrupt works: the DMAC
+  interrupt raised while its cause is disabled is kept pending and delivered on
+  `EnableDmac` (as the hardware does), and COP0 `bc0t`/`bc0f` (CPCOND0) is
+  translated as "DMA idle" instead of a constant false. Both used to leave the
+  main thread spinning forever on a flag the interrupt handler should clear.
 
 Not working yet:
 
-- **Picture:** polygons come out untextured and with wrong geometry, at about 1
-  frame per second (software rasteriser).
+- **Pad:** the game reports the controller as disconnected, so input is not
+  usable yet.
+- **Picture quality and speed:** not compared against PCSX2 beyond the title
+  screen; the software rasteriser is slow.
 - **Intro movie:** skipped. The game feeds the IPU by DMA, which the runtime does
   not emulate.
 - **Sound:** disabled at the EE level. The game's sound IOP module cannot read
   the disc inside the emulated IOP.
-- Input is not verified past the boot screens.
 
 ## Workflow
 
@@ -77,19 +87,23 @@ variables:
 | `PS2X_BINDS` | file of `handler@0xADDR` lines applied at ELF load |
 | `PS2X_DUMP_RAM="secs:path"` | writes the 32 MB EE RAM once after that many seconds |
 | `PS2X_TRACE_CALLS=0xA,0xB` | logs the first calls to those guest addresses with arguments |
-| `PS2X_TRACE_SYSCALLS=1` | logs thread, semaphore and interrupt syscalls |
+| `PS2X_TRACE_SYSCALLS=N` | logs the first N thread, semaphore and interrupt syscalls (3000 if N is 1) |
 
 It also makes the scheduler match the real kernel (main thread at priority 1,
 priority 0 accepted by `CreateThread`), makes the simulated `sceCdRead` take one
 frame, and batches IOP cycles (the IOP scheduler dominated the profile).
+The patch also adds the COP0 branch-condition case to the recompiler
+(`control_flow_emitter.cpp`); the `ps2_recomp` tool must be rebuilt and the code
+regenerated for it to take effect on newly generated files.
 PCSX2 is a useful ground truth: its debugger shows the real thread table and can
 break on memory writes.
 
 ## Roadmap
 
-1. **Find why the picture is wrong:** compare the first menu frame against PCSX2
-   to tell bad VU1 geometry from missing textures.
-2. **Fix the GS/VU1 path** (vertices, textures) and its speed.
+1. **Fix the controller-disconnected warning** (pad RPC/state) so the game gets
+   past the title screen.
+2. **Compare frames against PCSX2** beyond the title and fix remaining GS/VU1
+   differences and speed.
 3. **Replace the temporary shortcuts:** bring back the sound IOP module and the
    intro movie (IPU DMA path).
 4. **Make it playable:** confirm input, then run a race end to end.
