@@ -37,6 +37,10 @@ after that many seconds (debug aid in the same patch). `PS2X_TRACE_SYSCALLS=1` p
 semaphore and interrupt syscalls (first 3000, noisy ones filtered). `PS2X_TRACE_CALLS=0xADDR,...` logs the first calls to those
 guest addresses with their arguments.
 
+`tools/ghidra/DecompileFunctions.java` exports C for a list of addresses (headless:
+`analyzeHeadless ghidra DownhillDom -process SCUS_971.77 -noanalysis -scriptPath tools/ghidra
+-postScript DecompileFunctions.java 0xADDR,0xADDR out.c`); much easier to read than MIPS.
+
 `bind.sh` is the slow path (edits `config.toml` stubs, regenerates, rebuilds).
 `rpc_table.py` lists the game functions that use IOP RPC (SID and function
 number) to help identify SDK functions.
