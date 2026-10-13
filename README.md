@@ -5,7 +5,7 @@ Linux x86, built on [PS2Recomp](https://github.com/ran-j/PS2Recomp).
 
 **Status:** work in progress, not playable. The recompiled game boots, loads
 its data from the disc, and draws textured graphics up to the "PRESS X TO
-START" title screen, followed by a controller-disconnected warning (see
+START" title screen and, with the pad working, into the main menu (see
 [Progress](#progress)).
 
 ## Legal
@@ -44,8 +44,6 @@ Done (the game runs on the PS2Recomp runtime):
 
 Not working yet:
 
-- **Pad:** the game reports the controller as disconnected, so input is not
-  usable yet.
 - **Picture quality and speed:** not compared against PCSX2 beyond the title
   screen; the software rasteriser is slow.
 - **Intro movie:** skipped. The game feeds the IPU by DMA, which the runtime does
@@ -100,8 +98,7 @@ break on memory writes.
 
 ## Roadmap
 
-1. **Fix the controller-disconnected warning** (pad RPC/state) so the game gets
-   past the title screen.
+1. **Get through the menus into a race** and fix whatever breaks on the way.
 2. **Compare frames against PCSX2** beyond the title and fix remaining GS/VU1
    differences and speed.
 3. **Replace the temporary shortcuts:** bring back the sound IOP module and the
