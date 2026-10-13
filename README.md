@@ -76,7 +76,7 @@ Scripts:
 - `rpc_table.py` lists game functions that use IOP RPC (SID and function number).
 - `tools/ghidra/DecompileFunctions.java` exports C for a list of addresses, much
   easier to read than MIPS:
-  `analyzeHeadless ghidra DownhillDom -process SCUS_971.77 -noanalysis -scriptPath tools/ghidra -postScript DecompileFunctions.java 0xADDR,0xADDR out.c`
+  `analyzeHeadless ghidra DownhillDom -process SCUS_971.77 -noanalysis -readOnly -scriptPath tools/ghidra -postScript DecompileFunctions.java 0xADDR,0xADDR out.c`
 
 Runtime patch (`patches/ps2recomp-runtime-env.patch`) adds these environment
 variables:

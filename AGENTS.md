@@ -51,7 +51,7 @@ All come from our runtime patch: `PS2X_BINDS`, `PS2X_CD_IMAGE`, `PS2X_TRACE_CALL
 
 Do not read raw MIPS when you can avoid it. Export C with the headless decompile script (the Ghidra project is `ghidra/DownhillDom`, language `r5900:LE:32:default`, needs the Emotion Engine extension from `~/.config/ghidra/ghidra_12.1.2_DEV/Extensions`):
 
-    /opt/ghidra/support/analyzeHeadless ghidra DownhillDom -process SCUS_971.77 -noanalysis \
+    /opt/ghidra/support/analyzeHeadless ghidra DownhillDom -process SCUS_971.77 -noanalysis -readOnly \
       -scriptPath tools/ghidra -postScript DecompileFunctions.java 0xADDR,0xADDR out.c
 
 Run it from the repo root. `ExportPS2Functions.java` in headless mode reads its two output paths from a `.properties` file named after the script whose keys are `<dialog title> Save` with unescaped spaces.
