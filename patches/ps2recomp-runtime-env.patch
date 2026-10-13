@@ -1,3 +1,61 @@
+diff --git i/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp w/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
+index c5e31c4..0612eec 100644
+--- i/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
++++ w/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
+@@ -141,11 +141,13 @@ void EeScheduler::reset(uint8_t *rdram, const R5900Context &mainContext)
+     // returned by ReferThreadStatus. SetupThread records that metadata.
+     main.stack = 0u;
+     main.gp = getRegU32(&mainContext, 28);
+-    main.initialPriority = 0;
+-    main.currentPriority = 0;
++    // The real BIOS runs the user main thread at priority 1 (PCSX2 thread list), and accepts
++    // priority 0 for user threads, so priority 0 is not reserved for the main thread.
++    main.initialPriority = 1;
++    main.currentPriority = 1;
+     main.status = EeThreadStatus::Ready;
+     m_threads.emplace(main.id, std::move(main));
+-    m_readyQueues[0].push_back(kMainThreadId);
++    m_readyQueues[1].push_back(kMainThreadId);
+     scheduleEvent(m_eeCycle + kVBlankPeriodCycles,
+                   std::chrono::steady_clock::now() + kVBlankPeriod,
+                   EeEvent{EeEventType::VBlankStart, 0, 0});
+@@ -423,7 +425,7 @@ void EeScheduler::setupCurrentThread(uint32_t stack, uint32_t stackSize, uint32_
+ int EeScheduler::createThread(const EeThreadCreateParams &params)
+ {
+     assertExecutor();
+-    if (params.priority < 1 || params.priority >= kPriorityCount)
++    if (params.priority < 0 || params.priority >= kPriorityCount)
+     {
+         return KE_ILLEGAL_PRIORITY;
+     }
+@@ -701,7 +703,7 @@ int EeScheduler::cancelWakeup(int id)
+ int EeScheduler::changePriority(int id, int priority, bool interruptSafe, int &oldPriority)
+ {
+     assertExecutor();
+-    if (priority < 1 || priority >= kPriorityCount)
++    if (priority < 0 || priority >= kPriorityCount)
+     {
+         return KE_ILLEGAL_PRIORITY;
+     }
+diff --git i/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp w/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
+index 56a978e..b3fc5a3 100644
+--- i/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
++++ w/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
+@@ -316,8 +316,12 @@ namespace ps2_stubs
+         if (ok)
+         {
+             g_cdStreamingLbn = selected.lbn + selected.sectors;
+-            setReturnS32(ctx, 1); // command accepted/success
+-            return;
++            // A real read takes time: block the caller until the next frame so lower-priority
++            // threads (e.g. a worker the game just started) run, then return 1 (accepted).
++            // Resume at the caller: generated wrappers set pc = ra, but a stub bound by address
++            // (replaceFunction) is entered with pc = its own address.
++            ctx->pc = getRegU32(ctx, 31);
++            runtime->eeScheduler().waitVSync(runtime->eeScheduler().currentVSyncTick(), 1);
+         }
+ 
+         setReturnS32(ctx, 0);
 diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h w/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
 index c0b13bf..ddcc2e4 100644
 --- i/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
@@ -595,7 +653,7 @@ index 1e38bd4..7d51085 100644
          std::vector<Descriptor> descriptors;
          {
 diff --git i/ps2xRuntime/src/lib/ps2_runtime.cpp w/ps2xRuntime/src/lib/ps2_runtime.cpp
-index 45cb9d2..b18cfe2 100644
+index 45cb9d2..0397889 100644
 --- i/ps2xRuntime/src/lib/ps2_runtime.cpp
 +++ w/ps2xRuntime/src/lib/ps2_runtime.cpp
 @@ -1,4 +1,7 @@
@@ -606,7 +664,27 @@ index 45cb9d2..b18cfe2 100644
  #include "ps2_log.h"
  #include "ps2_stubs.h"
  #include "ps2_syscalls.h"
-@@ -1065,6 +1068,11 @@ void PS2Runtime::configureIoPathsFromElf(const std::string &elfPath)
+@@ -607,7 +610,18 @@ void PS2Runtime::notifyIopSifTransfer(uint8_t *rdram, const ps2x::iop::SifTransf
+ 
+ void PS2Runtime::advanceIopEeCycles(uint64_t eeCycles) noexcept
+ {
+-    m_iopSubsystem->runEeCycles(eeCycles);
++    // The EE scheduler reports a few cycles per guest call; running the IOP scheduler for each of
++    // them dominated the profile. Batch them. shortcut: only the EE executor calls this, so the
++    // counter is unsynchronized; the IOP lags by at most kIopBatchEeCycles (microseconds).
++    constexpr uint64_t kIopBatchEeCycles = 4096u;
++    static uint64_t pendingEeCycles = 0u;
++    pendingEeCycles += eeCycles;
++    if (pendingEeCycles >= kIopBatchEeCycles)
++    {
++        const uint64_t batch = pendingEeCycles;
++        pendingEeCycles = 0u;
++        m_iopSubsystem->runEeCycles(batch);
++    }
+ }
+ 
+ void PS2Runtime::resetIop()
+@@ -1065,6 +1079,11 @@ void PS2Runtime::configureIoPathsFromElf(const std::string &elfPath)
          paths.mcRoot = paths.elfDirectory / "mc0";
      }
  
@@ -618,7 +696,7 @@ index 45cb9d2..b18cfe2 100644
      setIoPaths(paths);
  }
  
-@@ -1353,6 +1361,27 @@ bool PS2Runtime::dispatchGuestBranch(uint8_t *rdram,
+@@ -1353,6 +1372,27 @@ bool PS2Runtime::dispatchGuestBranch(uint8_t *rdram,
      ctx->pc = targetPc;
      const bool isCall = (kind == GuestBranchKind::DirectCall || kind == GuestBranchKind::IndirectCall);
  
@@ -646,7 +724,7 @@ index 45cb9d2..b18cfe2 100644
      // Every inter-function transfer is also a deterministic EE safe point.
      // Backward edges inside generated functions use eeCheckpointDue(), while
      // this charge bounds straight-line call chains that have no local loop.
-@@ -2386,8 +2415,25 @@ void PS2Runtime::run()
+@@ -2386,8 +2426,25 @@ void PS2Runtime::run()
          gameThreadFinished.store(true, std::memory_order_release); });
  
      uint64_t tick = 0;

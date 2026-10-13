@@ -35,7 +35,9 @@ libcdvd, fio) must be bound to the runtime's HLE stubs by address.
    without function tracing. `PS2X_DUMP_RAM="secs:path"` writes the 32MB EE RAM once
 after that many seconds (debug aid in the same patch). `PS2X_TRACE_SYSCALLS=1` prints thread,
 semaphore and interrupt syscalls (first 3000, noisy ones filtered). `PS2X_TRACE_CALLS=0xADDR,...` logs the first calls to those
-guest addresses with their arguments.
+guest addresses with their arguments. The patch also matches the real kernel (main thread
+priority 1, priority 0 accepted by `CreateThread`), makes the simulated `sceCdRead` block the
+caller for one frame, and batches IOP cycles (the IOP scheduler dominated the profile).
 
 `tools/ghidra/DecompileFunctions.java` exports C for a list of addresses (headless:
 `analyzeHeadless ghidra DownhillDom -process SCUS_971.77 -noanalysis -scriptPath tools/ghidra
