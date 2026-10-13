@@ -18,12 +18,25 @@ Put your ISO at `Downhill Domination (USA)/Downhill Domination (USA).iso`.
 The script installs dependencies (Arch/pacman), extracts the ELF to `game/`
 and builds PS2Recomp.
 
-## Next steps
+## Workflow
 
-1. Open `game/SCUS_971.77` in Ghidra and run
+The ELF is retail and has no symbols, so game-side SDK functions (libsif,
+libcdvd, fio) must be bound to the runtime's HLE stubs by address.
+
+1. Analyse `game/SCUS_971.77` in Ghidra (Emotion Engine extension) and export
+   `config/config.toml` + `config/functions.csv` with
    `PS2Recomp/ps2xRecomp/tools/ghidra/ExportPS2Functions.java`.
-2. Run `ps2_recomp` with the exported TOML/CSV.
-3. Build the generated code against `ps2xRuntime`.
+2. `ps2_recomp config/config.toml`, copy the output into
+   `PS2Recomp/ps2xRuntime/src/runner` and `include`, and build.
+3. Iterate: add `handler@0xADDR` lines to `config/binds.txt` and run
+   `./run.sh`. No regeneration or rebuild is needed (runtime patch
+   `patches/ps2recomp-runtime-env.patch`, env `PS2X_BINDS`). `./diag.sh`
+   summarises where the last run stopped; `BUILD=fast ./run.sh` uses the build
+   without function tracing.
+
+`bind.sh` is the slow path (edits `config.toml` stubs, regenerates, rebuilds).
+`rpc_table.py` lists the game functions that use IOP RPC (SID and function
+number) to help identify SDK functions.
 
 ## License
 

@@ -7,3 +7,6 @@ config/
 *.log
 imgui.ini
 ps2_log.txt
+mc0/
+mc1/
+build-*.time
