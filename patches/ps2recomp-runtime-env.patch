@@ -1,3 +1,557 @@
+diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h w/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
+index c0b13bf..ddcc2e4 100644
+--- i/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
++++ w/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
+@@ -22,6 +22,7 @@
+ #include <ctime>
+ #include <memory>
+ #include <string>
++#include <string_view>
+ 
+ #ifndef _WIN32
+ #include <unistd.h>
+@@ -84,3 +85,20 @@ inline T *getEeGuestStruct(uint8_t *rdram, uint32_t address)
+ {
+     return const_cast<T *>(getEeGuestStruct<T>(static_cast<const uint8_t *>(rdram), address));
+ }
++
++// PS2X_TRACE_SYSCALLS=1: prints the first calls of thread/semaphore/interrupt syscalls (debug aid).
++inline void traceSyscall(const char *name, const R5900Context *ctx)
++{
++    static const bool enabled = std::getenv("PS2X_TRACE_SYSCALLS") != nullptr;
++    static std::atomic<int> printed{0};
++    if (!enabled)
++        return;
++    const std::string_view n(name);
++    if (n == "FlushCache" || n == "iFlushCache" || n == "EnableDmac" || n == "DisableDmac" || n == "GetThreadId")
++        return;
++    if (printed.fetch_add(1) >= 3000)
++        return;
++    std::fprintf(stderr, "[syscall] %s a0=%x a1=%x a2=%x a3=%x ra=%x\n", name, getRegU32(const_cast<R5900Context *>(ctx), 4),
++                 getRegU32(const_cast<R5900Context *>(ctx), 5), getRegU32(const_cast<R5900Context *>(ctx), 6),
++                 getRegU32(const_cast<R5900Context *>(ctx), 7), getRegU32(const_cast<R5900Context *>(ctx), 31));
++}
+diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp w/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp
+index 2c98016..e491663 100644
+--- i/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp
++++ w/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp
+@@ -83,6 +83,7 @@ namespace ps2_syscalls
+ 
+     void SetVSyncFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("SetVSyncFlag", ctx);
+         const uint32_t flagAddress = getRegU32(ctx, 4);
+         const uint32_t tickAddress = getRegU32(ctx, 5);
+         if ((flagAddress != 0u && !getEeGuestStruct<uint32_t>(rdram, flagAddress)) ||
+@@ -97,91 +98,109 @@ namespace ps2_syscalls
+ 
+     void EnableIntc(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("EnableIntc", ctx);
+         setCauseEnabled(rdram, ctx, runtime, false, true);
+     }
+ 
+     void iEnableIntc(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iEnableIntc", ctx);
+         EnableIntc(rdram, ctx, runtime);
+     }
+ 
+     void DisableIntc(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("DisableIntc", ctx);
+         setCauseEnabled(rdram, ctx, runtime, false, false);
+     }
+ 
+     void iDisableIntc(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iDisableIntc", ctx);
+         DisableIntc(rdram, ctx, runtime);
+     }
+ 
+     void AddIntcHandler(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("AddIntcHandler", ctx);
+         addHandler(rdram, ctx, runtime, false);
+     }
+ 
+     void AddIntcHandler2(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("AddIntcHandler2", ctx);
+         AddIntcHandler(rdram, ctx, runtime);
+     }
+ 
+     void RemoveIntcHandler(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("RemoveIntcHandler", ctx);
+         removeHandler(rdram, ctx, runtime, false);
+     }
+ 
+     void AddDmacHandler(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("AddDmacHandler", ctx);
+         addHandler(rdram, ctx, runtime, true);
+     }
+ 
+     void AddDmacHandler2(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("AddDmacHandler2", ctx);
+         AddDmacHandler(rdram, ctx, runtime);
+     }
+ 
+     void RemoveDmacHandler(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("RemoveDmacHandler", ctx);
+         removeHandler(rdram, ctx, runtime, true);
+     }
+ 
+     void EnableIntcHandler(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("EnableIntcHandler", ctx);
+         setHandlerEnabled(rdram, ctx, runtime, false, true);
+     }
+ 
+     void DisableIntcHandler(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("DisableIntcHandler", ctx);
+         setHandlerEnabled(rdram, ctx, runtime, false, false);
+     }
+ 
+     void EnableDmacHandler(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("EnableDmacHandler", ctx);
+         setHandlerEnabled(rdram, ctx, runtime, true, true);
+     }
+ 
+     void DisableDmacHandler(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("DisableDmacHandler", ctx);
+         setHandlerEnabled(rdram, ctx, runtime, true, false);
+     }
+ 
+     void EnableDmac(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("EnableDmac", ctx);
+         setCauseEnabled(rdram, ctx, runtime, true, true);
+     }
+ 
+     void iEnableDmac(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iEnableDmac", ctx);
+         EnableDmac(rdram, ctx, runtime);
+     }
+ 
+     void DisableDmac(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("DisableDmac", ctx);
+         setCauseEnabled(rdram, ctx, runtime, true, false);
+     }
+ 
+     void iDisableDmac(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iDisableDmac", ctx);
+         DisableDmac(rdram, ctx, runtime);
+     }
+ }
+diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp w/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp
+index 33945fc..e08e86b 100644
+--- i/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp
++++ w/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp
+@@ -68,6 +68,7 @@ namespace ps2_syscalls
+ 
+     void CreateSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("CreateSema", ctx);
+         const uint32_t address = getRegU32(ctx, 4);
+         const auto *param = address == 0u ? nullptr : getEeGuestStruct<ee_sema_t>(rdram, address);
+         if (!param)
+@@ -88,42 +89,50 @@ namespace ps2_syscalls
+ 
+     void DeleteSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("DeleteSema", ctx);
+         deleteSemaphoreImpl(rdram, ctx, runtime, false);
+     }
+ 
+     void iDeleteSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iDeleteSema", ctx);
+         deleteSemaphoreImpl(rdram, ctx, runtime, true);
+     }
+ 
+     void SignalSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("SignalSema", ctx);
+         signalSemaphoreImpl(rdram, ctx, runtime, false);
+     }
+ 
+     void iSignalSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iSignalSema", ctx);
+         signalSemaphoreImpl(rdram, ctx, runtime, true);
+     }
+ 
+     void WaitSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("WaitSema", ctx);
+         scheduler(rdram, ctx, runtime).waitSemaphore(static_cast<int>(getRegU32(ctx, 4)));
+     }
+ 
+     void PollSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("PollSema", ctx);
+         setReturnS32(ctx,
+                      scheduler(rdram, ctx, runtime).pollSemaphore(static_cast<int>(getRegU32(ctx, 4))));
+     }
+ 
+     void iPollSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iPollSema", ctx);
+         PollSema(rdram, ctx, runtime);
+     }
+ 
+     void ReferSemaStatus(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ReferSemaStatus", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         const EeSemaphore *semaphore = ee.semaphore(static_cast<int>(getRegU32(ctx, 4)));
+         if (!semaphore)
+@@ -148,11 +157,13 @@ namespace ps2_syscalls
+ 
+     void iReferSemaStatus(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iReferSemaStatus", ctx);
+         ReferSemaStatus(rdram, ctx, runtime);
+     }
+ 
+     void CreateEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("CreateEventFlag", ctx);
+         struct EeEventFlagParam
+         {
+             uint32_t attr;
+@@ -172,26 +183,31 @@ namespace ps2_syscalls
+ 
+     void DeleteEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("DeleteEventFlag", ctx);
+         deleteEventFlagImpl(rdram, ctx, runtime, false);
+     }
+ 
+     void iDeleteEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iDeleteEventFlag", ctx);
+         deleteEventFlagImpl(rdram, ctx, runtime, true);
+     }
+ 
+     void SetEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("SetEventFlag", ctx);
+         setEventFlagImpl(rdram, ctx, runtime, false);
+     }
+ 
+     void iSetEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iSetEventFlag", ctx);
+         setEventFlagImpl(rdram, ctx, runtime, true);
+     }
+ 
+     void ClearEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ClearEventFlag", ctx);
+         setReturnS32(ctx,
+                      scheduler(rdram, ctx, runtime)
+                          .clearEventFlag(static_cast<int>(getRegU32(ctx, 4)), getRegU32(ctx, 5)));
+@@ -199,11 +215,13 @@ namespace ps2_syscalls
+ 
+     void iClearEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iClearEventFlag", ctx);
+         ClearEventFlag(rdram, ctx, runtime);
+     }
+ 
+     void WaitEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("WaitEventFlag", ctx);
+         const int id = static_cast<int>(getRegU32(ctx, 4));
+         const uint32_t bits = getRegU32(ctx, 5);
+         const uint32_t mode = getRegU32(ctx, 6);
+@@ -240,6 +258,7 @@ namespace ps2_syscalls
+ 
+     void PollEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("PollEventFlag", ctx);
+         const int id = static_cast<int>(getRegU32(ctx, 4));
+         const uint32_t bits = getRegU32(ctx, 5);
+         const uint32_t mode = getRegU32(ctx, 6);
+@@ -286,11 +305,13 @@ namespace ps2_syscalls
+ 
+     void iPollEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iPollEventFlag", ctx);
+         PollEventFlag(rdram, ctx, runtime);
+     }
+ 
+     void ReferEventFlagStatus(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ReferEventFlagStatus", ctx);
+         struct EeEventFlagStatus
+         {
+             uint32_t attr;
+@@ -327,11 +348,13 @@ namespace ps2_syscalls
+ 
+     void iReferEventFlagStatus(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iReferEventFlagStatus", ctx);
+         ReferEventFlagStatus(rdram, ctx, runtime);
+     }
+ 
+     void SetAlarm(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("SetAlarm", ctx);
+         setReturnS32(ctx,
+                      scheduler(rdram, ctx, runtime)
+                          .setAlarm(static_cast<uint16_t>(getRegU32(ctx, 4)),
+@@ -343,32 +366,38 @@ namespace ps2_syscalls
+ 
+     void InitAlarm(uint8_t *, R5900Context *ctx, PS2Runtime *)
+     {
++        traceSyscall("InitAlarm", ctx);
+         setReturnS32(ctx, KE_OK);
+     }
+ 
+     void iSetAlarm(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iSetAlarm", ctx);
+         SetAlarm(rdram, ctx, runtime);
+     }
+ 
+     void CancelAlarm(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("CancelAlarm", ctx);
+         setReturnS32(ctx,
+                      scheduler(rdram, ctx, runtime).cancelAlarm(static_cast<int>(getRegU32(ctx, 4))));
+     }
+ 
+     void iCancelAlarm(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iCancelAlarm", ctx);
+         CancelAlarm(rdram, ctx, runtime);
+     }
+ 
+     void ReleaseAlarm(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ReleaseAlarm", ctx);
+         CancelAlarm(rdram, ctx, runtime);
+     }
+ 
+     void iReleaseAlarm(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iReleaseAlarm", ctx);
+         CancelAlarm(rdram, ctx, runtime);
+     }
+ }
+diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp w/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp
+index 5110ee2..cca003e 100644
+--- i/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp
++++ w/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp
+@@ -152,41 +152,49 @@ namespace ps2_syscalls
+ 
+     void FlushCache(uint8_t *, R5900Context *ctx, PS2Runtime *)
+     {
++        traceSyscall("FlushCache", ctx);
+         setReturnS32(ctx, KE_OK);
+     }
+ 
+     void iFlushCache(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iFlushCache", ctx);
+         FlushCache(rdram, ctx, runtime);
+     }
+ 
+     void EnableCache(uint8_t *, R5900Context *ctx, PS2Runtime *)
+     {
++        traceSyscall("EnableCache", ctx);
+         setReturnS32(ctx, KE_OK);
+     }
+ 
+     void DisableCache(uint8_t *, R5900Context *ctx, PS2Runtime *)
+     {
++        traceSyscall("DisableCache", ctx);
+         setReturnS32(ctx, KE_OK);
+     }
+ 
+     void ResetEE(uint8_t *, R5900Context *ctx, PS2Runtime *)
+     {
++        traceSyscall("ResetEE", ctx);
+         setReturnS32(ctx, KE_OK);
+     }
+ 
+     void SetMemoryMode(uint8_t *, R5900Context *ctx, PS2Runtime *)
+     {
++        traceSyscall("SetMemoryMode", ctx);
+         setReturnS32(ctx, KE_OK);
+     }
+ 
+     void InitThread(uint8_t *, R5900Context *ctx, PS2Runtime *)
+     {
++        traceSyscall("InitThread", ctx);
+         setReturnS32(ctx, EeScheduler::kMainThreadId);
+     }
+ 
+     void CreateThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("CreateThread", ctx);
+         const uint32_t address = getRegU32(ctx, 4);
+         if (address == 0u)
+         {
+@@ -235,6 +243,7 @@ namespace ps2_syscalls
+ 
+     void DeleteThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("DeleteThread", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         const int id = static_cast<int>(getRegU32(ctx, 4));
+         uint32_t ownedStack = 0;
+@@ -252,6 +261,7 @@ namespace ps2_syscalls
+ 
+     void StartThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("StartThread", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         const int id = static_cast<int>(getRegU32(ctx, 4));
+         const uint32_t arg = getRegU32(ctx, 5);
+@@ -288,18 +298,21 @@ namespace ps2_syscalls
+ 
+     void ExitThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ExitThread", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         exitThreadWithHandlers(ee.currentThreadId(), ctx, runtime, false);
+     }
+ 
+     void ExitDeleteThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ExitDeleteThread", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         exitThreadWithHandlers(ee.currentThreadId(), ctx, runtime, true);
+     }
+ 
+     void TerminateThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("TerminateThread", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         uint32_t ownedStack = 0;
+         const int result = ee.terminateThread(static_cast<int>(getRegU32(ctx, 4)), ownedStack, false);
+@@ -312,6 +325,7 @@ namespace ps2_syscalls
+ 
+     void SuspendThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("SuspendThread", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         const int result = ee.suspendThread(static_cast<int>(getRegU32(ctx, 4)), false);
+         setReturnS32(ctx, result);
+@@ -320,6 +334,7 @@ namespace ps2_syscalls
+ 
+     void ResumeThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ResumeThread", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         const int result = ee.resumeThread(static_cast<int>(getRegU32(ctx, 4)), false);
+         setReturnS32(ctx, result);
+@@ -328,11 +343,13 @@ namespace ps2_syscalls
+ 
+     void GetThreadId(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("GetThreadId", ctx);
+         setReturnS32(ctx, scheduler(rdram, ctx, runtime).currentThreadId());
+     }
+ 
+     void ReferThreadStatus(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ReferThreadStatus", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         int id = static_cast<int>(getRegU32(ctx, 4));
+         if (id == 0)
+@@ -369,11 +386,13 @@ namespace ps2_syscalls
+ 
+     void iReferThreadStatus(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iReferThreadStatus", ctx);
+         ReferThreadStatus(rdram, ctx, runtime);
+     }
+ 
+     void SleepThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("SleepThread", ctx);
+         EeScheduler &ee = scheduler(rdram, ctx, runtime);
+         ee.sleepCurrent();
+         setReturnS32(ctx, KE_OK);
+@@ -381,22 +400,26 @@ namespace ps2_syscalls
+ 
+     void WakeupThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("WakeupThread", ctx);
+         wakeupThreadImpl(rdram, ctx, runtime, false);
+     }
+ 
+     void iWakeupThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iWakeupThread", ctx);
+         wakeupThreadImpl(rdram, ctx, runtime, true);
+     }
+ 
+     void CancelWakeupThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("CancelWakeupThread", ctx);
+         setReturnS32(ctx,
+                      scheduler(rdram, ctx, runtime).cancelWakeup(static_cast<int>(getRegU32(ctx, 4))));
+     }
+ 
+     void iCancelWakeupThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iCancelWakeupThread", ctx);
+         if (getRegU32(ctx, 4) == 0u)
+         {
+             setReturnS32(ctx, KE_ILLEGAL_THID);
+@@ -407,31 +430,37 @@ namespace ps2_syscalls
+ 
+     void ChangeThreadPriority(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ChangeThreadPriority", ctx);
+         changePriorityImpl(rdram, ctx, runtime, false);
+     }
+ 
+     void iChangeThreadPriority(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iChangeThreadPriority", ctx);
+         changePriorityImpl(rdram, ctx, runtime, true);
+     }
+ 
+     void RotateThreadReadyQueue(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("RotateThreadReadyQueue", ctx);
+         rotateReadyQueueImpl(rdram, ctx, runtime, false);
+     }
+ 
+     void iRotateThreadReadyQueue(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iRotateThreadReadyQueue", ctx);
+         rotateReadyQueueImpl(rdram, ctx, runtime, true);
+     }
+ 
+     void ReleaseWaitThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("ReleaseWaitThread", ctx);
+         releaseWaitImpl(rdram, ctx, runtime, false);
+     }
+ 
+     void iReleaseWaitThread(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        traceSyscall("iReleaseWaitThread", ctx);
+         releaseWaitImpl(rdram, ctx, runtime, true);
+     }
+ }
 diff --git i/ps2xRuntime/src/lib/game_overrides.cpp w/ps2xRuntime/src/lib/game_overrides.cpp
 index 1e38bd4..7d51085 100644
 --- i/ps2xRuntime/src/lib/game_overrides.cpp

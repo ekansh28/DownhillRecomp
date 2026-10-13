@@ -33,7 +33,8 @@ libcdvd, fio) must be bound to the runtime's HLE stubs by address.
    `patches/ps2recomp-runtime-env.patch`, env `PS2X_BINDS`). `./diag.sh`
    summarises where the last run stopped; `BUILD=fast ./run.sh` uses the build
    without function tracing. `PS2X_DUMP_RAM="secs:path"` writes the 32MB EE RAM once
-after that many seconds (debug aid in the same patch).
+after that many seconds (debug aid in the same patch). `PS2X_TRACE_SYSCALLS=1` prints thread,
+semaphore and interrupt syscalls (first 3000, noisy ones filtered).
 
 `bind.sh` is the slow path (edits `config.toml` stubs, regenerates, rebuilds).
 `rpc_table.py` lists the game functions that use IOP RPC (SID and function
