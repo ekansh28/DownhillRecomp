@@ -1,12 +1,17 @@
-game/
-PS2 BIOS/
-Downhill Domination (USA)/
-PS2Recomp/
-ghidra/
-config/
+# Game data and anything derived from it: never commit.
+/game/
+/PS2 BIOS/
+/Downhill Domination (USA)/
+/config/
+/ghidra/
+/mc0/
+/mc1/
+
+# Third-party clone (setup.sh clones and patches it) and its build output.
+/PS2Recomp/
+
+# Logs and runtime artifacts.
 *.log
+build-*.time
 imgui.ini
 ps2_log.txt
-mc0/
-mc1/
-build-*.time
