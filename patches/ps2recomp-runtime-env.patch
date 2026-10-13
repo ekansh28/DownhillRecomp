@@ -595,16 +595,18 @@ index 1e38bd4..7d51085 100644
          std::vector<Descriptor> descriptors;
          {
 diff --git i/ps2xRuntime/src/lib/ps2_runtime.cpp w/ps2xRuntime/src/lib/ps2_runtime.cpp
-index 45cb9d2..35c1766 100644
+index 45cb9d2..b18cfe2 100644
 --- i/ps2xRuntime/src/lib/ps2_runtime.cpp
 +++ w/ps2xRuntime/src/lib/ps2_runtime.cpp
-@@ -1,4 +1,5 @@
+@@ -1,4 +1,7 @@
  #include "ps2_runtime.h"
++#include <cstdio>
++#include <unordered_set>
 +#include <cstdlib>
  #include "ps2_log.h"
  #include "ps2_stubs.h"
  #include "ps2_syscalls.h"
-@@ -1065,6 +1066,11 @@ void PS2Runtime::configureIoPathsFromElf(const std::string &elfPath)
+@@ -1065,6 +1068,11 @@ void PS2Runtime::configureIoPathsFromElf(const std::string &elfPath)
          paths.mcRoot = paths.elfDirectory / "mc0";
      }
  
@@ -616,7 +618,35 @@ index 45cb9d2..35c1766 100644
      setIoPaths(paths);
  }
  
-@@ -2386,8 +2392,25 @@ void PS2Runtime::run()
+@@ -1353,6 +1361,27 @@ bool PS2Runtime::dispatchGuestBranch(uint8_t *rdram,
+     ctx->pc = targetPc;
+     const bool isCall = (kind == GuestBranchKind::DirectCall || kind == GuestBranchKind::IndirectCall);
+ 
++    // PS2X_TRACE_CALLS="0xADDR,0xADDR": logs the first calls to those guest addresses (debug aid).
++    static const std::unordered_set<uint32_t> tracedCalls = []()
++    {
++        std::unordered_set<uint32_t> set;
++        if (const char *spec = std::getenv("PS2X_TRACE_CALLS"))
++        {
++            std::stringstream ss(spec);
++            std::string item;
++            while (std::getline(ss, item, ','))
++                set.insert(static_cast<uint32_t>(std::strtoul(item.c_str(), nullptr, 0)));
++        }
++        return set;
++    }();
++    if (isCall && !tracedCalls.empty() && tracedCalls.count(targetPc) != 0)
++    {
++        static std::atomic<int> tracedPrinted{0};
++        if (tracedPrinted.fetch_add(1) < 400)
++            std::fprintf(stderr, "[call] %x a0=%x a1=%x a2=%x a3=%x s0=%x ra=%x\n", targetPc, GPR_U32(ctx, 4), GPR_U32(ctx, 5),
++                         GPR_U32(ctx, 6), GPR_U32(ctx, 7), GPR_U32(ctx, 16), sourcePc);
++    }
++
+     // Every inter-function transfer is also a deterministic EE safe point.
+     // Backward edges inside generated functions use eeCheckpointDue(), while
+     // this charge bounds straight-line call chains that have no local loop.
+@@ -2386,8 +2415,25 @@ void PS2Runtime::run()
          gameThreadFinished.store(true, std::memory_order_release); });
  
      uint64_t tick = 0;
