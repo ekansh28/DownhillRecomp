@@ -45,7 +45,10 @@ Done (the game runs on the PS2Recomp runtime):
 Not working yet:
 
 - **Picture quality and speed:** not compared against PCSX2 beyond the title
-  screen; the software rasteriser is slow.
+  screen; the software rasteriser and the cycle-exact VU1 interpreter are slow (see
+  [docs/performance.md](docs/performance.md) for measurements and what helped).
+- **Crash on late X:** pressing X on the title after it has been idle for a while ends in a
+  guest call through a garbage pointer (pre-existing; see the same document).
 - **Intro movie:** skipped. The game feeds the IPU by DMA, which the runtime does
   not emulate.
 - **Sound:** disabled at the EE level. The game's sound IOP module cannot read
@@ -86,6 +89,8 @@ variables:
 | `PS2X_DUMP_RAM="secs:path"` | writes the 32 MB EE RAM once after that many seconds |
 | `PS2X_TRACE_CALLS=0xA,0xB` | logs the first calls to those guest addresses with arguments |
 | `PS2X_TRACE_SYSCALLS=N` | logs the first N thread, semaphore and interrupt syscalls (3000 if N is 1) |
+| `PS2X_PROF=1` | every 10 s prints VU1 and GS time shares and VU1 cycles per window (see [docs/performance.md](docs/performance.md)) |
+| `PS2X_AUTOX=<secs>` | pulses X on the pad from that second on, for reproducible runs without a keyboard |
 
 It also makes the scheduler match the real kernel (main thread at priority 1,
 priority 0 accepted by `CreateThread`), makes the simulated `sceCdRead` take one

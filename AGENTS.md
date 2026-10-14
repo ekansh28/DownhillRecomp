@@ -45,7 +45,7 @@ Other things that need several files to see:
 
 ## Debug environment variables
 
-All come from our runtime patch: `PS2X_BINDS`, `PS2X_CD_IMAGE`, `PS2X_TRACE_CALLS=0xA,0xB` (args of calls to those guest addresses, first 400), `PS2X_TRACE_SYSCALLS=1` (thread/semaphore/interrupt syscalls, first 3000), `PS2X_DUMP_RAM="secs:path"` (32 MB EE RAM; compare strings/state offline). `run.sh` already exports the first two.
+All come from our runtime patch: `PS2X_BINDS`, `PS2X_CD_IMAGE`, `PS2X_TRACE_CALLS=0xA,0xB` (args of calls to those guest addresses, first 400), `PS2X_TRACE_SYSCALLS=1` (thread/semaphore/interrupt syscalls, first 3000), `PS2X_DUMP_RAM="secs:path"` (32 MB EE RAM; compare strings/state offline), `PS2X_PROF=1` (10 s windows of VU1/GS time shares and VU1 cycles, in `run.log`), `PS2X_AUTOX=secs` (pulses X from that second, for reproducible runs). `run.sh` already exports the first two. Measure speed with `PS2X_PROF`, never with gdb stack samples (they swing by scene); method and results are in `docs/performance.md`.
 
 ## Identifying game functions
 
