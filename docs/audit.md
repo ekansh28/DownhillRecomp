@@ -135,6 +135,44 @@ The two hot translation units (`gs_cpu_backend.cpp`, `ps2_vu1_core.cpp`) get
 (our patched file, not upstream's ReleaseMode), replacing the ignored
 `#pragma GCC optimize("O3")`.
 
+---
+
+# Phase A.2 results (2026-10-20, branch `phase-a2-build`)
+
+- **A.2.1 Dependencies.** Every `CMakeLists.txt` read. On `WIN32` the runtime and
+  recompiler need **no system packages**: raylib/imgui/rlImGui via FetchContent, FFmpeg
+  via a prebuilt-MSVC-DLL ExternalProject (`ps2xRuntime/CMakeLists.txt:256-340`), and
+  elfio/toml11/fmt/libdwarf/rabbitizer via FetchContent in `ps2xRecomp`. SDL2, Vulkan,
+  glslang and pkg-config are **not** referenced on the Windows path (they are Arch-only
+  in `setup.sh`). Nothing was installed; no sccache.
+- **A.2.2 Scripts.** `tools/syncgen.py` replaces `rsync -rc` (SHA-256 compare, preserves
+  mtimes of identical files); `tools/test_syncgen.py` passes 6/6. `bind.sh`/`diag.sh`/
+  `rpc_table.py` prefer `python`, fall back to `python3` (Linux-safe).
+- **A.2.3 Patch.** `ps2recomp-runtime-env.patch` applies cleanly to a clean `2c5fbb9`.
+  Both `#pragma GCC optimize("O3")` lines removed; per-file `/O2;/Ob2;/Oi` added under
+  `if(MSVC)` in the patched `ps2xRuntime/CMakeLists.txt`.
+- **A.2.4 Build.** Toolchain: clang-cl 23.1.3, CMake 4.5.0-rc1, Ninja 1.13.2, MSVC env
+  from vcvars64. Two real failures then success:
+  1. clang-cl without the MSVC env: link step fails, `rc` not found (needs vcvars64).
+  2. Release build type: `clang-cl: error: no such file or directory: '/Qspectre-'`
+     from upstream `ReleaseMode.cmake:22` (item 17) — plus AVX2/`/fp:fast` (items 15-16).
+  Fixed by configuring `Debug` + explicit `/O2 /Ob2 /Oi /GF /Gy /DNDEBUG /Z7` (bypasses
+  `EnableFastReleaseMode`; no upstream edit). `ps2_recomp.exe` built:
+  `PS2Recomp/out/build/ps2xRecomp/ps2_recomp.exe`, 3,453,440 bytes, prints usage.
+  libdwarf warns ZLIB/zstd not found — optional decompression, non-fatal.
+- **A.2.5 Generation determinism.** `config/` produced by `ExportPS2Functions.java`
+  against the DDGhidraProj project: **5091 functions + 21084 executable labels = 26175
+  CSV records** (`functions.csv` starts at `entry,0x0010A008`, the ELF entry). Ran
+  `ps2_recomp` twice into `config/genA` and `config/genB` (two configs differing only in
+  the `output` key): **26,178 files each, identical name sets, all SHA-256 hashes
+  identical → generation is deterministic/reproducible.** (26175 functions + 3
+  runner/registry files.) The game runner was **not** built or run.
+
+`config.toml` as exported uses absolute paths with backslashes for `input`/`output`/
+`ghidra_output`; making them relative/portable is a pending cleanup (not required for
+the build to work).
+
+
 ## Proposed `.gitignore` change (not applied, waiting for approval)
 
 ```diff
