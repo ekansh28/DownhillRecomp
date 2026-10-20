@@ -143,3 +143,58 @@ The extension rules have no leading `/` on purpose (they are file patterns, not 
 they cannot hide `tools/ghidra/` the way the old unanchored folder rule did, `AGENTS.md:11`).
 `core.ignorecase=true` makes them case-insensitive on this machine; on Linux, `*.ISO`
 would need its own line.
+
+---
+
+# Phase A.1 results (2026-10-20, same branch, commit `f0d6ade`)
+
+## A.1.1 Compiler toolchain
+
+Installed compilers on this machine, and whether each honors `#pragma GCC optimize`
+(the patch uses it at `ps2recomp-runtime-env.patch:824` and `:1361`):
+
+| Compiler | Present | `#pragma GCC optimize` |
+| --- | --- | --- |
+| MSYS2 ucrt64 GCC | **No** (`C:\msys64` absent, no `pacman`) | Would honor it (it is GCC) |
+| clang-cl 23.1.3 (`C:\Program Files\LLVM\bin`) | Yes | **Ignored**: `warning: unknown pragma ignored [-Wunknown-pragmas]` |
+| MSVC cl 19.51.36260 (VS 18, via vcvars64) | Yes | **Ignored**: `warning C4068: unknown pragma 'GCC'` |
+
+Evidence (compiled `pragma_test.cpp`, temp dir, since deleted): a float
+multiply-accumulate loop marked `#pragma GCC optimize("O3")` compiles to a scalar,
+unvectorized loop at `/Od` on **both** clang-cl and MSVC (1 `mulss`, no SIMD),
+identical to plain `/Od`; at `/O2` the same function unrolls to 5 multiplies. So the
+pragma is a no-op on both Windows compilers and the ~10% VU1 gain from
+`docs/performance.md` ("Real gains" item 4) would be lost. The patch contains no other
+GCC-isms (`grep -cE '__attribute__|#pragma GCC|__builtin_'` = the 2 pragmas only).
+
+**Chosen for A.2: clang-cl** (installed, MSVC ABI). The two pragmas must be replaced by a
+compiler-agnostic per-file CMake compile option regardless of compiler choice.
+
+## A.1.2 PS2Recomp clone and patch check
+
+- Cloned `github.com/ran-j/PS2Recomp` into ignored `/PS2Recomp/`, checked out `2c5fbb9`
+  ("Dispatch syscalls 0x79/0x7A… (#274)").
+- `git -C PS2Recomp apply --check ../patches/ps2recomp-runtime-env.patch` → **exit 0**,
+  applies cleanly: 19 files, +550/−63. Clean **despite `core.autocrlf=true`** on the
+  clone, so P1.7's "does `git apply` work on a Windows clone" is answered: yes.
+
+## A.1.3 Ghidra headless import and export
+
+- Extension `ghidra-emotionengine-reloaded` `extension.properties` says `version=12.1.4`,
+  an exact match for Ghidra 12.1.4 (no conflict). `data/languages/emotionengine.ldefs`
+  provides `r5900:LE:32:default` (processor `MIPS-R5900`, variant `PS2`).
+- Imported `game/SCUS_971.77` into a project **outside the repo**
+  (`%TEMP%\DDGhidraProj\DownhillDom`) with `analyzeHeadless.bat … -import … -processor
+  r5900:LE:32:default`. Exit 0 in ~76 s. Log: `REPORT: Analysis succeeded`, `Import
+  succeeded`. Only benign warnings: DVP overlay blocks skipped, one `rom0` language
+  memory-block conflict.
+- Ran `tools/ghidra/DecompileFunctions.java` headless (`-process SCUS_971.77 -noanalysis
+  -readOnly`). The ELF header gives `e_entry = 0x0010a008` (`od -j 24`, bytes `08 a0 10
+  00`); decompiling that address produced real output (`ghidra/entry_decompile.c`,
+  ignored): `void entry(void)` with a BSS-clear loop, `syscall(0x3c/0x3d)`, `FlushCache`,
+  `EI()`, callers `Entry Point`/`_elfHeader::00000018`, callees `FUN_0025f0a0`,
+  `FUN_0025f298`, `FUN_001b6708`, `FlushCache`. (An initial guess of `0x100000`
+  correctly returned `// no function`; only header-derived addresses were used.)
+
+Nothing was built or run in A.1.
+
