@@ -103,6 +103,38 @@ Whether PS2Recomp actually needs SDL2/Vulkan/glslang on Windows, or fetches them
 14. **CMake 4.5.0-rc1** is a release candidate; older `cmake_minimum_required` values
     in PS2Recomp's dependencies may fail on CMake 4.x. NOT TESTED.
 
+### P2 (Windows baseline flags, found in A.2)
+
+15. **`ReleaseMode.cmake` uses `/arch:AVX2`, breaking the portable baseline.**
+    `ps2xRuntime/cmake/ReleaseMode.cmake:20` adds `/arch:AVX2` (and `/GL`, `/Qspectre-`)
+    for every `MSVC` build — and clang-cl also sets `MSVC=true`, so this applies to both
+    Windows compilers. AVX2 excludes CPUs without it (pre-2013 Intel, pre-2015 AMD); the
+    baseline build must not assume it. Do not edit upstream: configure the first baseline
+    as `Debug` with explicit `/O2` flags (below), which bypasses `EnableFastReleaseMode`
+    (it is Release/RelWithDebInfo-only).
+16. **`ReleaseMode.cmake` uses `/fp:fast`, which may change PS2 float semantics.**
+    `ps2xRuntime/cmake/ReleaseMode.cmake:18`. `/fp:fast` allows contraction, reordering
+    and flushing of denormals; the Emotion Engine FPU/COP1 has its own rounding and
+    denormal behaviour, so `fast` math on the GS/VU1/float paths can diverge from the
+    Linux `out/fast` reference. The baseline uses `/fp:precise` (the MSVC/clang-cl
+    default) by simply not adding `/fp:fast`.
+17. **clang-cl rejects upstream's `/Qspectre-`.** First build error:
+    `clang-cl: error: no such file or directory: '/Qspectre-'; did you mean '/Qspectre'?`
+    (`ReleaseMode.cmake:22`). MSVC accepts `/Qspectre-`; clang-cl 23.1.3 does not. This is
+    a second reason (besides AVX2/`/fp:fast`) the baseline cannot use
+    `EnableFastReleaseMode` unmodified.
+
+**A.2 baseline flags actually used** (Debug build type so `EnableFastReleaseMode` does
+not run, then explicit optimization): `CMAKE_BUILD_TYPE=Debug`,
+`CMAKE_C_FLAGS_DEBUG = CMAKE_CXX_FLAGS_DEBUG = /O2 /Ob2 /Oi /GF /Gy /DNDEBUG /Z7`.
+`/O2 /Ob2 /Oi` = speed, aggressive inlining, intrinsics; `/GF /Gy` = string pooling and
+function-level linking; `/DNDEBUG` = no asserts; `/Z7` = debug info in the .obj. No
+`/arch:*` (portable x86-64, SSE2 only), no `/fp:fast` (so `/fp:precise`), no `/GL`/LTO.
+The two hot translation units (`gs_cpu_backend.cpp`, `ps2_vu1_core.cpp`) get
+`/O2;/Ob2;/Oi` via a per-file `set_source_files_properties` in `ps2xRuntime/CMakeLists.txt`
+(our patched file, not upstream's ReleaseMode), replacing the ignored
+`#pragma GCC optimize("O3")`.
+
 ## Proposed `.gitignore` change (not applied, waiting for approval)
 
 ```diff

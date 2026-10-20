@@ -1,6 +1,6 @@
-#!/usr/bin/env python3 -I
+#!/usr/bin/env python
 """Tabela de funções do jogo que usam RPC do IOP (BindRpc 0x25CDB8 / CallRpc 0x25CF88).
-Uso: python3 -I rpc_table.py > config/rpc_table.txt"""
+Uso: python -I rpc_table.py > config/rpc_table.txt"""
 import re,csv,glob,bisect,collections
 rows=sorted((int(r[1],16),int(r[2],16),r[0]) for r in csv.reader(open('config/functions.csv')) if r and r[1].startswith('0x'))
 starts=[r[0] for r in rows]

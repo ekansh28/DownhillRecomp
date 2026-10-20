@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Resume a última execução (run.log + ps2_log.txt): onde parou e por quê. Uso: ./diag.sh
 cd "$(dirname "$0")"
-python3 -I - <<'PY'
+# Prefere "python" (no Windows o "python3" e o stub da Microsoft Store); so usa python3 se nao houver python.
+if command -v python >/dev/null 2>&1; then PY=python; else PY=python3; fi
+"$PY" -I - <<'PY'
 import re,collections,os
 fns=[]
 if os.path.exists('ps2_log.txt'):
