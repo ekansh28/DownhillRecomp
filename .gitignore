@@ -6,6 +6,29 @@
 /ghidra/
 /mc0/
 /mc1/
+# Disc images, ELF and BIOS anywhere in the tree (any name or case on Windows).
+*.iso
+*.bin
+*.cue
+*.img
+*.chd
+*.cso
+*.elf
+SCUS_*
+SLUS_*
+SCES_*
+SLES_*
+*.rom
+*.rom0
+*.erom
+*.nvm
+*.mec
+# Ghidra projects, RAM dumps and generated code anywhere.
+*.gpr
+*.rep/
+*.ram
+/out/
+/build/
 
 # Third-party clone (setup.sh clones and patches it) and its build output.
 /PS2Recomp/
