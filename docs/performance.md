@@ -89,3 +89,44 @@ by the optimisations above: with them disabled, X from second 60 crashed 4 of 4 
 while X from second 20 to 25 passed 10 of 10 with them enabled. A faster build only gets
 to the bad state sooner in wall-clock time. Likely related to the skipped intro movie
 (the attract sequence the title would start); not investigated yet.
+
+---
+
+# Windows baseline (2026-10-20, branch `phase-a2-build`, commit `4c6b7f6`)
+
+**Machine:** Windows 11, i7-11800H (16 cores), 33 GB RAM, RTX 3060 Laptop GPU,
+clang-cl 23.1.3, CMake 4.5.0-rc1, Ninja 1.13.2.
+
+**Toolchain flags:** Debug build type + explicit
+`/O2 /Ob2 /Oi /GF /Gy /DNDEBUG /Z7 -msse4.1` (no AVX2, no `/fp:fast`, no LTO).
+Release build type fails on clang-cl (`/Qspectre-` rejected) and forces AVX2
+and `/fp:fast` (audit items 15–17).
+
+**Build outcome:** `ps2_recomp.exe` + `ps2EntryRunner.exe` both build (exit 0).
+No generated code was edited; the SSE4.1 floor was added to our CMake preset
+(`-msse4.1`; `/arch:SSE4.1` is ignored by clang-cl on x86-64).
+
+**First run (30 s, `PS2X_PROF=1`):**
+
+| Metric | Value |
+| --- | --- |
+| Window opened | Yes (raylib 5.5, GLFW, OpenGL 3.3) |
+| Render size | 640 × 448 (PS2 native) → upscaled |
+| ELF load | ✅ at 0x10a008 (matches header) |
+| Execution | ✅ started at entry point |
+| IOP RPC syscalls | Active (`sceSifGetReg`, `SetReg`, `SetDma`) |
+| Textures | 640×512 RGBA, 512×128 RGBA loaded |
+| `ps2_log.txt` size | 272 MB (aggressive logs on) |
+| Exit code | 124 (timeout after 30 s), **no crash** |
+| Visible frame | **Purple screen** — game did not reach a drawn frame in 30 s |
+
+**Performance measurements (PS2X_PROF):** **N/A, not yet measurable.** The 30 s
+run captured start-up and initial IOP bring-up only; no steady 10 s window
+completed, no VU1/GS timers emitted, no `PS2X_AUTOX` pad pulses applied.
+The "purple screen" is the attract/intro state before the title screen; the
+game has not yet reached the measurable phases (title, loading, 3D scene)
+documented in the Linux notes above.
+
+**Next steps to get measurable data:** extend the run past the intro (e.g.
+`PS2X_AUTOX=20` for 110 s), disable aggressive logs for speed, capture the
+first steady `PS2X_PROF` windows. Do not copy Linux numbers here.
