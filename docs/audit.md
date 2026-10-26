@@ -126,10 +126,19 @@ Whether PS2Recomp actually needs SDL2/Vulkan/glslang on Windows, or fetches them
 
 **A.2 baseline flags actually used** (Debug build type so `EnableFastReleaseMode` does
 not run, then explicit optimization): `CMAKE_BUILD_TYPE=Debug`,
-`CMAKE_C_FLAGS_DEBUG = CMAKE_CXX_FLAGS_DEBUG = /O2 /Ob2 /Oi /GF /Gy /DNDEBUG /Z7`.
+`CMAKE_C_FLAGS_DEBUG = CMAKE_CXX_FLAGS_DEBUG = /O2 /Ob2 /Oi /GF /Gy /DNDEBUG /Z7 -msse4.1`.
 `/O2 /Ob2 /Oi` = speed, aggressive inlining, intrinsics; `/GF /Gy` = string pooling and
-function-level linking; `/DNDEBUG` = no asserts; `/Z7` = debug info in the .obj. No
-`/arch:*` (portable x86-64, SSE2 only), no `/fp:fast` (so `/fp:precise`), no `/GL`/LTO.
+function-level linking; `/DNDEBUG` = no asserts; `/Z7` = debug info in the .obj;
+`-msse4.1` = the runtime's documented floor (AGENTS.md:15 "the runtime needs at least
+SSE4.1"; the generated code uses `_mm_blendv_ps`). No `/arch:AVX2` (SSE4.1 is the floor,
+not AVX2), no `/fp:fast` (so `/fp:precise`), no `/GL`/LTO.
+
+**SSE4.1 spelling.** MSVC `cl` takes `/arch:SSE4.1`, but **clang-cl ignores it**
+(`warning: ignoring invalid /arch: argument 'SSE4.1'; for 64-bit expected one of AVX,
+AVX2, ...`) — verified: a `_mm_blendv_ps` compile fails under clang-cl `/arch:SSE4.1`.
+clang-cl needs **`-msse4.1`** (verified accepted). So the baseline uses `-msse4.1`,
+which clang-cl accepts and MSVC-cl also tolerates; do not write `/arch:SSE4.1` for this
+toolchain.
 The two hot translation units (`gs_cpu_backend.cpp`, `ps2_vu1_core.cpp`) get
 `/O2;/Ob2;/Oi` via a per-file `set_source_files_properties` in `ps2xRuntime/CMakeLists.txt`
 (our patched file, not upstream's ReleaseMode), replacing the ignored
@@ -267,4 +276,158 @@ compiler-agnostic per-file CMake compile option regardless of compiler choice.
   correctly returned `// no function`; only header-derived addresses were used.)
 
 Nothing was built or run in A.1.
+
+## Runtime progress update (2026-10-21)
+
+The latest rebuild completed successfully and produced
+`PS2Recomp/out/build/ps2xRuntime/ps2EntryRunner.exe` (the build log ends at the
+final link step in `analysis/build-cd-completion.log`). The current executable
+has been smoke-tested far enough to establish the following runtime evidence:
+
+- The game boots and consistently renders title/menu content at 640x448.
+- PADMAN and the physical PAD RPC clients initialize, pad areas register, and
+  the runtime observes stable button transitions (`0xffff` released and
+  `0xbff7` for the automated Cross+Start press).
+- CD search locates `SKAT/DHSKAT.SKX`, reporting size `101288144` and LBN
+  `1048576`; the guest also reaches the associated resource/audio setup.
+- No fatal loader or unhandled-RPC error has been observed in this path.
+
+The current blocker is a guest initialization wait at PC `0x201f08`, the
+return point after `FlushCache`. The guest repeatedly polls its asynchronous
+state and does not progress to the menu/input flow far enough to exercise the
+memory-card requests or a race. The CD read path is observable: SID
+`0x80000595`, RPC function `0x01`, invokes callback `0x246cd0` with parameter
+`0x280900` and a read request ending at callback address `0x246cd0`.
+
+A narrowly scoped runtime patch attempted to update the completion record for
+that SID/function. The rebuilt regression still stayed at `0x201f08`, and no
+write to the intended completion state was observed. Therefore that patch is
+not considered proven; the correct callback record/layout and completion
+protocol must be established from the guest call sites before any further
+completion write is added. Memory-card `GetInfo`/`GetDir` support remains
+implemented but has not yet been runtime-verified because execution has not
+reached those requests.
+
+### CD completion follow-up
+
+Further bounded tracing established why the first completion attempt failed:
+the HLE callback ran before the guest published its async record. The deferred
+completion now waits until the guest initializes the table at `0x279428`
+(`0x4ccb00`), then completes the matching slot and active record. The guest
+poll subsequently sees the matching object and ready bit. A focused rebuild
+and regression verified that execution now leaves `0x201f08` and reaches the
+next loop at `0x201f00`/`0x201f14`.
+
+The remaining blocker has therefore moved forward to the state checked after
+the CD poll; no memory-card request has appeared in this run yet. The exact
+state field at that new wait is being traced before making another change.
+
+### Resource-loading regression update (2026-10-22)
+
+The follow-up executable was rebuilt successfully with Ninja and regression
+tested. The completed CD record now allows the guest to pass the original
+`0x201f08` wait and reach `0x201fc8`. The run performs 82 CD sector reads,
+including the `DHSKAT.SKX` resource and its subsequent chunks, with no fatal
+loader or unhandled-RPC error observed.
+
+The game has not yet reached memory-card traffic, menu activation, or a race.
+The current blocker is a later asynchronous resource-processing loop at
+`0x201fc8`; the first CD completion is verified, but the second resource-state
+protocol is not yet resolved. PAD registration and button-state transitions
+remain observed at the transport level only.
+
+The latest 35-second regression (`analysis/branchfix-regression.*`) confirms
+that this is a stable loop, not a crash: the executable remains alive, keeps
+rendering the 640x448 frame, and has already issued the expected resource CD
+reads. No `[MC] GetInfo`/`GetDir` request or menu activation was observed in
+that run. The remaining work is to identify the second resource completion
+record and retire it through the guest's real state machine before testing
+memory-card flow and physical menu control.
+
+### MCSERV handshake and input-area regression (2026-10-22)
+
+Retail decompilation of `FUN_00245E78` established the exact version checks in
+the shipped game: `0x760784 < 0x20A` reports the MCSERV error and
+`0x760788 < 0x20E` reports the MCMAN error. The public PS2SDK checks use lower
+minimums (`0x205`/`0x206`), but those values are rejected by this retail
+client. The HLE response was changed to `0x020A`/`0x020E`.
+
+The rebuilt executable passed the regression: the MCSERV init trace shows
+`(0, 0x20A, 0x20E)`, the old-release message is absent, and the real guest
+path invokes `[MC] GetInfo` twice with `port=0`, `type=2`, `free=8192`,
+`format=1`, and result `0`. No `[MC] GetDir` request has occurred yet.
+
+The same run confirms that the PAD DMA areas are refreshed with guest-visible
+active-low transitions (`0xFFFF`, `0xFFF7`, `0xBFFF`, `0xBFF7`), including the
+bounded automated Cross/Start pulses. This proves transport and area updates,
+but menu selection and new-game activation are not yet verified. The current
+runtime remains in the title/resource presentation path after the CD loader
+completion; no race has started.
+
+### Digital PAD protocol regression (2026-10-22)
+
+The live IOP DMA path was found to report controller ID `0x73` even though the
+retail `padPortOpen` path opens controllers in digital mode. The runtime HLE
+already documented the corresponding digital ID as `0x41`; the mismatch could
+make the retail guest report the controller as disconnected despite valid
+active-low button bytes. `PS2Recomp/ps2xRuntime/src/lib/ps2_pad.cpp` now emits
+the protocol-correct digital marker `0x41` for the shared PAD backend.
+
+The affected target rebuilt successfully with Ninja after restoring the Windows
+SDK `rc.exe` directory to `PATH`:
+`analysis/build-digital-pad-20261022.log` and
+`analysis/build-digital-pad-20261022.exit` (`BUILD_EXIT=0`). The fresh
+`PS2Recomp/out/build/ps2xRuntime/ps2EntryRunner.exe` was run from the project
+directory. The regression still shows active Cross transitions (`0xBFFF`) and
+stable rendering, but it produced no `[MC] GetDir` request and no evidence of
+menu selection or new-game activation. Thus the digital-ID fix is implemented,
+built, and transport-verified, but the title-to-menu transition remains
+unverified and the game is not playable yet.
+
+### PAD DMA metadata regression (2026-10-22)
+
+The PS2SDK `pad_data_new` definition was checked against the live HLE layout.
+The existing offsets are correct: `frame=88`, `length=96`,
+`buttonDataReady=103`, `state=112`, and `reqState=113`. The missing protocol
+field was `currentTask` at offset `114`; PS2SDK's `padInfoMode()` and
+`padInfoAct()` reject a stable new-format packet unless this field is `1`.
+The IOP refresh now also publishes `modeCurId=0x41` and digital model `4`, and
+uses `0x41` for the fallback packet ID.
+
+The resulting executable was rebuilt with Ninja successfully:
+`analysis/build-pad-metadata-20261022.exit` (`BUILD_EXIT=0`). The focused
+20-second run is `analysis/pad-metadata-run-20261022.err/.out`. It confirms
+the MCSERV handshake, both `GetInfo` calls, CD search/stream reads, and active
+Start/Cross transitions, but still produces no `GetDir` request or menu
+activation. The process remains alive and renders 640x448 frames. The trace
+also establishes that the guest's actual pad open requests use SID `0` with
+the `{command=1, port, slot, 1, padArea}` shape for eight areas; no later PAD
+RPC is observed. The next blocker is therefore the guest-side direct DMA
+consumer or the presentation-state transition, not an unimplemented PAD RPC.
+
+### Full-build visual regression follow-up (2026-10-22)
+
+The configured full Ninja target `PS2Recomp/out/build` was used. An initial
+link attempt failed only because Windows `rc.exe` was absent from `PATH`; after
+adding the Windows SDK resource compiler directory, the target linked
+successfully. The fresh executable is
+`PS2Recomp/out/build/ps2xRuntime/ps2EntryRunner.exe`.
+
+The current executable reproduces the reported visual regression: it remains
+alive, uploads 640x448 frames, and reaches the shell loop at PCs `0x1EC2A8`
+and `0x223EBC`, but no `GetDir`, menu activation, or race occurs. The frame
+source is consistently reported as `displayFbp=70`, `sourceFbp=70`, with
+`preferred=0`; this is not evidence of CRT2 selection. Bounded frame statistics
+show 143,360 non-black pixels, top-left `(0,0,0)`, and center/bottom samples
+`(28,28,28)`, confirming a uniform gray shell frame rather than the magenta
+fallback.
+
+An A/B run with `PS2X_BINDS` empty stalls earlier at the SIF startup loop, so
+the normal binds are still required to reach this shell state. Automated
+Cross/Start pulses continue to update PAD areas, but tracing the known writers
+of guest flag `0x29DFB4` has not shown a transition into the writer paths;
+input transport is implemented but menu consumption remains unverified. The
+next investigation is the guest shell state/input consumer and the GIF/GS path
+that produces the gray framebuffer, without changing the presenter
+speculatively.
 

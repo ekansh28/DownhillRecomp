@@ -1,0 +1,16 @@
+// ===== FUN_00245150 @ 00245150 =====
+// callers: FUN_002451b0, FUN_00245230, FUN_00245688, FUN_00245498, FUN_002452b0, FUN_00245318, FUN_00245370, FUN_00245820
+// callees: FUN_0025ae90
+// strings: 
+
+int FUN_00245150(int param_1,int param_2)
+
+{
+  int iVar1;
+  
+  iVar1 = *(int *)(&DAT_0075edd0 + param_2 * 0x1c + param_1 * 0x70);
+  FUN_0025ae90(iVar1,iVar1 + 0x100);
+  return iVar1 + (uint)(*(int *)(iVar1 + 0x58) < *(int *)(iVar1 + 0xd8)) * 0x80;
+}
+
+

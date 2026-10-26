@@ -1,0 +1,6 @@
+# Current binds with the two device-countdown bypasses removed.
+sceSifBindRpc@0x25CDB8
+sceSifCallRpc@0x25CF88
+ret0@0x25B528
+ret0@0x25E7C0
+ret0@0x201180

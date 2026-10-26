@@ -1,0 +1,44 @@
+[SetupHeap] base=0x8a0400 alignedBase=0x8a0400 size=0xffffffff runtimeBase=0x8a0400 runtimeEnd=0x8a0400
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f090 a1=1 a2=0 a3=75f140 s0=75f140 ra=245ddc
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=4c8940 a1=4d a2=1 a3=4c8b00 s0=279448 ra=202478
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x0 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c780 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c780 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x247ab0 ra=0x247ab0
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] ee call cmd search \SKAT\DHSKAT.SKX;1
+[call] 25cf88 a0=7609c0 a1=0 a2=0 a3=760840 s0=760840 ra=2471a8
+[IOP/CD search] path=SKAT/DHSKAT.SKX size=101288144 lbn=1048576
+[Deci2Call:kputs] search name DHSKAT.SKX
+[Deci2Call:kputs] search size 101288144
+[Deci2Call:kputs] search loc lbn 1048576
+[call] 25d790 a0=8 a1=1 a2=6f726463 a3=93c4c7 s0=93c4c0 ra=25dacc
+[call] 25cf88 a0=764c80 a1=ff a2=0 a3=763540 s0=7641c0 ra=25d900
+[Deci2Call:kputs] N cmd wait
+[call] 25cf88 a0=4cd3c0 a1=3 a2=1 a3=4cd440 s0=4cd3c0 ra=201830
+[Deci2Call:kputs] NEW DiskReady Call
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended

@@ -1,0 +1,185 @@
+[SetupHeap] base=0x8a0400 alignedBase=0x8a0400 size=0xffffffff runtimeBase=0x8a0400 runtimeEnd=0x8a0400
+[syscall] CreateSema a0=93ca80 a1=ffffffff a2=0 a3=29e580 ra=25eedc
+[syscall] CreateSema a0=93caa0 a1=ffffffff a2=0 a3=29e580 ra=25eeec
+[syscall] CreateSema a0=93ca80 a1=ffffffff a2=28 a3=29e580 ra=25b1d8
+[syscall] CreateThread a0=93ca50 a1=2a40f0 a2=400 a3=29e580 ra=25b21c
+[syscall] StartThread a0=2 a1=761208 a2=400 a3=29e580 ra=25b250
+[syscall] WaitSema a0=3 a1=0 a2=0 a3=0 ra=25b118
+[syscall] ChangeThreadPriority a0=1 a1=1 a2=400 a3=29e580 ra=25b264
+[syscall] AddDmacHandler a0=5 a1=25c5f8 a2=0 a3=20 ra=25c2c0
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x0 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20df58 ra=0x20df58
+[call] 25cdb8 a0=7609e8 a1=80000592 a2=0 a3=280000 s0=760000 ra=247834
+[call] 25cf88 a0=7609e8 a1=0 a2=0 a3=760a40 s0=280a00 ra=2478c8
+[syscall] CreateSema a0=93c940 a1=0 a2=ffffffff a3=760a40 ra=246df0
+[syscall] CreateSema a0=93c940 a1=0 a2=ffffffff a3=760a40 ra=246dfc
+[syscall] CreateSema a0=93c940 a1=0 a2=ffffffff a3=760a40 ra=246e08
+[syscall] CreateSema a0=93c940 a1=0 a2=ffffffff a3=760a40 ra=246e18
+[syscall] RemoveDmacHandler a0=5 a1=1 a2=0 a3=760a40 ra=25c3d0
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25ebf8 ra=0x25ebf8
+[sceSifSetReg] reg=0x4 prev=0x20000 value=0x40000 pc=0x25eca8 ra=0x25eca8
+[sceSifSetDma:CALL] pc=0x25ecb4 ra=0x25ecb4 list=0x93c990 count=1
+[sceSifSetDma:DESC] i=0 src=0x765140 dst=0x0 size=0x68 attr=0x44 pc=0x25ecb4 ra=0x25ecb4
+[sceSifSetReg] reg=0x4 prev=0x40000 value=0x10000 pc=0x25ecc4 ra=0x25ecc4
+[sceSifSetReg] reg=0x4 prev=0x10000 value=0x20000 pc=0x25ecd0 ra=0x25ecd0
+[sceSifSetReg] reg=0x80000002 prev=0x1 value=0x0 pc=0x25ece0 ra=0x25ece0
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25ecec ra=0x25ecec
+[sceSifGetReg] reg=0x4 value=0x60000 pc=0x25ed20 ra=0x25ed20
+[syscall] AddDmacHandler a0=5 a1=25c5f8 a2=0 a3=20 ra=25c2c0
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x761b58 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20dfa4 ra=0x20dfa4
+[call] 25cdb8 a0=7609e8 a1=80000592 a2=0 a3=280000 s0=760000 ra=247834
+[call] 25cf88 a0=7609e8 a1=0 a2=0 a3=760a40 s0=280a00 ra=2478c8
+[syscall] PollSema a0=5 a1=246ee8 a2=0 a3=760a40 ra=24761c
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=760a40 ra=24766c
+[call] 25cdb8 a0=281380 a1=80000593 a2=0 a3=760a40 s0=281380 ra=2476e4
+[call] 25cf88 a0=281380 a1=22 a2=0 a3=280e40 s0=280a00 ra=247ca4
+[PAD/RPC trace] sid=0x80000593 rpc=0x22 pc=0x25cf88 server=0x1f10080 send=0x280e40/4 recv=0x280a00/4 end=0x0 param=0x0
+[syscall] SignalSema a0=5 a1=22 a2=0 a3=280e40 ra=247cdc
+[Deci2Call:kputs] NEW DiskReady Call
+[syscall] PollSema a0=6 a1=93c840 a2=ffffffff a3=0 ra=247a98
+[call] 25cdb8 a0=760a10 a1=8000059c a2=0 a3=0 s0=760a10 ra=247afc
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c840 a2=0 a3=0 ra=247bf8
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cdb8 a0=2809d0 a1=80000595 a2=0 a3=29e180 s0=2809d0 ra=2473cc
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=16 sectors=1 dest=0x4f2980 bytes=0x800
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] NEW DiskReady Call
+[syscall] PollSema a0=6 a1=93c840 a2=210 a3=0 ra=247a98
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c840 a2=0 a3=0 ra=247bf8
+[call] 245ae8 a0=282145 a1=29bc90 a2=3 a3=ffffffff s0=398c40 ra=21f4e4
+[call] 25cdb8 a0=75f040 a1=80000901 a2=0 a3=ffffffff s0=75f040 ra=245b3c
+[call] 25cdb8 a0=75f068 a1=80000902 a2=0 a3=ffffffff s0=75f068 ra=245b94
+[call] 25cdb8 a0=75f090 a1=80000903 a2=0 a3=ffffffff s0=75f090 ra=245bec
+[call] 25cdb8 a0=75f0b8 a1=80000904 a2=0 a3=ffffffff s0=75f0b8 ra=245c44
+[call] 25cdb8 a0=75f0e0 a1=80000905 a2=0 a3=ffffffff s0=75f0e0 ra=245c9c
+[call] 245e10 a0=2a0000 a1=80000905 a2=0 a3=ffffffff s0=75f0e0 ra=245cb8
+[call] 25cf88 a0=75f0e0 a1=1 a2=0 a3=75f140 s0=760000 ra=245e44
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 244d88 a0=0 a1=1 a2=0 a3=75f140 s0=398c40 ra=21f50c
+[call] 245e78 a0=0 a1=1 a2=0 a3=75f140 s0=398c40 ra=21f514
+[call] 25cf88 a0=75f090 a1=1 a2=0 a3=75f140 s0=75f140 ra=245ddc
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=4c8940 a1=4d a2=1 a3=4c8b00 s0=279448 ra=202478
+[syscall] WaitSema a0=1 a1=4 a2=20 a3=c8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=738 ra=254fdc
+[syscall] WaitSema a0=1 a1=4 a2=20 a3=c8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=6a8 ra=254fdc
+[syscall] WaitSema a0=1 a1=280000 a2=281928 a3=6a8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=618 ra=254fdc
+[syscall] WaitSema a0=1 a1=280000 a2=281928 a3=618 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=588 ra=254fdc
+[syscall] WaitSema a0=1 a1=280000 a2=281928 a3=588 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=4f8 ra=254fdc
+[syscall] WaitSema a0=1 a1=280000 a2=281928 a3=4f8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=4e8 ra=254fdc
+[syscall] WaitSema a0=1 a1=c8 a2=281928 a3=4e8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=1b8 ra=254fdc
+[Deci2Call:kputs] NEW DiskReady Call
+[syscall] PollSema a0=6 a1=93c6e0 a2=39df94 a3=0 ra=247a98
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c6e0 a2=0 a3=0 ra=247bf8
+[syscall] PollSema a0=4 a1=93c920 a2=0 a3=29b408 ra=246fec
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=280000 a3=29b408 ra=247018
+[call] 25cdb8 a0=7609c0 a1=80000597 a2=0 a3=29b408 s0=7609c0 ra=247084
+[Deci2Call:kputs] ee call cmd search \SKAT\DHSKAT.SKX;1
+[call] 25cf88 a0=7609c0 a1=0 a2=0 a3=760840 s0=760840 ra=2471a8
+[IOP/CD search] path=SKAT/DHSKAT.SKX size=101288144 lbn=1048576
+[Deci2Call:kputs] search name DHSKAT.SKX
+[Deci2Call:kputs] search size 101288144
+[Deci2Call:kputs] search loc lbn 1048576
+[syscall] SignalSema a0=4 a1=93c6b0 a2=0 a3=0 ra=247280
+[syscall] CreateSema a0=93c320 a1=1 a2=6f726463 a3=93c4c7 ra=25d708
+[syscall] WaitSema a0=8 a1=1 a2=6f726463 a3=93c4c7 ra=25d73c
+[call] 25cdb8 a0=764c80 a1=80000001 a2=0 a3=93c4c7 s0=764c80 ra=25d84c
+[syscall] CreateSema a0=93c2b0 a1=80000001 a2=0 a3=93c4c7 ra=25d208
+[syscall] CreateSema a0=93c2b0 a1=80000001 a2=0 a3=93c4c7 ra=25d214
+[syscall] WaitSema a0=9 a1=80000001 a2=0 a3=93c4c7 ra=25d878
+[syscall] SignalSema a0=9 a1=80000001 a2=0 a3=93c4c7 ra=25d8d0
+[call] 25cf88 a0=764c80 a1=ff a2=0 a3=763540 s0=7641c0 ra=25d900
+[syscall] SignalSema a0=8 a1=29bc88 a2=3 a3=ffffffff ra=25daec
+[Deci2Call:kputs] N cmd wait
+[loader-index] a0=0x93c9b0 a1=0x93c940 a2=0x93c950 path="\SND\SHELL_S.BNK;1" tableCount=0 p0=0x0 p1=0x0 p2=0x0 p3=0x0
+[call] 25cf88 a0=4cd3c0 a1=3 a2=1 a3=4cd440 s0=4cd3c0 ra=201830
+[syscall] AddDmacHandler a0=1 a1=21eaa0 a2=0 a3=ff20ff80 ra=21ea88
+[Deci2Call:kputs] NEW DiskReady Call
+[syscall] PollSema a0=6 a1=93c7e0 a2=51 a3=0 ra=247a98
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c7e0 a2=0 a3=0 ra=247bf8
+[Deci2Call:kputs] NEW DiskReady Call
+[syscall] PollSema a0=6 a1=93c760 a2=4b2ab0 a3=0 ra=247a98
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c760 a2=0 a3=0 ra=247bf8
+[loader-index] a0=0x93c970 a1=0x93c9a0 a2=0x25 path="\VAG\SHELL2-L.VAG;1" tableCount=0 p0=0x0 p1=0x0 p2=0x0 p3=0x0
+[syscall] ExitThread a0=ffffffff a1=0 a2=e005e000 a3=0 ra=1df5e0
+[scheduler] exit id=1 pc=0x25a308 ra=0x1df5e0 delete=0
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2

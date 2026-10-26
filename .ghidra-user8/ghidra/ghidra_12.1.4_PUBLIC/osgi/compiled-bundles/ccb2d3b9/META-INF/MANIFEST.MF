@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Created-By: 21.0.12.1 (Eclipse Adoptium)
+Tool: Bnd-7.0.0.202310060912
+Bnd-LastModified: 1792515312761
+Import-Package: ghidra.app.script,ghidra.program.model.address,ghidra.pr
+ ogram.model.listing,ghidra.program.model.mem,ghidra.program.model.symbo
+ l,ghidra.util.task,java.lang,java.lang.invoke,ghidra.app.plugin.core.os
+ gi
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version>=21))"
+Bundle-SymbolicName: ccb2d3b9
+Bundle-Version: 1.0
+Bundle-Name: ccb2d3b9
+Bundle-Activator: GeneratedActivator
+

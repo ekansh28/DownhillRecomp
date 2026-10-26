@@ -1,0 +1,21 @@
+// ===== FUN_00245a58 @ 00245a58 =====
+// callers: FUN_00244d88
+// callees: sceSifCallRpc
+// strings: 
+
+undefined4 FUN_00245a58(void)
+
+{
+  undefined4 uVar1;
+  long lVar2;
+  
+  DAT_0075efc0 = 0x12;
+  lVar2 = sceSifCallRpc(0x75ed80,1,0,0x75efc0,0x80,0x75efc0,0x80,0);
+  uVar1 = DAT_0075efcc;
+  if (lVar2 < 0) {
+    uVar1 = 0;
+  }
+  return uVar1;
+}
+
+

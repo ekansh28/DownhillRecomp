@@ -1,0 +1,23 @@
+[SetupHeap] base=0x8a0400 alignedBase=0x8a0400 size=0xffffffff runtimeBase=0x8a0400 runtimeEnd=0x8a0400
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x0 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c780 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c780 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x247ab0 ra=0x247ab0
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] ee call cmd search \SKAT\DHSKAT.SKX;1
+[IOP/CD search] path=SKAT/DHSKAT.SKX size=101288144 lbn=1048576
+[Deci2Call:kputs] search name DHSKAT.SKX
+[Deci2Call:kputs] search size 101288144
+[Deci2Call:kputs] search loc lbn 1048576
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended

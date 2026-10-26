@@ -1,0 +1,115 @@
+[SetupHeap] base=0x8a0400 alignedBase=0x8a0400 size=0xffffffff runtimeBase=0x8a0400 runtimeEnd=0x8a0400
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x0 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20df58 ra=0x20df58
+[call] 25cdb8 a0=7609e8 a1=80000592 a2=0 a3=280000 s0=760000 ra=247834
+[SifBindRpc] sid=0x80000592 client=0x7609e8 server=0x1f10000 guestServer=0x1f10000
+[call] 25cf88 a0=7609e8 a1=0 a2=0 a3=760a40 s0=280a00 ra=2478c8
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25ebf8 ra=0x25ebf8
+[sceSifSetReg] reg=0x4 prev=0x20000 value=0x40000 pc=0x25eca8 ra=0x25eca8
+[sceSifSetDma:CALL] pc=0x25ecb4 ra=0x25ecb4 list=0x93c990 count=1
+[sceSifSetDma:DESC] i=0 src=0x765140 dst=0x0 size=0x68 attr=0x44 pc=0x25ecb4 ra=0x25ecb4
+[sceSifSetReg] reg=0x4 prev=0x40000 value=0x10000 pc=0x25ecc4 ra=0x25ecc4
+[sceSifSetReg] reg=0x4 prev=0x10000 value=0x20000 pc=0x25ecd0 ra=0x25ecd0
+[sceSifSetReg] reg=0x80000002 prev=0x1 value=0x0 pc=0x25ece0 ra=0x25ece0
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25ecec ra=0x25ecec
+[sceSifGetReg] reg=0x4 value=0x60000 pc=0x25ed20 ra=0x25ed20
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x761b58 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20dfa4 ra=0x20dfa4
+[call] 25cdb8 a0=7609e8 a1=80000592 a2=0 a3=280000 s0=760000 ra=247834
+[SifBindRpc] sid=0x80000592 client=0x7609e8 server=0x1f10000 guestServer=0x1f10000
+[call] 25cf88 a0=7609e8 a1=0 a2=0 a3=760a40 s0=280a00 ra=2478c8
+[call] 25cdb8 a0=281380 a1=80000593 a2=0 a3=760a40 s0=281380 ra=2476e4
+[SifBindRpc] sid=0x80000593 client=0x281380 server=0x1f10080 guestServer=0x1f10080
+[call] 25cf88 a0=281380 a1=22 a2=0 a3=280e40 s0=280a00 ra=247ca4
+[PAD/RPC trace] sid=0x80000593 rpc=0x22 pc=0x25cf88 server=0x1f10080 send=0x280e40/4 recv=0x280a00/4 end=0x0 param=0x0
+[Deci2Call:kputs] NEW DiskReady Call
+[call] 25cdb8 a0=760a10 a1=8000059c a2=0 a3=0 s0=760a10 ra=247afc
+[SifBindRpc] sid=0x8000059c client=0x760a10 server=0x1f10100 guestServer=0x1f10100
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[call] 25cdb8 a0=2809d0 a1=80000595 a2=0 a3=29e180 s0=2809d0 ra=2473cc
+[SifBindRpc] sid=0x80000595 client=0x2809d0 server=0x1f10180 guestServer=0x1f10180
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=16 sectors=1 dest=0x4f2980 bytes=0x800
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] NEW DiskReady Call
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[call] 245ae8 a0=282145 a1=29bc90 a2=3 a3=ffffffff s0=398c40 ra=21f4e4
+[call] 245d28 a0=0 a1=29bc90 a2=3 a3=ffffffff s0=398c40 ra=21f4ec
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[PAD/client trace] client=0x75f040 sid=0x0 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x0,0x0
+[call] 245d28 a0=1 a1=1 a2=0 a3=75f140 s0=398c40 ra=21f4f4
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[PAD/client trace] client=0x75f040 sid=0x0 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x1,0x0
+[call] 245d28 a0=2 a1=1 a2=0 a3=75f140 s0=398c40 ra=21f4fc
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[PAD/client trace] client=0x75f040 sid=0x0 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x2,0x0
+[call] 245d28 a0=3 a1=1 a2=0 a3=75f140 s0=398c40 ra=21f504
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[PAD/client trace] client=0x75f040 sid=0x0 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x3,0x0
+[call] 25cf88 a0=75f090 a1=1 a2=0 a3=75f140 s0=75f140 ra=245ddc
+[PAD/client trace] client=0x75f090 sid=0x0 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x0,0x0
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x0
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x0
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x0
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x0
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x1
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x1
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x1
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x1
+[call] 25cf88 a0=4c8940 a1=4d a2=1 a3=4c8b00 s0=279448 ra=202478
+[Deci2Call:kputs] NEW DiskReady Call
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[call] 25cdb8 a0=7609c0 a1=80000597 a2=0 a3=29b408 s0=7609c0 ra=247084
+[SifBindRpc] sid=0x80000597 client=0x7609c0 server=0x1f10200 guestServer=0x1f10200
+[Deci2Call:kputs] ee call cmd search \SKAT\DHSKAT.SKX;1
+[call] 25cf88 a0=7609c0 a1=0 a2=0 a3=760840 s0=760840 ra=2471a8
+[IOP/CD search] path=SKAT/DHSKAT.SKX size=101288144 lbn=1048576
+[Deci2Call:kputs] search name DHSKAT.SKX
+[Deci2Call:kputs] search size 101288144
+[Deci2Call:kputs] search loc lbn 1048576
+[call] 25cdb8 a0=764c80 a1=80000001 a2=0 a3=93c4c7 s0=764c80 ra=25d84c
+[call] 25cf88 a0=764c80 a1=ff a2=0 a3=763540 s0=7641c0 ra=25d900
+[Deci2Call:kputs] N cmd wait
+[loader-index] a0=0x93c9b0 a1=0x93c940 a2=0x93c950 path="\SND\SHELL_S.BNK;1" tableCount=0 p0=0x0 p1=0x0 p2=0x0 p3=0x0
+[call] 25cf88 a0=4cd3c0 a1=3 a2=1 a3=4cd440 s0=4cd3c0 ra=201830
+[Deci2Call:kputs] NEW DiskReady Call
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[loader-index] a0=0x93c970 a1=0x93c9a0 a2=0x25 path="\VAG\SHELL2-L.VAG;1" tableCount=0 p0=0x0 p1=0x0 p2=0x0 p3=0x0

@@ -1,0 +1,4 @@
+# Focused comparison: execute 0x245E78 while retaining known startup bypasses.
+ret0@0x245AE8
+ret0@0x244D88
+ret0@0x201180

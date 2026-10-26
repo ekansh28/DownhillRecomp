@@ -1,0 +1,589 @@
+[SetupHeap] base=0x8a0400 alignedBase=0x8a0400 size=0xffffffff runtimeBase=0x8a0400 runtimeEnd=0x8a0400
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x0 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20df58 ra=0x20df58
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25ebf8 ra=0x25ebf8
+[sceSifSetReg] reg=0x4 prev=0x20000 value=0x40000 pc=0x25eca8 ra=0x25eca8
+[sceSifSetDma:CALL] pc=0x25ecb4 ra=0x25ecb4 list=0x93c990 count=1
+[sceSifSetDma:DESC] i=0 src=0x765140 dst=0x0 size=0x68 attr=0x44 pc=0x25ecb4 ra=0x25ecb4
+[sceSifSetReg] reg=0x4 prev=0x40000 value=0x10000 pc=0x25ecc4 ra=0x25ecc4
+[sceSifSetReg] reg=0x4 prev=0x10000 value=0x20000 pc=0x25ecd0 ra=0x25ecd0
+[sceSifSetReg] reg=0x80000002 prev=0x1 value=0x0 pc=0x25ece0 ra=0x25ece0
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25ecec ra=0x25ecec
+[sceSifGetReg] reg=0x4 value=0x60000 pc=0x25ed20 ra=0x25ed20
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x761b58 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20dfa4 ra=0x20dfa4
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=16 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=261 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=261 bytes=30000501000000000105de0300000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=262 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=262 bytes=30000601000000000106f00200000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=263 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=263 bytes=30000701000000000107b00200000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=264 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=264 bytes=30000801000000000108d80000000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=265 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=265 bytes=30000901000000000109dc1e00000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=266 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=266 bytes=3c0046f60d00000df64600689a00009a
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=267 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=267 bytes=3e0039850e00000e853960ed15000015
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=268 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=268 bytes=3c0035e60e00000ee63500a011000011
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=269 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=269 bytes=30000d0100000000010d160100000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=270 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=270 bytes=30000e0100000000010e7c3300000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=271 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=272 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=273 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=274 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=275 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=276 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=277 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=278 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=279 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=280 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=281 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=282 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=283 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=284 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=285 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=286 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=287 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=288 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=289 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=290 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=291 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=292 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=293 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=294 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=295 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=296 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=297 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=298 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=299 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=300 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=301 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=302 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=303 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=304 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=305 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=306 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=307 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=308 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=309 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=310 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=311 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=312 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=313 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=314 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=315 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=316 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=317 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=318 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=319 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=320 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=321 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=322 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=323 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=324 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=325 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=326 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=327 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=328 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=329 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=330 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=331 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=332 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=333 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=334 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=335 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=336 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=337 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[IOP/RPC trace:unhandled] sid=0x123456 rpc=0x4d pc=0x25cf88 ra=0x202480 send=0x4c8b00/16 recv=0x4ccb00/12 sendBytes=[01 00 00 00 09 00 08 00 10 00 00 00 00 04 00 00] loadedModules=[]
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] ee call cmd search \SKAT\DHSKAT.SKX;1
+[IOP/CD search] path=SKAT/DHSKAT.SKX size=101288144 lbn=1048576
+[Deci2Call:kputs] search name DHSKAT.SKX
+[Deci2Call:kputs] search size 101288144
+[Deci2Call:kputs] search loc lbn 1048576
+[Deci2Call:kputs] N cmd wait
+[IOP/RPC trace:unhandled] sid=0x123457 rpc=0x3 pc=0x25cf88 ra=0x201838 send=0x4cd440/8 recv=0x4cd400/4 sendBytes=[A7 B9 0B 00 00 00 00 00] loadedModules=[]
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[IOP/CD read] lbn=754681 sectors=1 dest=0xa00000 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/RPC trace:unhandled] sid=0x80000593 rpc=0x4 pc=0x25cf88 ra=0x247f5c send=0x0/0 recv=0x280a00/4 sendBytes=[] loadedModules=[]
+[IOP/CD read] lbn=754682 sectors=1 dest=0x7a8a70 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD read] lbn=754683 sectors=65 dest=0xa00400 bytes=0x20800
+[IOP/CD read] hostRead=1 bytesRead=133120
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD read] lbn=754748 sectors=129 dest=0xa20a00 bytes=0x40800
+[IOP/CD read] hostRead=1 bytesRead=264192
+[IOP/CD read] response=0x280900 guestWrite=1
+[guest-branch:missing-target] kind=IndirectCall op=JALR source=0x19023c target=0x1882c0 pc=0x1882c0 ra=0x190244 sp=0x93c9c0 gp=0x2a40f0 a0=0x3e80b0 a1=0x50000000 a2=0x4b1f70 a3=0x0 s0=0x3e80b0 s1=0x3f52d0 v0=0x286ab0 v1=0x1882c0 a0Readable=yes a0[0]=0x0 a0[4]=0x3f4b60 a0[8]=0x3f4b80 a0[c]=0x3f4b20 s0Readable=yes s0[0]=0x0 s0[4]=0x3f4b60 s0[8]=0x3f4b80 s0[c]=0x3f4b20 recordReadable=yes record[0]=0x1d0 record[4]=0xc0 record[8]=0xffffff3b record[c]=0x18 vtableReadable=no vtbl[0]=0x0 vtbl[4]=0x0 vtbl[8]=0x0 vtbl[c]=0x0 codeRegion=yes policy=1 trace=0x215b68 -> 0x25b000 -> 0x25ee58 -> 0x25a450 -> 0x25eea0 -> 0x216dd0 -> 0x22f570 -> 0x22f570 -> 0x22f588 -> 0x22f600 -> 0x23d868 -> 0x242d70 -> 0x20eb30 -> 0x20e990 -> 0x20e920 -> 0x23df70 -> 0x20e950 -> 0x20e970 -> 0x23d598 -> 0x230058 -> 0x23d040 -> 0x23df70 -> 0x228040 -> 0x216d28 -> 0x23df58 -> 0x20ec30 -> 0x23cf78 -> 0x21e3c8 -> 0x22fd90 -> 0x20ee10 -> 0x21cb98 -> 0x242fa0 -> 0x21d950 -> 0x216690 -> 0x23d608 -> 0x2167c0 -> 0x23d608 -> 0x23d608 -> 0x21b7e8 -> 0x23d608 -> 0x216718 -> 0x217c00 -> 0x21dc08 -> 0x21e3d8 -> 0x21e3d8 -> 0x21e3d8 -> 0x21e3d8 -> 0x21e068 -> 0x21e130 -> 0x228078 -> 0x22e9a0 -> 0x23d650 -> 0x23d898 -> 0x2286f8 -> 0x2388f0 -> 0x23d608 -> 0x25a960 -> 0x217d88 -> 0x21e9a8 -> 0x2102a8 -> 0x23d5f0 -> 0x2103d8 -> 0x2103d8 -> 0x1c5df0

@@ -1,0 +1,181 @@
+Using argv boot path
+INFO: Initializing raylib 5.5
+INFO: Platform backend: DESKTOP (GLFW)
+INFO: Supported raylib modules:
+INFO:     > rcore:..... loaded (mandatory)
+INFO:     > rlgl:...... loaded (mandatory)
+INFO:     > rshapes:... loaded (optional)
+INFO:     > rtextures:. loaded (optional)
+INFO:     > rtext:..... loaded (optional)
+INFO:     > rmodels:... loaded (optional)
+INFO:     > raudio:.... loaded (optional)
+INFO: DISPLAY: Device initialized successfully
+INFO:     > Display size: 1920 x 1080
+INFO:     > Screen size:  640 x 448
+INFO:     > Render size:  640 x 448
+INFO:     > Viewport offsets: 0, 0
+INFO: GLAD: OpenGL extensions loaded successfully
+INFO: GL: Supported extensions count: 404
+INFO: GL: OpenGL device information:
+INFO:     > Vendor:   NVIDIA Corporation
+INFO:     > Renderer: NVIDIA GeForce RTX 3060 Laptop GPU/PCIe/SSE2
+INFO:     > Version:  3.3.0 NVIDIA 617.42
+INFO:     > GLSL:     3.30 NVIDIA via Cg compiler
+INFO: GL: VAO extension detected, VAO functions loaded successfully
+INFO: GL: NPOT textures extension detected, full NPOT textures supported
+INFO: GL: DXT compressed textures supported
+INFO: GL: ETC2/EAC compressed textures supported
+INFO: PLATFORM: DESKTOP (GLFW - Win32): Initialized successfully
+INFO: TEXTURE: [ID 1] Texture loaded successfully (1x1 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 1] Default texture loaded successfully
+INFO: SHADER: [ID 1] Vertex shader compiled successfully
+INFO: SHADER: [ID 2] Fragment shader compiled successfully
+INFO: SHADER: [ID 3] Program shader loaded successfully
+INFO: SHADER: [ID 3] Default shader loaded successfully
+INFO: RLGL: Render batch vertex buffers loaded successfully in RAM (CPU)
+INFO: RLGL: Render batch vertex buffers loaded successfully in VRAM (GPU)
+INFO: RLGL: Default OpenGL state initialized successfully
+INFO: TEXTURE: [ID 2] Texture loaded successfully (128x128 | GRAY_ALPHA | 1 mipmaps)
+INFO: FONT: Default font loaded successfully (224 glyphs)
+INFO: SYSTEM: Working Directory: C:\Users\ekansh\Documents\GitHub\Recomp-Domination
+INFO: AUDIO: Device initialized successfully
+INFO:     > Backend:       miniaudio | WASAPI
+INFO:     > Format:        32-bit IEEE Floating Point -> 32-bit IEEE Floating Point
+INFO:     > Channels:      2 -> 2
+INFO:     > Sample rate:   48000 -> 48000
+INFO:     > Periods size:  1440
+INFO: TIMER: Target time per frame: 16.667 milliseconds
+Loading segment: 0x10a000 - 0x8a0400 (filesz: 0x193cf0, memsz: 0x796400)
+Registered code region: 10a000 - 29dcf0ELF file loaded successfully. Entry point: 0x10a008Starting execution at address 0x10a008INFO: TEXTURE: [ID 3] Texture loaded successfully (640x512 | R8G8B8A8 | 1 mipmaps)
+INFO: TEXTURE: [ID 4] Texture loaded successfully (512x128 | R8G8B8A8 | 1 mipmaps)
+PS2 GsPutIMR:  new=0x65280 a0_64=0x65280 a0_32=0x65280 a1_32=0x65536 pc=0x2372828 ra=0x2372828
+PS2 GsSetCrt: interlaced=1, videoMode=2, frameMode=1
+[frame:upload] idx=0 tick=56 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=1 tick=57 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=2 tick=58 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=3 tick=59 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=4 tick=60 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=5 tick=61 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=6 tick=62 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=7 tick=63 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=8 tick=64 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=9 tick=65 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=10 tick=66 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=11 tick=67 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=12 tick=68 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=13 tick=69 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=14 tick=70 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=15 tick=71 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=16 tick=72 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=17 tick=73 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=18 tick=74 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=19 tick=75 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=20 tick=76 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=21 tick=77 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=22 tick=78 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=23 tick=79 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=24 tick=80 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=25 tick=81 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=26 tick=82 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=27 tick=83 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=28 tick=84 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=29 tick=85 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=30 tick=86 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=31 tick=87 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=32 tick=88 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=33 tick=89 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=34 tick=90 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=35 tick=91 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=36 tick=92 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=37 tick=93 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=38 tick=94 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=39 tick=95 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=40 tick=96 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=41 tick=97 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=42 tick=98 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=43 tick=99 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=44 tick=100 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=45 tick=101 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=46 tick=102 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=47 tick=103 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=48 tick=104 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=49 tick=105 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=50 tick=106 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=51 tick=107 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=52 tick=108 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=53 tick=109 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=54 tick=110 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=55 tick=111 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=56 tick=112 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=57 tick=113 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=58 tick=114 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=59 tick=115 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=60 tick=116 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=61 tick=117 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=62 tick=118 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=63 tick=119 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[run:tick] tick=120 pc=0x25a308 ra=0x1df5e0 sp=0x93c970 gp=0x2a40f0 dispfb1=0x1400 display1=0x1bf27f00000000 activeThreads=2 dma=3 gif=0 gsw=0 vif=2
+[frame:upload] idx=64 tick=120 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=65 tick=121 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=66 tick=122 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=67 tick=123 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=68 tick=124 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=69 tick=125 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=70 tick=126 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=71 tick=127 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=72 tick=128 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=73 tick=129 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=74 tick=130 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=75 tick=131 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=76 tick=132 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=77 tick=133 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=78 tick=134 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=79 tick=135 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=80 tick=136 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=81 tick=137 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=82 tick=138 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=83 tick=139 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=84 tick=140 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=85 tick=141 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=86 tick=142 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=87 tick=143 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=88 tick=144 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=89 tick=145 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=90 tick=146 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=91 tick=147 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=92 tick=148 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=93 tick=149 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=94 tick=150 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=95 tick=151 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=96 tick=152 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=97 tick=153 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=98 tick=154 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=99 tick=155 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=100 tick=156 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=101 tick=157 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=102 tick=158 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=103 tick=159 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=104 tick=160 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=105 tick=161 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=106 tick=162 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=107 tick=163 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=108 tick=164 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=109 tick=165 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=110 tick=166 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=111 tick=167 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=112 tick=168 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=113 tick=169 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=114 tick=170 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=115 tick=171 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=116 tick=172 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=117 tick=173 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=118 tick=174 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=119 tick=175 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=120 tick=176 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=121 tick=177 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=122 tick=178 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=123 tick=179 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=124 tick=180 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=125 tick=181 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=126 tick=182 displayFbp=0 sourceFbp=0 size=640x448 preferred=0
+[frame:upload] idx=127 tick=183 displayFbp=0 sourceFbp=0 size=640x448 preferred=0

@@ -1,0 +1,92 @@
+[SetupHeap] base=0x8a0400 alignedBase=0x8a0400 size=0xffffffff runtimeBase=0x8a0400 runtimeEnd=0x8a0400
+[syscall] CreateSema a0=93ca80 a1=ffffffff a2=0 a3=29e580 ra=25eedc
+[syscall] CreateSema a0=93caa0 a1=ffffffff a2=0 a3=29e580 ra=25eeec
+[syscall] CreateSema a0=93ca80 a1=ffffffff a2=28 a3=29e580 ra=25b1d8
+[syscall] CreateThread a0=93ca50 a1=2a40f0 a2=400 a3=29e580 ra=25b21c
+[syscall] StartThread a0=2 a1=761208 a2=400 a3=29e580 ra=25b250
+[syscall] WaitSema a0=3 a1=0 a2=0 a3=0 ra=25b118
+[syscall] ChangeThreadPriority a0=1 a1=1 a2=400 a3=29e580 ra=25b264
+[syscall] WaitSema a0=1 a1=4 a2=20 a3=c8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=738 ra=254fdc
+[syscall] WaitSema a0=1 a1=4 a2=20 a3=c8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=6a8 ra=254fdc
+[syscall] WaitSema a0=1 a1=280000 a2=281928 a3=6a8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=618 ra=254fdc
+[syscall] WaitSema a0=1 a1=280000 a2=281928 a3=618 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=588 ra=254fdc
+[syscall] WaitSema a0=1 a1=280000 a2=281928 a3=588 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=4f8 ra=254fdc
+[syscall] WaitSema a0=1 a1=280000 a2=281928 a3=4f8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=4e8 ra=254fdc
+[syscall] WaitSema a0=1 a1=c8 a2=281928 a3=4e8 ra=254f80
+[syscall] SignalSema a0=1 a1=280000 a2=281928 a3=1b8 ra=254fdc
+[syscall] CreateSema a0=93c7f0 a1=235a20 a2=39df94 a3=1b8 ra=246df0
+[syscall] CreateSema a0=93c7f0 a1=235a20 a2=39df94 a3=1b8 ra=246dfc
+[syscall] CreateSema a0=93c7f0 a1=235a20 a2=39df94 a3=1b8 ra=246e08
+[syscall] CreateSema a0=93c7f0 a1=235a20 a2=39df94 a3=1b8 ra=246e18
+[syscall] PollSema a0=6 a1=235a20 a2=39df94 a3=1b8 ra=247a98
+[syscall] AddDmacHandler a0=5 a1=25c5f8 a2=0 a3=20 ra=25c2c0
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x0 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c780 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c780 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x247ab0 ra=0x247ab0
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c6e0 a2=0 a3=0 ra=247bf8
+[syscall] PollSema a0=4 a1=93c920 a2=0 a3=29b408 ra=246fec
+[syscall] ReferThreadStatus a0=0 a1=7607d8 a2=280000 a3=29b408 ra=247018
+[Deci2Call:kputs] ee call cmd search \SKAT\DHSKAT.SKX;1
+[IOP/CD search] path=SKAT/DHSKAT.SKX size=101288144 lbn=1048576
+[Deci2Call:kputs] search name DHSKAT.SKX
+[Deci2Call:kputs] search size 101288144
+[Deci2Call:kputs] search loc lbn 1048576
+[syscall] SignalSema a0=4 a1=93c6b0 a2=0 a3=0 ra=247280
+[syscall] CreateSema a0=93c320 a1=1 a2=6f726463 a3=93c4c7 ra=25d708
+[syscall] WaitSema a0=8 a1=1 a2=6f726463 a3=93c4c7 ra=25d73c
+[syscall] CreateSema a0=93c2b0 a1=80000001 a2=0 a3=93c4c7 ra=25d208
+[syscall] CreateSema a0=93c2b0 a1=80000001 a2=0 a3=93c4c7 ra=25d214
+[syscall] WaitSema a0=9 a1=80000001 a2=0 a3=93c4c7 ra=25d878
+[syscall] SignalSema a0=9 a1=80000001 a2=0 a3=93c4c7 ra=25d8d0
+[syscall] SignalSema a0=8 a1=29bc88 a2=3 a3=ffffffff ra=25daec
+[Deci2Call:kputs] N cmd wait
+[syscall] AddDmacHandler a0=1 a1=21eaa0 a2=0 a3=ff20ff80 ra=21ea88
+[Deci2Call:kputs] NEW DiskReady Call
+[syscall] PollSema a0=6 a1=93c7e0 a2=51 a3=0 ra=247a98
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c7e0 a2=0 a3=0 ra=247bf8
+[Deci2Call:kputs] NEW DiskReady Call
+[syscall] PollSema a0=6 a1=93c760 a2=4b2ab0 a3=0 ra=247a98
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c760 a2=0 a3=0 ra=247bf8
+[syscall] ExitThread a0=ffffffff a1=0 a2=e005e000 a3=0 ra=1df5e0
+[scheduler] exit id=1 pc=0x25a308 ra=0x1df5e0 delete=0
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=5 pc=0x25a308 wait=0
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2

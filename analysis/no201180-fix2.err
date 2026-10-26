@@ -1,0 +1,1227 @@
+[SetupHeap] base=0x8a0400 alignedBase=0x8a0400 size=0xffffffff runtimeBase=0x8a0400 runtimeEnd=0x8a0400
+[syscall] CreateSema a0=93ca80 a1=ffffffff a2=0 a3=29e580 ra=25eedc
+[syscall] CreateSema a0=93caa0 a1=ffffffff a2=0 a3=29e580 ra=25eeec
+[syscall] CreateSema a0=93ca80 a1=ffffffff a2=28 a3=29e580 ra=25b1d8
+[syscall] CreateThread a0=93ca50 a1=2a40f0 a2=400 a3=29e580 ra=25b21c
+[syscall] StartThread a0=2 a1=761208 a2=400 a3=29e580 ra=25b250
+[syscall] WaitSema a0=3 a1=0 a2=0 a3=0 ra=25b118
+[syscall] ChangeThreadPriority a0=1 a1=1 a2=400 a3=29e580 ra=25b264
+[syscall] AddDmacHandler a0=5 a1=25c5f8 a2=0 a3=20 ra=25c2c0
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x0 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20df58 ra=0x20df58
+[call] 25cdb8 a0=7609e8 a1=80000592 a2=0 a3=280000 s0=760000 ra=247834
+[call] 25cf88 a0=7609e8 a1=0 a2=0 a3=760a40 s0=280a00 ra=2478c8
+[syscall] CreateSema a0=93c940 a1=0 a2=ffffffff a3=760a40 ra=246df0
+[syscall] CreateSema a0=93c940 a1=0 a2=ffffffff a3=760a40 ra=246dfc
+[syscall] CreateSema a0=93c940 a1=0 a2=ffffffff a3=760a40 ra=246e08
+[syscall] CreateSema a0=93c940 a1=0 a2=ffffffff a3=760a40 ra=246e18
+[syscall] RemoveDmacHandler a0=5 a1=1 a2=0 a3=760a40 ra=25c3d0
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25ebf8 ra=0x25ebf8
+[sceSifSetReg] reg=0x4 prev=0x20000 value=0x40000 pc=0x25eca8 ra=0x25eca8
+[sceSifSetDma:CALL] pc=0x25ecb4 ra=0x25ecb4 list=0x93c990 count=1
+[sceSifSetDma:DESC] i=0 src=0x765140 dst=0x0 size=0x68 attr=0x44 pc=0x25ecb4 ra=0x25ecb4
+[sceSifSetReg] reg=0x4 prev=0x40000 value=0x10000 pc=0x25ecc4 ra=0x25ecc4
+[sceSifSetReg] reg=0x4 prev=0x10000 value=0x20000 pc=0x25ecd0 ra=0x25ecd0
+[sceSifSetReg] reg=0x80000002 prev=0x1 value=0x0 pc=0x25ece0 ra=0x25ece0
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25ecec ra=0x25ecec
+[sceSifGetReg] reg=0x4 value=0x60000 pc=0x25ed20 ra=0x25ed20
+[syscall] AddDmacHandler a0=5 a1=25c5f8 a2=0 a3=20 ra=25c2c0
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x761b58 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20dfa4 ra=0x20dfa4
+[call] 25cdb8 a0=7609e8 a1=80000592 a2=0 a3=280000 s0=760000 ra=247834
+[call] 25cf88 a0=7609e8 a1=0 a2=0 a3=760a40 s0=280a00 ra=2478c8
+[syscall] PollSema a0=5 a1=246ee8 a2=0 a3=760a40 ra=24761c
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=760a40 ra=24766c
+[call] 25cdb8 a0=281380 a1=80000593 a2=0 a3=760a40 s0=281380 ra=2476e4
+[call] 25cf88 a0=281380 a1=22 a2=0 a3=280e40 s0=280a00 ra=247ca4
+[PAD/RPC trace] sid=0x80000593 rpc=0x22 pc=0x25cf88 server=0x1f10080 send=0x280e40/4 recv=0x280a00/4 end=0x0 param=0x0
+[syscall] SignalSema a0=5 a1=22 a2=0 a3=280e40 ra=247cdc
+[Deci2Call:kputs] NEW DiskReady Call
+[syscall] PollSema a0=6 a1=93c840 a2=ffffffff a3=0 ra=247a98
+[call] 25cdb8 a0=760a10 a1=8000059c a2=0 a3=0 s0=760a10 ra=247afc
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c840 a2=0 a3=0 ra=247bf8
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cdb8 a0=2809d0 a1=80000595 a2=0 a3=29e180 s0=2809d0 ra=2473cc
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=16 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=261 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=261 bytes=30000501000000000105de0300000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=262 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=262 bytes=30000601000000000106f00200000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=263 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=263 bytes=30000701000000000107b00200000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=264 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=264 bytes=30000801000000000108d80000000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=265 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=265 bytes=30000901000000000109dc1e00000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=266 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=266 bytes=3c0046f60d00000df64600689a00009a
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=267 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=267 bytes=3e0039850e00000e853960ed15000015
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=268 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=268 bytes=3c0035e60e00000ee63500a011000011
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=269 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=269 bytes=30000d0100000000010d160100000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=270 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=270 bytes=30000e0100000000010e7c3300000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=271 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=272 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=273 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=274 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=275 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=276 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=277 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=278 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=279 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=280 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=281 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=282 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=283 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=284 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=285 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=286 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=287 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=288 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=289 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=290 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=291 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=292 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=293 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=294 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=295 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=296 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=297 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=298 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=299 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=300 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=301 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=302 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=303 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=304 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=305 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=306 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=307 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=308 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=309 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=310 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=311 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=312 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=313 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=314 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=315 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=316 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=317 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=318 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=319 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=320 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=321 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=322 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=323 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=324 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=325 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=326 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=327 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=328 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=329 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=330 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=331 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=332 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=333 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=334 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=335 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=336 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[syscall] PollSema a0=4 a1=1 a2=4f2980 a3=29e180 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=4f2980 a3=29e180 ra=247354
+[call] 25cf88 a0=2809d0 a1=e a2=0 a3=0 s0=27f880 ra=247494
+[syscall] SignalSema a0=4 a1=e a2=0 a3=0 ra=2474cc
+[syscall] PollSema a0=4 a1=e a2=0 a3=0 ra=247304
+[syscall] ReferThreadStatus a0=1 a1=7607d8 a2=0 a3=0 ra=247354
+[Deci2Call:kputs] call cdread cmd
+[call] 25cf88 a0=2809d0 a1=1 a2=1 a3=27f900 s0=280000 ra=247ea0
+[IOP/CD read] lbn=337 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[syscall] iSignalSema a0=4 a1=b a2=0 a3=20280900 ra=246c74
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] NEW DiskReady Call
+[syscall] PollSema a0=6 a1=93c840 a2=210 a3=0 ra=247a98
+[call] 25cf88 a0=760a10 a1=0 a2=0 a3=760a50 s0=760a50 ra=247ba4
+[Deci2Call:kputs] DiskReady ended
+[syscall] SignalSema a0=6 a1=93c840 a2=0 a3=0 ra=247bf8
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f040 a1=1 a2=0 a3=75f140 s0=75f140 ra=245d64
+[call] 25cf88 a0=75f090 a1=1 a2=0 a3=75f140 s0=75f140 ra=245ddc
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 25cf88 a0=75ed80 a1=1 a2=0 a3=75efc0 s0=75efc0 ra=2450a4
+[call] 201180 a0=1 a1=660ca0 a2=ffffffff a3=2 s0=398c40 ra=1b6fac
+[call] 25cdb8 a0=4c8940 a1=123456 a2=0 a3=4cab00 s0=4d0000 ra=201268
+[call] 25cdb8 a0=4cd3c0 a1=123457 a2=0 a3=4cab00 s0=290000 ra=201310
+[call] 25cf88 a0=4c8940 a1=0 a2=1 a3=4c89c0 s0=8 ra=201f88

@@ -1,0 +1,18 @@
+# Retail SDK SifBindRpc implementation at 0x25CDB8.
+# Route it to the runtime RPC stub so CDVD/HLE bind state is initialized.
+sceSifBindRpc@0x25CDB8
+sceSifCallRpc@0x25CF88
+# Diagnostic bypass for the event-wait/state wrapper while the SIF HLE path
+# is incomplete; this is retained only for the known rendering checkpoint.
+# Diagnostic: the CDVD startup callback leaves the retail completion semaphore
+# pending; allow the observed PollSema wrapper to report completion.
+# Diagnostic bypass for the confirmed startup delay loop at 0x25E7C0.
+ret0@0x25E7C0
+# Diagnostic bypass for the confirmed startup countdown at 0x245AE8.
+ret0@0x245AE8
+# Diagnostic bypass for the confirmed startup countdown in FUN_00244D88.
+ret0@0x244D88
+# Diagnostic bypass for the next confirmed startup countdown in FUN_00245E78.
+ret0@0x245E78
+# Diagnostic bypass for the confirmed init wait in FUN_00201180.
+ret0@0x201180

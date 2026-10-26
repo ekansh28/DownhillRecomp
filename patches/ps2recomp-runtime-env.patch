@@ -1,7 +1,976 @@
-diff --git i/ps2xRecomp/src/lib/control_flow_emitter.cpp w/ps2xRecomp/src/lib/control_flow_emitter.cpp
+diff --git a/ps2xIOP/include/ps2x/iop/iop_host.h b/ps2xIOP/include/ps2x/iop/iop_host.h
+index 1eceb08..62a87c0 100644
+--- a/ps2xIOP/include/ps2x/iop/iop_host.h
++++ b/ps2xIOP/include/ps2x/iop/iop_host.h
+@@ -49,8 +49,10 @@ namespace ps2x::iop
+     struct MemoryCardRequest
+     {
+         MemoryCardOperation operation = MemoryCardOperation::Init;
+-        // The fifth argument is carried in $t0 by the EE n32 ABI
+-        std::array<uint32_t, 5> arguments{};
++        // The fifth and sixth arguments are carried in $t0/$t1 by the EE
++        // n32 ABI.  sceMcGetDir uses the sixth argument for its table
++        // pointer, so the transport must preserve both registers.
++        std::array<uint32_t, 6> arguments{};
+     };
+ 
+     class IopHost
+@@ -63,6 +65,17 @@ namespace ps2x::iop
+         virtual bool zeroGuest(uint32_t address, size_t size) = 0;
+         virtual bool normalizeGuestAddress(uint32_t address, uint32_t &normalized) const = 0;
+ 
++        // Return the current host-visible pad packet in PS2 padButtonStatus
++        // layout.  Hosts that do not expose input may return false.
++        virtual bool readPadState(int port, int slot, void *destination, size_t size)
++        {
++            (void)port;
++            (void)slot;
++            (void)destination;
++            (void)size;
++            return false;
++        }
++
+         // IOP RAM is a distinct address space from the EE guest. TODO remove this later
+         virtual bool readIopMemory(uint32_t address, void *destination, size_t size) const
+         {
+diff --git a/ps2xIOP/src/iop_subsystem.cpp b/ps2xIOP/src/iop_subsystem.cpp
+index b498155..23f34c9 100644
+--- a/ps2xIOP/src/iop_subsystem.cpp
++++ b/ps2xIOP/src/iop_subsystem.cpp
+@@ -5,8 +5,16 @@
+ #include "emulator/iop_emulator.h"
+ #include "module_factories.h"
+ #include "ps2x/iop/ps2_path.h"
++#include "rpc_reply.h"
+ 
+ #include <sstream>
++#include <array>
++#include <algorithm>
++#include <cctype>
++#include <cstdlib>
++#include <cstring>
++#include <filesystem>
++#include <iostream>
+ #include <unordered_map>
+ #include <unordered_set>
+ #include <utility>
+@@ -20,6 +28,7 @@ namespace ps2x::iop
+             : host(hostRef),
+               emulator(hostRef)
+         {
++            tracePadAreas = std::getenv("PS2X_TRACE_PAD_AREAS") != nullptr;
+             coreServices.emplace_back(detail::createMcservService(host));
+             coreServices.emplace_back(detail::createDbcmanService(host));
+             coreServices.emplace_back(detail::createLibSdService(host));
+@@ -29,6 +38,12 @@ namespace ps2x::iop
+ 
+         bool serviceActive(const detail::IopService &service) const
+         {
++            // Retail ROM boots expose MCSERV before the game issues its
++            // first bind; this path does not perform an explicit SifLoadModule
++            // for it. Keep the HLE resident like the ROM service while
++            // preserving load-gated behavior for the other providers.
++            if (service.name() == "MCSERV")
++                return true;
+             return moduleManager.isLoaded(service.moduleAliases());
+         }
+ 
+@@ -79,6 +94,86 @@ namespace ps2x::iop
+         }
+ 
+         IopHost &host;
++        struct PadArea
++        {
++            uint32_t address = 0u;
++            uint32_t frame = 0u;
++            bool active = false;
++        };
++        std::array<PadArea, 16u> padAreas{};
++        std::array<uint16_t, 16u> lastPadButtons{};
++        uint32_t streamLbn = 0u;
++        bool streamActive = false;
++        bool tracePadAreas = false;
++        uint32_t tracePadAreaCount = 0u;
++
++        void refreshPadAreas()
++        {
++            constexpr uint32_t kPadDataSize = 128u;
++            constexpr uint32_t kDataOffset = 0u;
++            constexpr uint32_t kFrameOffset = 88u;
++            constexpr uint32_t kLengthOffset = 96u;
++            constexpr uint32_t kStateOffset = 112u;
++            constexpr uint32_t kReqStateOffset = 113u;
++            constexpr uint32_t kButtonReadyOffset = 103u;
++            constexpr uint8_t kStateStable = 6u;
++            constexpr uint8_t kReqComplete = 0u;
++            constexpr uint8_t kPadDigitalId = 0x41u;
++
++            for (std::size_t index = 0u; index < padAreas.size(); ++index)
++            {
++                PadArea &area = padAreas[index];
++                if (!area.active || area.address == 0u)
++                    continue;
++
++                const int port = static_cast<int>(index / 8u);
++                const int slot = static_cast<int>(index % 8u);
++                std::array<uint8_t, 32u> packet{};
++                if (!host.readPadState(port, slot, packet.data(), packet.size()))
++                {
++                    packet[0] = 0x01u;
++                    packet[1] = kPadDigitalId;
++                    packet[2] = 0xFFu;
++                    packet[3] = 0xFFu;
++                    packet[4] = packet[5] = packet[6] = packet[7] = 0x80u;
++                }
++
++                const uint16_t buttons = static_cast<uint16_t>(packet[2]) |
++                                         (static_cast<uint16_t>(packet[3]) << 8u);
++                if (tracePadAreas && tracePadAreaCount < 80u &&
++                    (tracePadAreaCount == 0u || lastPadButtons[index] != buttons))
++                {
++                    std::ostringstream trace;
++                    trace << "[IOP/PAD area] port=" << port
++                          << " slot=" << slot
++                          << " buttons=0x" << std::hex << buttons
++                          << " frame=" << std::dec << (area.frame + 1u);
++                    host.log(LogLevel::Info,
++                             trace.str());
++                    ++tracePadAreaCount;
++                }
++                lastPadButtons[index] = buttons;
++
++                std::array<uint8_t, kPadDataSize> data{};
++                std::memcpy(data.data() + kDataOffset, packet.data(), packet.size());
++                const uint32_t frame = ++area.frame;
++                std::memcpy(data.data() + kFrameOffset, &frame, sizeof(frame));
++                const uint32_t length = 8u;
++                std::memcpy(data.data() + kLengthOffset, &length, sizeof(length));
++                // pad_data_new fields are part of the guest-visible protocol,
++                // not private padding.  libpad's padInfoMode/padInfoAct paths
++                // reject a stable packet until PADMAN marks the active task.
++                data[101u] = packet[1]; // modeCurId: digital controller (0x41)
++                data[102u] = 4u;        // model: PAD_TYPE_DIGITAL
++                data[kButtonReadyOffset] = 1u;
++                data[114u] = 1u;        // currentTask: completed controller task
++                data[kStateOffset] = kStateStable;
++                data[kReqStateOffset] = kReqComplete;
++
++                const uint32_t target = area.address + ((frame & 1u) ? kPadDataSize : 0u);
++                (void)host.writeGuest(target, data.data(), data.size());
++            }
++        }
+         detail::ServiceList coreServices;
+         std::unordered_map<uint32_t, detail::IopService *> routes;
+         std::vector<std::string> loadOutcomes;
+@@ -102,6 +197,10 @@ namespace ps2x::iop
+         m_impl->moduleManager.reset();
+         m_impl->loadOutcomes.clear();
+         m_impl->loggedLoadPaths.clear();
++        for (auto &area : m_impl->padAreas)
++            area = {};
++        m_impl->lastPadButtons.fill(0u);
++        m_impl->tracePadAreaCount = 0u;
+         for (auto &service : m_impl->coreServices)
+         {
+             if (service)
+@@ -166,6 +265,7 @@ namespace ps2x::iop
+ 
+     void IopSubsystem::runEeCycles(uint64_t eeCycles) noexcept
+     {
++        m_impl->refreshPadAreas();
+         m_impl->emulator.runEeCycles(eeCycles);
+     }
+ 
+@@ -191,11 +291,684 @@ namespace ps2x::iop
+         {
+             return true;
+         }
+-        return m_impl->emulator.hasRpcServer(sid);
++
++        // cdvdman is provided by the runtime's HLE CD/DVD path rather than
++        // by a loaded IRX.  Retail games still bind its SIF RPC SIDs before
++        // issuing CD requests; report those endpoints as available so the
++        // SDK bind loop can complete without requiring a physical cdvdman.irx.
++        switch (sid)
++        {
++        case 0x80000592u: // CDVD init
++        case 0x80000593u: // CDVD auxiliary
++        case 0x80000595u: // CDVD normal command
++        case 0x80000597u: // CDVD streaming command
++        case 0x8000059Cu: // retail startup auxiliary CD/DVD service
++        case 0x80000400u: // MCSERV (resident ROM service)
++        // The retail startup wrapper also binds these auxiliary cdvdman
++        // clients before it starts the normal CD request path.  They are
++        // distinct SIF IDs in this ELF, so advertising only the standard
++        // cdvdman IDs leaves the real bind loop waiting on client->server.
++        case 0x80000901u:
++        case 0x80000902u:
++        case 0x80000903u:
++        case 0x80000904u:
++        case 0x80000905u:
++        case 0x800009FEu:
++        case 0x800009FFu:
++            return true;
++        case 0x80000001u: // FILEIO
++            return true;
++        case 0x80000003u: // FILEIO
++            // The retail startup code binds FILEIO before issuing its
++            // post-reset initialization transaction.  The no-BIOS runtime
++            // supplies the small control transaction below; the endpoint
++            // must exist so the synchronous sceSifBindRpc loop can complete.
++            return true;
++        // PS2SDK libpad binds the new PADMAN client pair before issuing
++        // INIT/OPEN and state requests.  The no-BIOS runtime must expose the
++        // endpoints so the retail bind loop can finish; command semantics are
++        // handled below only after their request shapes are observed.
++        case 0x80000100u:
++        case 0x80000101u:
++            return true;
++        // These two application SIF services are bound by the retail startup
++        // worker immediately after the IOP reset.  They are registered by the
++        // game's IOP image (not by one of the standard HLE modules), so the
++        // no-BIOS path must expose the endpoints even though the image loader
++        // does not currently publish their IRX-side server descriptors.
++        case 0x00123456u:
++        case 0x00123457u:
++            return true;
++        default:
++            return m_impl->emulator.hasRpcServer(sid);
++        }
+     }
+ 
+     RpcResult IopSubsystem::handleRpc(const RpcRequest &request)
+     {
++        // The retail FILEIO client performs a four-byte initialization/
++        // control transaction before the normal file path.  Its observed
++        // request is a single guest pointer and the caller only consumes the
++        // four-byte result.  Complete this control call without fabricating
++        // file contents; later FILEIO operations remain visible if reached.
++        if (request.sid == 0x80000003u && request.function == 1u)
++        {
++            if (request.receive.address != 0u && request.receive.size != 0u)
++            {
++                const uint32_t result = 0u;
++                (void)m_impl->host.writeGuest(
++                    request.receive.address,
++                    &result,
++                    std::min<uint32_t>(request.receive.size, sizeof(result)));
++            }
++
++            RpcResult result{};
++            result.handled = true;
++            result.resultAddress = request.receive.address;
++            result.signalNowaitCompletion = true;
++            result.signalCompletion = true;
++            result.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
++            return result;
++        }
++
++        // libcdvd sceCdSearchFile uses SID 0x80000597/function 0.  The
++        // retail wrapper puts the path at +0x24 and expects the sceCdlFILE
++        // response in the server buffer, while the 4-byte receive buffer is
++        // only the completion word.  The generic path below used to zero only
++        // that completion buffer, leaving the consumer's file record empty.
++        if (request.sid == 0x80000597u && request.function == 0u &&
++            request.send.address != 0u && request.send.size >= 0x25u)
++        {
++            std::array<uint8_t, 32u> file{};
++            std::array<char, 256u> pathBytes{};
++            const uint32_t pathAddress = request.send.address + 0x24u;
++            const uint32_t pathSize = std::min<uint32_t>(
++                static_cast<uint32_t>(pathBytes.size() - 1u), request.send.size - 0x24u);
++            const bool readPath = m_impl->host.readGuest(pathAddress, pathBytes.data(), pathSize);
++            std::string path = readPath ? std::string(pathBytes.data()) : std::string{};
++            std::replace(path.begin(), path.end(), '\\', '/');
++            std::string lowerPath = path;
++            std::transform(lowerPath.begin(), lowerPath.end(), lowerPath.begin(),
++                           [](unsigned char ch) { return static_cast<char>(std::tolower(ch)); });
++            if (lowerPath.rfind("cdrom0:", 0u) == 0u)
++                path.erase(0u, 7u);
++            else if (lowerPath.rfind("cdrom:", 0u) == 0u)
++                path.erase(0u, 6u);
++            while (!path.empty() && path.front() == '/')
++                path.erase(path.begin());
++            const std::size_t version = path.rfind(';');
++            if (version != std::string::npos)
++                path.resize(version);
++
++            const std::filesystem::path hostPath =
++                std::filesystem::path(m_impl->host.hostPath(HostPathKind::CdRoot)) / path;
++            std::error_code error;
++            const uint64_t fileSize = std::filesystem::is_regular_file(hostPath, error)
++                                          ? std::filesystem::file_size(hostPath, error)
++                                          : 0u;
++            if (readPath && !path.empty() && !error && fileSize != 0u)
++            {
++                constexpr uint32_t pseudoLbn = 0x00100000u;
++                const uint32_t size = static_cast<uint32_t>(std::min<uint64_t>(fileSize, 0xFFFFFFFFu));
++                std::memcpy(file.data() + 0u, &pseudoLbn, sizeof(pseudoLbn));
++                std::memcpy(file.data() + 4u, &size, sizeof(size));
++                const std::size_t slash = path.find_last_of('/');
++                const std::string leaf = path.substr(slash == std::string::npos ? 0u : slash + 1u);
++                std::memcpy(file.data() + 8u, leaf.data(), std::min<std::size_t>(15u, leaf.size()));
++                (void)m_impl->host.writeGuest(request.send.address, file.data(), file.size());
++                if (request.receive.address != 0u && request.receive.size != 0u)
++                {
++                    const uint32_t complete = 1u;
++                    (void)m_impl->host.writeGuest(request.receive.address, &complete,
++                                                  std::min<uint32_t>(request.receive.size, sizeof(complete)));
++                }
++                std::cerr << "[IOP/CD search] path=" << path << " size=" << size
++                          << " lbn=" << pseudoLbn << std::endl;
++            }
++            else
++            {
++                (void)m_impl->host.zeroGuest(request.send.address, std::min<uint32_t>(request.send.size, 32u));
++                std::cerr << "[IOP/CD search] miss path=" << path
++                          << " root=" << m_impl->host.hostPath(HostPathKind::CdRoot) << std::endl;
++            }
++
++            RpcResult result{};
++            result.handled = true;
++            result.resultAddress = request.receive.address;
++            result.signalNowaitCompletion = true;
++            result.signalCompletion = true;
++            result.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
++            return result;
++        }
++
++        // FILEIO function 0xff is the version/control transaction issued by
++        // the EE-side sceFsInit path.  It is an 8-byte request and must be
++        // completed before the caller can use the normal FILEIO functions;
++        // it is not fioOpen (the standard FILEIO function table starts at 0).
++        // The retail client only requires a successful completion here.  Keep
++        // the response deterministic and bounded to the requested receive
++        // buffer rather than interpreting the two request pointers as an EE
++        // file operation.
++        if (request.sid == 0x80000001u && request.function == 0xFFu)
++        {
++            if (request.receive.address != 0u && request.receive.size != 0u)
++            {
++                const uint32_t responseWords[2] = {0u, 0u};
++                const uint32_t responseSize = std::min<uint32_t>(
++                    request.receive.size, static_cast<uint32_t>(sizeof(responseWords)));
++                (void)m_impl->host.writeGuest(request.receive.address, responseWords,
++                                               responseSize);
++                if (request.receive.size > responseSize)
++                {
++                    (void)m_impl->host.zeroGuest(request.receive.address + responseSize,
++                                                 request.receive.size - responseSize);
++                }
++            }
++
++            RpcResult result{};
++            result.handled = true;
++            result.resultAddress = request.receive.address;
++            result.signalNowaitCompletion = true;
++            result.signalCompletion = true;
++            result.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
++            return result;
++        }
++
++        // 989SND's two RPC endpoints are registered by the retail IOP image,
++        // which is not executed by the no-BIOS path.  The IRX protocol was
++        // recovered from MOD/989SND.IRX:
++        //   SID 0x123456/function 0x4d is an envelope containing one or more
++        //   commands.  Command 9 consumes two words (volume group, value)
++        //   and writes no response payload.
++        //   SID 0x123457/function 3 calls the loading service and returns 0
++        //   when the sound system has not been initialized.
++        // Keep the HLE deliberately limited to the commands observed from
++        // the retail startup path; do not invent sound data or handles.
++        if (request.sid == 0x00123456u && request.function == 0x4Du)
++        {
++            bool valid = request.send.address != 0u && request.send.size >= 8u;
++            uint32_t count = 0u;
++            uint32_t command = 0u;
++            uint32_t commandBytes = 0u;
++            if (valid)
++            {
++                std::array<uint32_t, 2u> header{};
++                valid = m_impl->host.readGuest(request.send.address, header.data(), sizeof(header));
++                count = header[0];
++                command = header[1] & 0xFFFFu;
++                if (valid && count == 1u && request.send.size >= 8u)
++                {
++                    uint16_t encodedSize = 0u;
++                    valid = m_impl->host.readGuest(request.send.address + 6u,
++                                                   &encodedSize, sizeof(encodedSize));
++                    commandBytes = encodedSize;
++                    valid = valid && command == 9u && commandBytes >= 8u &&
++                            request.send.size >= 8u + commandBytes;
++                }
++            }
++            if (request.receive.address != 0u && request.receive.size != 0u)
++                (void)m_impl->host.zeroGuest(request.receive.address, request.receive.size);
++            if (!valid)
++            {
++                std::cerr << "[IOP/989SND] rejected main RPC envelope"
++                          << " size=" << request.send.size << std::endl;
++            }
++            else
++            {
++                static uint32_t traceCount = 0u;
++                if (traceCount++ < 8u)
++                    std::cerr << "[IOP/989SND] main command=9 bytes=" << commandBytes << std::endl;
++            }
++
++            RpcResult result{};
++            result.handled = valid;
++            result.resultAddress = request.receive.address;
++            result.signalNowaitCompletion = valid;
++            result.signalCompletion = valid;
++            result.serverDispatchPolicy = valid ? ServerDispatchPolicy::Suppress
++                                                 : ServerDispatchPolicy::RuntimeDefault;
++            return result;
++        }
++
++        if (request.sid == 0x00123457u && request.function == 3u)
++        {
++            // FUN_0000928c first checks the initialized sound state and
++            // returns zero before touching its loading arguments when absent.
++            if (request.receive.address != 0u && request.receive.size != 0u)
++            {
++                const uint32_t resultValue = 0u;
++                (void)m_impl->host.writeGuest(request.receive.address, &resultValue,
++                                              std::min<uint32_t>(request.receive.size,
++                                                                 sizeof(resultValue)));
++            }
++            RpcResult result{};
++            result.handled = true;
++            result.resultAddress = request.receive.address;
++            result.signalNowaitCompletion = true;
++            result.signalCompletion = true;
++            result.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
++            return result;
++        }
++
++        // mtapman registers one SIF endpoint per operation. The PS2SDK
++        // handlers use data[0] as the port and return the result in data[1].
++        // No multitap is attached to the host runtime: open/close succeed,
++        // connection is absent, and slot operations fail.
++        if ((request.sid == 0x80000901u || request.sid == 0x80000902u ||
++             request.sid == 0x80000903u || request.sid == 0x800009FEu ||
++             request.sid == 0x800009FFu) &&
++            request.function == 1u && request.send.address != 0u &&
++            request.send.size >= 8u)
++        {
++            uint32_t port = 0u;
++            (void)m_impl->host.readGuest(request.send.address, &port, sizeof(port));
++            int32_t rpcResult = -1;
++            if (request.sid == 0x80000901u || request.sid == 0x80000902u)
++                rpcResult = (port < 4u) ? 1 : -1;
++            else if (request.sid == 0x80000903u)
++                rpcResult = 0;
++            (void)m_impl->host.writeGuest(request.send.address + 4u, &rpcResult,
++                                          sizeof(rpcResult));
++            if (request.receive.address != 0u && request.receive.size != 0u)
++            {
++                (void)m_impl->host.writeGuest(request.receive.address, &rpcResult,
++                                              std::min<uint32_t>(request.receive.size,
++                                                                 sizeof(rpcResult)));
++            }
++            RpcResult result{};
++            result.handled = true;
++            result.resultAddress = request.send.address;
++            result.signalNowaitCompletion = true;
++            result.signalCompletion = true;
++            result.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
++            return result;
++        }
++
++        // libmtap's module-version query uses the same 128-byte RPC buffer
++        // as the other mtapman calls, but returns the packed version in its
++        // first word.  The retail caller accepts major version 3 and checks
++        // the low byte as the minor version (3.0 is encoded as 0x0300).
++        if (request.sid == 0x80000905u && request.function == 1u &&
++            request.send.address != 0u && request.send.size >= sizeof(uint32_t))
++        {
++            const uint32_t moduleVersion = 0x0300u;
++            (void)m_impl->host.writeGuest(request.send.address, &moduleVersion,
++                                          sizeof(moduleVersion));
++            if (request.receive.address != 0u && request.receive.size != 0u)
++            {
++                (void)m_impl->host.writeGuest(request.receive.address,
++                                              &moduleVersion,
++                                              std::min<uint32_t>(request.receive.size,
++                                                                 sizeof(moduleVersion)));
++            }
++            RpcResult result{};
++            result.handled = true;
++            result.resultAddress = request.send.address;
++            result.signalNowaitCompletion = true;
++            result.signalCompletion = true;
++            result.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
++            return result;
++        }
++
++        // PS2SDK libpad's new PADMAN client uses one 128-byte shared buffer
++        // for RPC function 1.  The command is at +0x00 and padResult.result
++        // is at +0x0c (the first three words are reserved).  The retail
++        // wrapper at 0x245a58 reads that exact result field after command
++        // 0x12, then uses command 0x10 for padPortInit.
++        const bool isPadEndpoint = request.sid == 0x80000100u ||
++                                   request.sid == 0x80000101u;
++        const bool isLegacyPadOpen = request.sid == 0u &&
++                                     request.function == 1u &&
++                                     request.send.address != 0u &&
++                                     request.send.size >= 0x14u;
++        if ((isPadEndpoint || isLegacyPadOpen) &&
++            request.function == 1u && request.send.address != 0u &&
++            request.send.size >= 0x10u)
++        {
++            uint32_t command = 0u;
++            (void)m_impl->host.readGuest(request.send.address, &command, sizeof(command));
++
++            uint32_t resultValue = 0u;
++            if (command == 0x12u)
++            {
++                // libpad's padGetModVersion() accepts major version 3;
++                // 3.0 is the version encoded by the shipped PADMAN path.
++                resultValue = 0x0300u;
++            }
++            else if (command == 0x01u)
++            {
++                // padPortOpen() sends {command, port, slot, unknown,
++                // padArea}.  libpad has already initialized the EE DMA
++                // area; PADMAN's RPC result is the open status at +0x0c
++                // followed by its private IOP pad-buffer pointer at +0x14.
++                // The EE client only retains that pointer for PADMAN's
++                // asynchronous path, so leave it null in this HLE while
++                // reporting the protocol-defined successful open result.
++                uint32_t port = 0u;
++                uint32_t slot = 0u;
++                (void)m_impl->host.readGuest(request.send.address + 4u, &port, sizeof(port));
++                (void)m_impl->host.readGuest(request.send.address + 8u, &slot, sizeof(slot));
++                if (port >= 2u || slot >= 8u)
++                    return RpcResult{};
++                resultValue = 1u;
++                const uint32_t padBuf = 0u;
++                const uint32_t padArea = [&]()
++                {
++                    uint32_t value = 0u;
++                    (void)m_impl->host.readGuest(request.send.address + 0x10u, &value, sizeof(value));
++                    return value;
++                }();
++                if (port < 2u && slot < 8u)
++                {
++                    auto &area = m_impl->padAreas[port * 8u + slot];
++                    area.address = padArea;
++                    area.frame = 0u;
++                    area.active = padArea != 0u;
++                }
++                (void)m_impl->host.writeGuest(request.send.address + 0x14u,
++                                              &padBuf, sizeof(padBuf));
++            }
++            else if (command == 0x10u)
++            {
++                // padPortInit() passes an open-slot status pointer at +0x10.
++                // The command's documented result is returned at +0x0c.
++                resultValue = 1u;
++                uint32_t statusAddress = 0u;
++                if (request.send.size >= 0x14u)
++                {
++                    (void)m_impl->host.readGuest(request.send.address + 0x10u,
++                                                 &statusAddress, sizeof(statusAddress));
++                    if (statusAddress != 0u)
++                        (void)m_impl->host.zeroGuest(statusAddress, 128u);
++                }
++            }
++            else
++            {
++                // Leave unsupported commands for the real IOP route rather
++                // than claiming success or inventing a response layout.
++                return RpcResult{};
++            }
++
++            (void)m_impl->host.writeGuest(request.send.address + 0x0Cu,
++                                          &resultValue, sizeof(resultValue));
++            if (request.receive.address != 0u && request.receive.size != 0u &&
++                request.receive.address != request.send.address)
++            {
++                (void)m_impl->host.writeGuest(request.receive.address + 0x0Cu,
++                                              &resultValue, sizeof(resultValue));
++            }
++            static uint32_t padRpcTraceCount = 0u;
++            if (padRpcTraceCount++ < 32u)
++            {
++                std::cerr << "[IOP/PAD] sid=0x" << std::hex << request.sid
++                          << " command=0x" << command
++                          << " result=0x" << resultValue << std::dec << std::endl;
++            }
++            RpcResult result{};
++            result.handled = true;
++            result.resultAddress = request.send.address;
++            result.signalNowaitCompletion = true;
++            result.signalCompletion = true;
++            result.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
++            return result;
++        }
++
++        // A few retail diagnostic helpers issue RPCs through an unbound
++        // client (SID 0) when no DECI2 server is present.  Treat those as a
++        // completed no-op so a missing debugger cannot abort game startup.
++        if (request.sid == 0u)
++        {
++            if (request.receive.address != 0u && request.receive.size != 0u)
++                (void)m_impl->host.zeroGuest(request.receive.address, request.receive.size);
++            RpcResult result{};
++            result.handled = true;
++            result.resultAddress = request.receive.address;
++            result.signalNowaitCompletion = true;
++            result.signalCompletion = true;
++            result.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
++            return result;
++        }
++
++        // cdvdman is exposed as an HLE bind endpoint when no physical IRX is
++        // loaded.  Its initial RPC is a zero-argument readiness query; it
++        // must still complete the SIF call so the EE can leave the reset path.
++        if ((request.sid == 0x80000592u && request.function == 0u) ||
++            (request.sid == 0x80000593u &&
++             (request.function == 0x04u || request.function == 0x22u)) ||
++            (request.sid == 0x8000059Cu && request.function == 0u) ||
++            (request.sid == 0x80000595u) ||
++            (request.sid == 0x80000597u && request.function == 0u))
++        {
++            if (request.sid == 0x80000595u && request.function == 1u &&
++                request.send.address != 0u && request.send.size >= 12u)
++            {
++                std::array<uint32_t, 6> command{};
++                if (m_impl->host.readGuest(request.send.address, command.data(),
++                                           std::min<size_t>(request.send.size, sizeof(command))))
++                {
++                    const uint32_t lbn = command[0];
++                    const uint32_t sectors = command[1];
++                    const uint32_t destination = command[2];
++                    constexpr uint32_t sectorSize = 2048u;
++                    const uint64_t byteCount = static_cast<uint64_t>(sectors) * sectorSize;
++                    static uint32_t cdReadTraceCount = 0u;
++                    const uint32_t readTraceIndex = cdReadTraceCount++;
++                    if (readTraceIndex < 256u || (readTraceIndex % 100u) == 0u)
++                    {
++                        std::cerr << "[IOP/CD read] lbn=" << lbn
++                                  << " sectors=" << sectors
++                                  << " dest=0x" << std::hex << destination
++                                  << " bytes=0x" << byteCount << std::dec << std::endl;
++                    }
++                    if (sectors != 0u && sectors <= 0x1000u && byteCount <= 8u * 1024u * 1024u)
++                    {
++                        const std::string imagePath = m_impl->host.hostPath(HostPathKind::CdImage);
++                        const uint64_t handle = m_impl->host.openHostFile(imagePath);
++                        if (handle != 0u)
++                        {
++                            std::vector<uint8_t> bytes(static_cast<size_t>(byteCount));
++                            size_t bytesRead = 0u;
++                            const bool readOk = m_impl->host.readHostFile(
++                                handle, static_cast<uint64_t>(lbn) * sectorSize,
++                                bytes.data(), bytes.size(), bytesRead);
++                            m_impl->host.closeHostFile(handle);
++                            if (readTraceIndex < 256u || (readTraceIndex % 100u) == 0u)
++                            {
++                                std::cerr << "[IOP/CD read] hostRead=" << (readOk ? 1 : 0)
++                                          << " bytesRead=" << bytesRead << std::endl;
++                            }
++                            if (readOk && bytesRead == bytes.size())
++                            {
++                                // sceCdRead transfers aligned bulk data
++                                // directly to the EE destination.  Its
++                                // _CdAlignReadBuffer callback only consumes
++                                // the two optional 16-byte edge fragments in
++                                // the response header; reporting the full
++                                // sector count in size1 would make the EE
++                                // callback read past src1/src2 and corrupt
++                                // the caller's state.
++                                bool wrote = m_impl->host.writeIopMemory(
++                                    destination, bytes.data(), bytes.size());
++                                if (!wrote)
++                                    wrote = m_impl->host.writeGuest(destination, bytes.data(), bytes.size());
++
++                                const uint32_t responseBuffer = request.endParameter != 0u
++                                                                      ? request.endParameter
++                                                                      : request.serverBuffer;
++                                if (responseBuffer != 0u)
++                                {
++                                    const uint32_t edgeSize = 0u;
++                                    const bool response =
++                                        m_impl->host.writeGuest(responseBuffer, &edgeSize, sizeof(edgeSize)) &&
++                                        m_impl->host.writeGuest(responseBuffer + 4u, &edgeSize, sizeof(edgeSize)) &&
++                                        m_impl->host.writeGuest(responseBuffer + 8u, &destination, sizeof(destination)) &&
++                                        m_impl->host.writeGuest(responseBuffer + 12u, &destination, sizeof(destination));
++                                    wrote = wrote && response;
++                                }
++                                if (request.endParameter == 0u && request.serverBuffer == 0u)
++                                {
++                                    // No callback packet is available for
++                                    // this HLE-only form; the direct copy is
++                                    // the complete transfer.
++                                    wrote = true;
++                                }
++                                if (command[5] != 0u)
++                                {
++                                    const uint32_t nextPosition = lbn + sectors;
++                                    (void)m_impl->host.writeGuest(command[5], &nextPosition,
++                                                                  sizeof(nextPosition));
++                                }
++                                if (readTraceIndex < 256u || (readTraceIndex % 100u) == 0u)
++                                {
++                                    std::cerr << "[IOP/CD read] response=0x" << std::hex
++                                              << responseBuffer << " guestWrite="
++                                              << (wrote ? 1 : 0) << std::dec << std::endl;
++                                }
++                                if (lbn >= 260u && lbn <= 270u)
++                                {
++                                    std::array<uint8_t, 16u> preview{};
++                                    if (m_impl->host.readGuest(destination, preview.data(), preview.size()))
++                                    {
++                                        std::cerr << "[IOP/CD preview] lbn=" << lbn << " bytes=";
++                                        for (uint8_t value : preview)
++                                            std::cerr << std::hex << (value >> 4u) << (value & 0xFu);
++                                        std::cerr << std::dec << std::endl;
++                                    }
++                                }
++                            }
++                        }
++                    }
++                }
++            }
++            // PS2SDK CD_NCMD_STREAM (RPC function 0x09) uses the same
++            // cdvdman endpoint as normal reads.  The retail shell uses this
++            // for streamed VAG/audio resources; returning an empty success
++            // leaves its stream consumer permanently at zero progress.
++            if (request.sid == 0x80000595u && request.function == 0x09u &&
++                request.send.address != 0u && request.send.size >= 20u)
++            {
++                std::array<uint32_t, 5u> command{};
++                const bool readCommand = m_impl->host.readGuest(
++                    request.send.address, command.data(), sizeof(command));
++                uint32_t resultValue = 0u;
++                bool ok = readCommand;
++                constexpr uint32_t kStreamStart = 1u;
++                constexpr uint32_t kStreamRead = 2u;
++                constexpr uint32_t kStreamStop = 3u;
++                constexpr uint32_t kStreamSeek = 4u;
++                constexpr uint32_t kStreamInit = 5u;
++                constexpr uint32_t sectorSize = 2048u;
++                if (ok && command[3] == kStreamInit)
++                {
++                    m_impl->streamLbn = 0u;
++                    m_impl->streamActive = true;
++                    resultValue = 1u;
++                }
++                else if (ok && command[3] == kStreamStart)
++                {
++                    m_impl->streamLbn = command[0];
++                    m_impl->streamActive = true;
++                    resultValue = 1u;
++                }
++                else if (ok && command[3] == kStreamSeek)
++                {
++                    m_impl->streamLbn = command[0];
++                    m_impl->streamActive = true;
++                    resultValue = 1u;
++                }
++                else if (ok && command[3] == kStreamStop)
++                {
++                    m_impl->streamActive = false;
++                    resultValue = 1u;
++                }
++                else if (ok && command[3] == kStreamRead && m_impl->streamActive)
++                {
++                    const uint32_t sectors = command[1];
++                    const uint64_t byteCount = static_cast<uint64_t>(sectors) * sectorSize;
++                    ok = sectors != 0u && sectors <= 0x1000u &&
++                         byteCount <= 8u * 1024u * 1024u && command[2] != 0u;
++                    if (ok)
++                    {
++                        const uint64_t handle = m_impl->host.openHostFile(
++                            m_impl->host.hostPath(HostPathKind::CdImage));
++                        std::vector<uint8_t> bytes(static_cast<size_t>(byteCount));
++                        size_t bytesRead = 0u;
++                        ok = handle != 0u && m_impl->host.readHostFile(
++                            handle, static_cast<uint64_t>(m_impl->streamLbn) * sectorSize,
++                            bytes.data(), bytes.size(), bytesRead) && bytesRead == bytes.size();
++                        if (handle != 0u)
++                            m_impl->host.closeHostFile(handle);
++                        if (ok)
++                        {
++                            ok = m_impl->host.writeGuest(command[2], bytes.data(), bytes.size());
++                            m_impl->streamLbn += sectors;
++                            resultValue = sectors;
++                        }
++                    }
++                }
++                if (!ok)
++                    resultValue = 0u;
++                if (request.receive.address != 0u && request.receive.size != 0u)
++                    (void)m_impl->host.writeGuest(request.receive.address, &resultValue,
++                                                  std::min<uint32_t>(request.receive.size,
++                                                                     sizeof(resultValue)));
++                static uint32_t streamTraceCount = 0u;
++                if (streamTraceCount++ < 32u)
++                {
++                    std::cerr << "[IOP/CD stream] cmd=" << command[3]
++                              << " lbn=" << command[0] << " sectors=" << command[1]
++                              << " dest=0x" << std::hex << command[2]
++                              << " result=" << std::dec << resultValue
++                              << " ok=" << (ok ? 1 : 0) << std::endl;
++                }
++            }
++            if (request.sid == 0x80000595u && request.function == 0x0Eu)
++            {
++                const uint32_t completed = 1u;
++                (void)m_impl->host.writeGuest(0x27F814u, &completed, sizeof(completed));
++            }
++            if (request.receive.address != 0u && request.receive.size != 0u)
++            {
++                if (request.sid == 0x80000595u && request.function == 0x0Eu &&
++                    request.receive.size >= sizeof(uint32_t))
++                {
++                    const uint32_t ready = 2u;
++                    (void)m_impl->host.writeGuest(request.receive.address, &ready, sizeof(ready));
++                    if (request.receive.size > sizeof(ready))
++                    {
++                        (void)m_impl->host.zeroGuest(request.receive.address + sizeof(ready),
++                                                     request.receive.size - sizeof(ready));
++                    }
++                }
++                else if (request.sid == 0x8000059Cu && request.receive.size >= sizeof(uint32_t))
++                {
++                    const uint32_t ready = 2u;
++                    (void)m_impl->host.writeGuest(request.receive.address, &ready, sizeof(ready));
++                    if (request.receive.size > sizeof(ready))
++                    {
++                        (void)m_impl->host.zeroGuest(request.receive.address + sizeof(ready),
++                                                     request.receive.size - sizeof(ready));
++                    }
++                }
++                else if (request.sid == 0x80000595u && request.function == 0x09u)
++                {
++                    // CD_NCMD_STREAM wrote its protocol result above.
++                    // Do not let the generic fallback erase it.
++                }
++                else
++                {
++                    (void)m_impl->host.zeroGuest(request.receive.address, request.receive.size);
++                }
++            }
++            RpcResult result{};
++            result.handled = true;
++            result.resultAddress = request.receive.address;
++            result.signalNowaitCompletion = true;
++            result.signalCompletion = true;
++            result.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
++            return result;
++        }
++
+         const auto route = m_impl->routes.find(request.sid);
+         detail::IopService *hle = route != m_impl->routes.end() ? route->second : nullptr;
+ 
+diff --git a/ps2xIOP/src/modules/mcserv.cpp b/ps2xIOP/src/modules/mcserv.cpp
+index ce23759..34b822b 100644
+--- a/ps2xIOP/src/modules/mcserv.cpp
++++ b/ps2xIOP/src/modules/mcserv.cpp
+@@ -19,8 +19,12 @@ namespace ps2x::iop::detail
+         constexpr uint32_t kMcservDev9Sid = 0x80000480u;
+         constexpr int32_t kSucceeded = 0;
+         constexpr int32_t kDenied = -5;
+-        constexpr uint32_t kMcservVersion = 0x0205u;
+-        constexpr uint32_t kMcmanVersion = 0x0206u;
++        // This retail libmc build performs its own compatibility check at
++        // 0x245f9c: MCSERV must be >= 0x20a and MCMAN >= 0x20e.  The public
++        // PS2SDK minimums (0x205/0x206) are valid for newer libmc, but are
++        // rejected by this game's shipped client.
++        constexpr uint32_t kMcservVersion = 0x020Au;
++        constexpr uint32_t kMcmanVersion = 0x020Eu;
+         constexpr uint32_t kCreateDirectory = 0x0040u;
+ 
+         enum class Operation
+@@ -185,6 +189,10 @@ namespace ps2x::iop::detail
+                 RpcResult response{};
+                 response.handled = true;
+                 response.resultAddress = request.receive.address;
++                // MCSERV is handled by this HLE provider.  Do not also invoke
++                // the guest-side server registered by the retail startup
++                // code, which can overwrite the 12-byte mcRpcStat_t reply.
++                response.serverDispatchPolicy = ServerDispatchPolicy::Suppress;
+ 
+                 Flavor flavor = Flavor::NewXmcserv;
+                 const Operation operation = decodeOperation(request.function, flavor);
+@@ -258,9 +266,10 @@ namespace ps2x::iop::detail
+                          uint32_t a1 = 0u,
+                          uint32_t a2 = 0u,
+                          uint32_t a3 = 0u,
+-                         uint32_t stackArgument = 0u)
++                         uint32_t a4 = 0u,
++                         uint32_t a5 = 0u)
+             {
+-                return m_host.memoryCard({operation, {a0, a1, a2, a3, stackArgument}});
++                return m_host.memoryCard({operation, {a0, a1, a2, a3, a4, a5}});
+             }
+ 
+             void writeResult(GuestBuffer receive, int32_t result)
+@@ -273,7 +282,33 @@ namespace ps2x::iop::detail
+             {
+                 const std::array<uint32_t, 3> values = {static_cast<uint32_t>(result), kMcservVersion, kMcmanVersion};
+                 const size_t count = flavor == Flavor::NewXmcserv ? values.size() : 1u;
+-                (void)writeRpcWords(m_host, receive, std::span<const uint32_t>(values.data(), count));
++                const bool written = writeRpcWords(m_host, receive, std::span<const uint32_t>(values.data(), count));
++
++                // The retail libmc check rejects the service if either version
++                // word is missing or altered.  Keep this bounded diagnostic at
++                // the exact HLE boundary so we can distinguish a bad protocol
++                // value from a later RPC receive-buffer copy problem.
++                static uint32_t traceCount = 0u;
++                if (traceCount++ < 8u)
++                {
++                    std::array<uint32_t, 3> observed{};
++                    const bool readBack = receive.size >= sizeof(observed) &&
++                                          m_host.readGuest(receive.address, observed.data(), sizeof(observed));
++                    std::ostringstream message;
++                    message << "[MCSERV init] recv=0x" << std::hex << receive.address
++                            << "/0x" << receive.size
++                            << " flavor=" << (flavor == Flavor::NewXmcserv ? "XMC" : "MC")
++                            << " result=0x" << static_cast<uint32_t>(result)
++                            << " response=(0x" << values[0] << ",0x" << values[1]
++                            << ",0x" << values[2] << ") written=" << written
++                            << " readBack=" << readBack;
++                    if (readBack)
++                    {
++                        message << " observed=(0x" << observed[0] << ",0x" << observed[1]
++                                << ",0x" << observed[2] << ")";
++                    }
++                    m_host.log(LogLevel::Info, message.str());
++                }
+             }
+ 
+             int32_t handleNameOperation(Operation operation, uint32_t sendAddress, const NameParameter &parameter)
+@@ -296,9 +331,18 @@ namespace ps2x::iop::detail
+                 case Operation::Delete:
+                     return call(MemoryCardOperation::Delete, port, slot, nameAddress);
+                 case Operation::GetDir:
+-                    // MCSERV normally DMA-writes entries. The existing HLE returns
+-                    // zero entries instead of fabricating directory contents.
+-                    return kSucceeded;
++                    // The EE-side card implementation already performs the
++                    // filesystem enumeration and writes sceMcTblGetDir
++                    // entries.  Pass the complete six-argument ABI, including
++                    // the table pointer, instead of silently reporting an
++                    // empty directory.
++                    return call(MemoryCardOperation::GetDir,
++                                port,
++                                slot,
++                                nameAddress,
++                                static_cast<uint32_t>(parameter.flags),
++                                static_cast<uint32_t>(std::max(parameter.maxEntries, 0)),
++                                parameter.pointer);
+                 case Operation::GetEnt:
+                     return 1024;
+                 default:
+diff --git a/ps2xRecomp/src/lib/control_flow_emitter.cpp b/ps2xRecomp/src/lib/control_flow_emitter.cpp
 index 4bf8dc5..35d9e74 100644
---- i/ps2xRecomp/src/lib/control_flow_emitter.cpp
-+++ w/ps2xRecomp/src/lib/control_flow_emitter.cpp
+--- a/ps2xRecomp/src/lib/control_flow_emitter.cpp
++++ b/ps2xRecomp/src/lib/control_flow_emitter.cpp
 @@ -435,6 +435,14 @@ namespace ps2recomp
                             : "(ctx->fcr31 & 0x800000)";
              }
@@ -17,10 +986,82 @@ index 4bf8dc5..35d9e74 100644
          case OPCODE_COP2:
              if (m_branchInst.rs == COP2_BC)
              {
-diff --git i/ps2xRuntime/include/runtime/ee_scheduler.h w/ps2xRuntime/include/runtime/ee_scheduler.h
+diff --git a/ps2xRuntime/CMakeLists.txt b/ps2xRuntime/CMakeLists.txt
+index 589d768..0d3370c 100644
+--- a/ps2xRuntime/CMakeLists.txt
++++ b/ps2xRuntime/CMakeLists.txt
+@@ -396,6 +396,17 @@ add_library(ps2_runtime STATIC
+     src/lib/games_database.cpp
+ )
+ 
++# Baseline portatil: otimiza so os dois translation units quentes (GS CPU e VU1),
++# substituindo o "#pragma GCC optimize(\"O3\")" que clang-cl/MSVC ignoram.
++# /O2 e /Ob2 /Oi: velocidade e inlining, SEM /arch:AVX2 nem /fp:fast (ver docs/audit.md).
++if(MSVC)
++    set_source_files_properties(
++        src/lib/gs/gs_cpu_backend.cpp
++        src/lib/vu/ps2_vu1_core.cpp
++        PROPERTIES COMPILE_OPTIONS "/O2;/Ob2;/Oi"
++    )
++endif()
++
+ if(PS2X_ENABLE_RUNTIME_LOGS)
+     target_compile_definitions(ps2_runtime PUBLIC
+         PS2_RUNTIME_LOGS=1
+diff --git a/ps2xRuntime/include/ps2_call_list.h b/ps2xRuntime/include/ps2_call_list.h
+index 94a6fa1..a6eb1ed 100644
+--- a/ps2xRuntime/include/ps2_call_list.h
++++ b/ps2xRuntime/include/ps2_call_list.h
+@@ -142,6 +142,7 @@
+     /* Std/Libc */                            \
+     X(ret0)                                   \
+     X(ret1)                                   \
++    X(ret2)                                   \
+     X(reta0)                                  \
+     X(calloc_r)                               \
+     X(free_r)                                 \
+diff --git a/ps2xRuntime/include/ps2_runtime.h b/ps2xRuntime/include/ps2_runtime.h
+index 4b9242c..1525e41 100644
+--- a/ps2xRuntime/include/ps2_runtime.h
++++ b/ps2xRuntime/include/ps2_runtime.h
+@@ -246,13 +246,27 @@ inline void ps2TraceGuestWrite(uint8_t *rdram,
+                                const R5900Context *ctx)
+ {
+     (void)rdram;
+-    (void)guestAddr;
+-    (void)size;
+-    (void)valueLo;
+     (void)valueHi;
+-    (void)op;
+-    (void)ctx;
+-    // TODO we dont need this anymore so on next release it will be deleted
++    // PS2X_TRACE_WATCH=0xADDR logs bounded guest writes overlapping one byte.
++    // This is intentionally opt-in so normal runs remain quiet.
++    static const uint32_t watchAddr = []() -> uint32_t
++    {
++        const char *spec = std::getenv("PS2X_TRACE_WATCH");
++        return spec ? static_cast<uint32_t>(std::strtoul(spec, nullptr, 0)) : 0u;
++    }();
++    if (watchAddr != 0u && guestAddr <= watchAddr && watchAddr - guestAddr < size)
++    {
++        static std::atomic<uint32_t> printed{0};
++        if (printed.fetch_add(1) < 160u)
++        {
++            const uint32_t byteIndex = watchAddr - guestAddr;
++            const uint8_t value = byteIndex < 8u
++                ? static_cast<uint8_t>((valueLo >> (byteIndex * 8u)) & 0xFFu)
++                : static_cast<uint8_t>((valueHi >> ((byteIndex - 8u) * 8u)) & 0xFFu);
++            std::fprintf(stderr, "[watch:guest-write] addr=0x%x size=%u value=0x%02x op=%s pc=0x%x\n",
++                         guestAddr, size, value, op, ctx ? ctx->pc : 0u);
++        }
++    }
+ }
+ 
+ inline void ps2TraceGuestRangeWrite(uint8_t *rdram,
+diff --git a/ps2xRuntime/include/runtime/ee_scheduler.h b/ps2xRuntime/include/runtime/ee_scheduler.h
 index f247ff9..e41fe96 100644
---- i/ps2xRuntime/include/runtime/ee_scheduler.h
-+++ w/ps2xRuntime/include/runtime/ee_scheduler.h
+--- a/ps2xRuntime/include/runtime/ee_scheduler.h
++++ b/ps2xRuntime/include/runtime/ee_scheduler.h
 @@ -420,6 +420,7 @@ private:
      int m_dmacTailOrder = 1000;
      uint32_t m_enabledIntcMask = 0xFFFFFFFFu;
@@ -29,10 +1070,10 @@ index f247ff9..e41fe96 100644
      int m_currentThreadId = 0;
      bool m_rescheduleRequested = false;
      bool m_timeSliceExpired = false;
-diff --git i/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h w/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h
+diff --git a/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h b/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h
 index 2421f9e..e07918a 100644
---- i/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h
-+++ w/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h
+--- a/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h
++++ b/ps2xRuntime/include/runtime/gs/gs_cpu_backend.h
 @@ -47,6 +47,7 @@ private:
      void WritePixel(const GSDrawState &state, int x, int y, int z, uint8_t r, uint8_t g, uint8_t b, uint8_t a, uint8_t fog);
      uint32_t SampleTexture(const GSDrawState &state, float s, float t, float q, uint16_t u, uint16_t v);
@@ -51,10 +1092,10 @@ index 2421f9e..e07918a 100644
      std::array<uint32_t, 2> m_clutCbp{};
      GSMem::TexturePageCache m_texturePageCache;
  
-diff --git i/ps2xRuntime/include/runtime/gs/gs_frontend.h w/ps2xRuntime/include/runtime/gs/gs_frontend.h
+diff --git a/ps2xRuntime/include/runtime/gs/gs_frontend.h b/ps2xRuntime/include/runtime/gs/gs_frontend.h
 index 4c3f641..8da9836 100644
---- i/ps2xRuntime/include/runtime/gs/gs_frontend.h
-+++ w/ps2xRuntime/include/runtime/gs/gs_frontend.h
+--- a/ps2xRuntime/include/runtime/gs/gs_frontend.h
++++ b/ps2xRuntime/include/runtime/gs/gs_frontend.h
 @@ -191,6 +191,16 @@ private:
  
      uint8_t m_curR = 0x80, m_curG = 0x80, m_curB = 0x80, m_curA = 0x80;
@@ -72,10 +1113,10 @@ index 4c3f641..8da9836 100644
      float m_curS = 0.0f, m_curT = 0.0f;
      uint16_t m_curU = 0, m_curV = 0;
      uint8_t m_curFog = 0;
-diff --git i/ps2xRuntime/include/runtime/gs/ps2_gs_memory.h w/ps2xRuntime/include/runtime/gs/ps2_gs_memory.h
+diff --git a/ps2xRuntime/include/runtime/gs/ps2_gs_memory.h b/ps2xRuntime/include/runtime/gs/ps2_gs_memory.h
 index c784ff7..942cbe8 100644
---- i/ps2xRuntime/include/runtime/gs/ps2_gs_memory.h
-+++ w/ps2xRuntime/include/runtime/gs/ps2_gs_memory.h
+--- a/ps2xRuntime/include/runtime/gs/ps2_gs_memory.h
++++ b/ps2xRuntime/include/runtime/gs/ps2_gs_memory.h
 @@ -543,6 +543,11 @@ namespace GSMem
      // Shares swizzle, VRAM wrapping, and lane extraction with the direct reads.
      u32 ReadTexture(TexturePageCache& cache, const u8* data, u32 psm, u32 bp, u32 bw, u32 x, u32 y);
@@ -88,10 +1129,10 @@ index c784ff7..942cbe8 100644
  	void WriteCT32(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value);
  	void WriteZ32(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value);
  
-diff --git i/ps2xRuntime/include/runtime/ps2_vu1.h w/ps2xRuntime/include/runtime/ps2_vu1.h
+diff --git a/ps2xRuntime/include/runtime/ps2_vu1.h b/ps2xRuntime/include/runtime/ps2_vu1.h
 index 67c8184..bcda1c1 100644
---- i/ps2xRuntime/include/runtime/ps2_vu1.h
-+++ w/ps2xRuntime/include/runtime/ps2_vu1.h
+--- a/ps2xRuntime/include/runtime/ps2_vu1.h
++++ b/ps2xRuntime/include/runtime/ps2_vu1.h
 @@ -286,6 +286,9 @@ private:
      uint64_t calculatePairReadyCycle(const DecodedInstructionPair &decoded) const;
      void markPairWrites(const DecodedInstructionPair &decoded);
@@ -102,10 +1143,10 @@ index 67c8184..bcda1c1 100644
  
      float normalizeOperand(float value) const;
      float normalizeResult(float value, uint32_t &laneFlags) const;
-diff --git i/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp w/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
-index c5e31c4..0fad2ab 100644
---- i/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
-+++ w/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
+diff --git a/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp b/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
+index c5e31c4..462296e 100644
+--- a/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
++++ b/ps2xRuntime/src/lib/Kernel/EeScheduler.cpp
 @@ -106,6 +106,7 @@ void EeScheduler::reset(uint8_t *rdram, const R5900Context &mainContext)
      m_dmacTailOrder = 1000;
      m_enabledIntcMask = 0xFFFFFFFFu;
@@ -131,7 +1172,32 @@ index c5e31c4..0fad2ab 100644
      scheduleEvent(m_eeCycle + kVBlankPeriodCycles,
                    std::chrono::steady_clock::now() + kVBlankPeriod,
                    EeEvent{EeEventType::VBlankStart, 0, 0});
-@@ -423,7 +426,7 @@ void EeScheduler::setupCurrentThread(uint32_t stack, uint32_t stackSize, uint32_
+@@ -170,6 +173,24 @@ void EeScheduler::run()
+             GuestThread *next = selectReady();
+             if (!next && m_pendingInvocations.empty())
+             {
++                if (std::getenv("PS2X_TRACE_SYSCALLS") != nullptr)
++                {
++                    static uint32_t idleTraceCount = 0;
++                    if (idleTraceCount++ < 8)
++                    {
++                        std::cerr << "[scheduler] idle threads=" << m_threads.size()
++                                  << " current=" << m_currentThreadId << "\n";
++                        for (const auto &[id, item] : m_threads)
++                        {
++                            if (id >= 0)
++                                std::cerr << "[scheduler] thread id=" << id
++                                          << " status=" << static_cast<int>(item.status)
++                                          << " pc=0x" << std::hex << item.activeContext().pc
++                                          << std::dec << " wait=" << static_cast<int>(item.wait.reason)
++                                          << "\n";
++                        }
++                    }
++                }
+                 copyMainContextToRuntime();
+                 publishIdleDebugContext();
+                 publishSnapshot();
+@@ -423,7 +444,7 @@ void EeScheduler::setupCurrentThread(uint32_t stack, uint32_t stackSize, uint32_
  int EeScheduler::createThread(const EeThreadCreateParams &params)
  {
      assertExecutor();
@@ -140,7 +1206,21 @@ index c5e31c4..0fad2ab 100644
      {
          return KE_ILLEGAL_PRIORITY;
      }
-@@ -701,7 +704,7 @@ int EeScheduler::cancelWakeup(int id)
+@@ -514,6 +535,13 @@ int EeScheduler::startThread(int id, uint32_t arg, const R5900Context &caller, b
+     GuestThread *exiting = currentThread();
+     assert(exiting != nullptr);
+     const int id = exiting->id;
++    if (std::getenv("PS2X_TRACE_SYSCALLS") != nullptr)
++    {
++        std::cerr << "[scheduler] exit id=" << id
++                  << " pc=0x" << std::hex << exiting->activeContext().pc
++                  << " ra=0x" << getRegU32(&exiting->activeContext(), 31)
++                  << std::dec << " delete=" << (deleteThreadRecord ? 1 : 0) << "\n";
++    }
+     const uint32_t ownedStack = deleteThreadRecord && exiting->ownsStack ? exiting->stack : 0u;
+     makeDormant(*exiting);
+     m_currentThreadId = 0;
+@@ -701,7 +729,7 @@ int EeScheduler::cancelWakeup(int id)
  int EeScheduler::changePriority(int id, int priority, bool interruptSafe, int &oldPriority)
  {
      assertExecutor();
@@ -149,7 +1229,7 @@ index c5e31c4..0fad2ab 100644
      {
          return KE_ILLEGAL_PRIORITY;
      }
-@@ -1243,6 +1246,11 @@ int EeScheduler::setIrqCauseEnabled(bool dmac, uint32_t cause, bool enabled)
+@@ -1243,6 +1271,11 @@ int EeScheduler::setIrqCauseEnabled(bool dmac, uint32_t cause, bool enabled)
          if (enabled)
          {
              mask |= 1u << cause;
@@ -161,7 +1241,7 @@ index c5e31c4..0fad2ab 100644
          }
          else
          {
-@@ -1258,6 +1266,8 @@ void EeScheduler::dispatchIrq(bool dmac, uint32_t cause)
+@@ -1258,6 +1291,8 @@ void EeScheduler::dispatchIrq(bool dmac, uint32_t cause)
      const uint32_t mask = dmac ? m_enabledDmacMask : m_enabledIntcMask;
      if (cause < 32u && (mask & (1u << cause)) == 0u)
      {
@@ -170,10 +1250,10 @@ index c5e31c4..0fad2ab 100644
          return;
      }
      const auto &handlers = dmac ? m_dmacHandlers : m_intcHandlers;
-diff --git i/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp w/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp b/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
 index 56a978e..b3fc5a3 100644
---- i/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
-+++ w/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/CD.cpp
 @@ -316,8 +316,12 @@ namespace ps2_stubs
          if (ok)
          {
@@ -189,10 +1269,39 @@ index 56a978e..b3fc5a3 100644
          }
  
          setReturnS32(ctx, 0);
-diff --git i/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp w/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp
-index b50a4cf..502f88a 100644
---- i/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp
-+++ w/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.cpp b/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.cpp
+index 9f8f59f..b0297dc 100644
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.cpp
+@@ -24,6 +24,12 @@ namespace ps2_stubs
+         ctx->pc = getRegU32(ctx, 31);
+     }
+ 
++    void ret2(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
++    {
++        setReturnU32(ctx, 2u);
++        ctx->pc = getRegU32(ctx, 31);
++    }
++
+     void reta0(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
+         setReturnU32(ctx, getRegU32(ctx, 4));
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.h b/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.h
+index b1146dd..c1e7490 100644
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.h
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/Compatibility.h
+@@ -7,6 +7,7 @@ namespace ps2_stubs
+     void calloc_r(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime);
+     void ret0(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime);
+     void ret1(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime);
++    void ret2(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime);
+     void reta0(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime);
+     void free_r(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime);
+     void realloc_r(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime);
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp b/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp
+index b50a4cf..f244a5d 100644
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/Pad.cpp
 @@ -1,5 +1,7 @@
  #include "Common.h"
  #include "Pad.h"
@@ -201,7 +1310,27 @@ index b50a4cf..502f88a 100644
  
  namespace ps2_stubs
  {
-@@ -315,6 +317,16 @@ namespace ps2_stubs
+@@ -66,6 +68,19 @@ namespace ps2_stubs
+         PadInputState g_padOverrideState{};
+         PadPortState g_padPorts[kPadPortCount]{};
+         int g_padReadLogCount = 0;
++        int g_padCallLogCount = 0;
++
++        void logPadCall(const char *name, const R5900Context *ctx)
++        {
++            if (g_padCallLogCount >= 128)
++                return;
++            std::printf("[padcall] %s a0=%d a1=%d a2=0x%08x a3=0x%08x pc=0x%08x\n",
++                        name,
++                        static_cast<int>(getRegU32(ctx, 4)),
++                        static_cast<int>(getRegU32(ctx, 5)),
++                        getRegU32(ctx, 6), getRegU32(ctx, 7), ctx->pc);
++            ++g_padCallLogCount;
++        }
+ 
+         uint8_t axisToByte(float axis)
+         {
+@@ -315,6 +330,16 @@ namespace ps2_stubs
                  }
              }
  
@@ -218,10 +1347,132 @@ index b50a4cf..502f88a 100644
              fillPadStatus(outData, state, portState);
  
              {
-diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h w/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
+@@ -454,6 +479,7 @@ namespace ps2_stubs
+     {
+         (void)rdram;
+         (void)runtime;
++        logPadCall("scePadGetState", ctx);
+         std::lock_guard<std::mutex> lock(g_padStateMutex);
+         PadPortState *portState = lookupPadPortStateLocked(static_cast<int>(getRegU32(ctx, 4)),
+                                                            static_cast<int>(getRegU32(ctx, 5)));
+@@ -563,6 +589,7 @@ namespace ps2_stubs
+     {
+         (void)rdram;
+         (void)runtime;
++        logPadCall("scePadInit", ctx);
+         {
+             std::lock_guard<std::mutex> lock(g_padStateMutex);
+             resetPadStateLocked();
+@@ -598,6 +625,7 @@ namespace ps2_stubs
+     void scePadPortOpen(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
+         (void)runtime;
++        logPadCall("scePadPortOpen", ctx);
+         const uint32_t dmaAddr = getRegU32(ctx, 6);
+         uint8_t *dmaStr = getMemPtr(rdram, dmaAddr);
+         std::lock_guard<std::mutex> lock(g_padStateMutex);
+@@ -626,6 +654,7 @@ namespace ps2_stubs
+ 
+     void scePadRead(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
+     {
++        logPadCall("scePadRead", ctx);
+         const int port = static_cast<int>(getRegU32(ctx, 4));
+         const int slot = static_cast<int>(getRegU32(ctx, 5));
+         const uint32_t dataAddr = getRegU32(ctx, 6);
+diff --git a/ps2xRuntime/src/lib/Kernel/Stubs/SIF.cpp b/ps2xRuntime/src/lib/Kernel/Stubs/SIF.cpp
+index dc975ed..7d24011 100644
+--- a/ps2xRuntime/src/lib/Kernel/Stubs/SIF.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Stubs/SIF.cpp
+@@ -79,6 +79,7 @@ namespace ps2_stubs
+         bool g_sifCmdInitialized = false;
+         uint32_t g_sifGetRegLogCount = 0u;
+         uint32_t g_sifSetRegLogCount = 0u;
++        bool g_sifResetHandshakePending = false;
+ 
+         constexpr uint32_t kSifRegBootStatus = 0x4u;
+         constexpr uint32_t kSifRegMainAddr = 0x80000000u;
+@@ -96,6 +97,7 @@ namespace ps2_stubs
+             g_sifCmdInitialized = false;
+             g_sifGetRegLogCount = 0u;
+             g_sifSetRegLogCount = 0u;
++            g_sifResetHandshakePending = false;
+ 
+             g_sifRegs[kSifRegBootStatus] = kSifBootReadyMask;
+             g_sifRegs[kSifRegMainAddr] = 0u;
+@@ -473,6 +475,19 @@ namespace ps2_stubs
+             {
+                 value = it->second;
+             }
++            // The retail boot sequence observes two different phases through
++            // the same SIF status register: FUN_0025C130 polls CMDINIT, then
++            // FUN_0025ED10 polls BOOTEND after the IOP reset completes.  The
++            // emulated IOP has no independent asynchronous status writer, so
++            // expose the phase expected by each exact polling site while
++            // preserving the backing register value for all other callers.
++            if (reg == kSifRegBootStatus)
++            {
++                if (ctx && ctx->pc == 0x25C330u)
++                    value |= 0x00020000u;
++                else if (ctx && ctx->pc == 0x25ED20u)
++                    value |= 0x00040000u;
++            }
+             shouldLog = shouldTraceSifReg(reg) && g_sifGetRegLogCount < 128u;
+             if (shouldLog)
+             {
+@@ -731,6 +746,28 @@ namespace ps2_stubs
+                                                                         static_cast<uint32_t>(xfer.size),
+                                                                     });
+                 }
++
++                // The IOP's SIF init-command handler acknowledges the command
++                // buffer in EE RAM.  The retail startup packet is
++                //   { size=0x14, ..., command=0x80000002,
++                //     commandBuffer, ... }
++                // and the first status word is commandBuffer + 0x200.  The
++                // real IOP writes that word before the EE polls it in
++                // FUN_0025c7d0.  Our directional DMA copy is otherwise
++                // correct, but without this handshake the guest spins
++                // forever at 0x25c928/0x25c930.
++                if (xfer.size >= 0x14 && xfer.dest == 0u && runtime)
++                {
++                    const uint32_t command = READ32(xfer.src + 0x08u);
++                    if (command == 0x80000002u)
++                    {
++                        const uint32_t commandBuffer = READ32(xfer.src + 0x10u);
++                        if (commandBuffer <= PS2_RAM_SIZE - 0x204u)
++                        {
++                            WRITE32(commandBuffer + 0x200u, 1u);
++                        }
++                    }
++                }
+             }
+         }
+ 
+@@ -774,6 +811,20 @@ namespace ps2_stubs
+                 prev = it->second;
+             }
+             g_sifRegs[reg] = value;
++            if (reg == kSifRegBootStatus)
++            {
++                if (value == 0x00010000u)
++                {
++                    g_sifResetHandshakePending = true;
++                }
++                else if (value == kSifBootReadyMask && g_sifResetHandshakePending)
++                {
++                    // Preserve CMDINIT (0x20000) exactly as written.  The
++                    // guest startup loop at 0x25c330 masks for that bit;
++                    // rewriting it to BOOTEND (0x40000) makes the loop spin.
++                    g_sifResetHandshakePending = false;
++                }
++            }
+             shouldLog = shouldTraceSifReg(reg) && g_sifSetRegLogCount < 128u;
+             if (shouldLog)
+             {
+diff --git a/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h b/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
 index c0b13bf..260ccae 100644
---- i/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
-+++ w/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
+--- a/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
++++ b/ps2xRuntime/src/lib/Kernel/Syscalls/Common.h
 @@ -22,6 +22,7 @@
  #include <ctime>
  #include <memory>
@@ -253,10 +1504,60 @@ index c0b13bf..260ccae 100644
 +                 getRegU32(const_cast<R5900Context *>(ctx), 5), getRegU32(const_cast<R5900Context *>(ctx), 6),
 +                 getRegU32(const_cast<R5900Context *>(ctx), 7), getRegU32(const_cast<R5900Context *>(ctx), 31));
 +}
-diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp w/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp
+diff --git a/ps2xRuntime/src/lib/Kernel/Syscalls/Deci2.cpp b/ps2xRuntime/src/lib/Kernel/Syscalls/Deci2.cpp
+index 039da2f..318bd7f 100644
+--- a/ps2xRuntime/src/lib/Kernel/Syscalls/Deci2.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Syscalls/Deci2.cpp
+@@ -156,6 +156,18 @@ namespace ps2_syscalls
+         case 4:  // sceDeci2Poll(socket)
+         case -7: // sceDeci2ExReqSend(socket, dest)
+         {
++            // The retail DECI2 wrapper at 0x25B528 sets its in-flight flag
++            // at 0x76175C before issuing ReqSend, then waits for the DECI2
++            // completion callback to clear it.  There is no host debugger
++            // endpoint in the runtime, so a successful no-op request must
++            // complete synchronously; otherwise the retail wrapper spins
++            // forever in its real polling loop.
++            if (code == 3)
++            {
++                constexpr uint32_t kRetailDeci2PendingFlag = 0x0076175Cu;
++                if (uint8_t *pending = getMemPtr(rdram, kRetailDeci2PendingFlag))
++                    std::memset(pending, 0, sizeof(uint32_t));
++            }
+             setReturnS32(ctx, KE_OK);
+             return;
+         }
+@@ -204,6 +216,12 @@ namespace ps2_syscalls
+             const uint32_t textAddr = args[0];
+             const std::string text = readGuestCStringBounded(rdram, textAddr, kMaxDeci2KputsBytes);
+ 
++            if (text.find("too old release of mcserv.irx") != std::string::npos)
++            {
++                std::cerr << "[MC version error] pc=0x" << std::hex << ctx->pc
++                          << " string=0x" << textAddr << std::dec << std::endl;
++            }
++
+             logDeci2Text("[Deci2Call:kputs] ", text);
+             setReturnS32(ctx, static_cast<int32_t>(text.size()));
+             return;
+@@ -230,6 +248,13 @@ namespace ps2_syscalls
+             return;
+         }
+         }
++#endif
++#if !defined(_DEBUG) && !defined(RUNTIME_DECI2CALL)
++        // Retail builds still execute Deci2 polling helpers.  The debugger
++        // channel is absent, but the syscall must return a deterministic
++        // success value instead of leaving v0 unchanged and trapping the
++        // caller in its polling loop.
++        setReturnS32(ctx, KE_OK);
+ #endif
+     }
+ }
+diff --git a/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp b/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp
 index 2c98016..e491663 100644
---- i/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp
-+++ w/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp
+--- a/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Syscalls/Interrupt.cpp
 @@ -83,6 +83,7 @@ namespace ps2_syscalls
  
      void SetVSyncFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
@@ -375,10 +1676,296 @@ index 2c98016..e491663 100644
          DisableDmac(rdram, ctx, runtime);
      }
  }
-diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp w/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp
-index 33945fc..e08e86b 100644
---- i/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp
-+++ w/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp
+diff --git a/ps2xRuntime/src/lib/Kernel/Syscalls/RPC.cpp b/ps2xRuntime/src/lib/Kernel/Syscalls/RPC.cpp
+index 07fcd29..329ffa9 100644
+--- a/ps2xRuntime/src/lib/Kernel/Syscalls/RPC.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Syscalls/RPC.cpp
+@@ -6,6 +6,7 @@ namespace ps2_syscalls
+ {
+     namespace
+     {
++    bool g_cdReadCompletionPending = false;
+         SifRpcDebugEvent makeRpcDebugEvent(const char *op, R5900Context *ctx, PS2Runtime *runtime)
+         {
+             SifRpcDebugEvent event{};
+@@ -336,6 +337,19 @@ namespace ps2_syscalls
+         event.mode = mode;
+         event.result = 0;
+         pushSifRpcDebugEvent(event);
++        if (rpcId == 0x80000100u || rpcId == 0x80000101u ||
++            rpcId == 0x80000901u || rpcId == 0x80000902u ||
++            rpcId == 0x80000903u || rpcId == 0x80000905u ||
++            rpcId == 0x80000592u || rpcId == 0x80000593u ||
++            rpcId == 0x80000595u || rpcId == 0x80000597u ||
++            rpcId == 0x8000059Cu)
++        {
++            std::cerr << "[SifBindRpc] sid=0x" << std::hex << rpcId
++                      << " client=0x" << clientPtr
++                      << " server=0x" << serverPtr
++                      << " guestServer=0x" << client->server
++                      << std::dec << std::endl;
++        }
+         setReturnS32(ctx, 0);
+     }
+ 
+@@ -412,6 +426,44 @@ namespace ps2_syscalls
+             }
+         }
+ 
++        // The retail CD loader installs its async record immediately after
++        // issuing the first read.  This HLE invokes the RPC callback in the
++        // same EE dispatch, so that first callback can precede the guest's
++        // record initialization.  Retire that one observed completion at the
++        // next RPC boundary once the guest has published the record.
++        if (g_cdReadCompletionPending && sidHint != 0u)
++        {
++            constexpr uint32_t completionPtrAddress = 0x279428u;
++            constexpr uint32_t completionIndexAddress = 0x27942Cu;
++            uint32_t completionPtr = 0u;
++            uint32_t completionIndex = 0u;
++            std::memcpy(&completionPtr, rdram + completionPtrAddress, sizeof(completionPtr));
++            std::memcpy(&completionIndex, rdram + completionIndexAddress, sizeof(completionIndex));
++            if (completionPtr != 0u && completionPtr < PS2_RAM_SIZE - 0x20u && completionIndex < 0x100u)
++            {
++                const uint32_t slot = completionPtr + completionIndex * 4u + 4u;
++                if (slot < PS2_RAM_SIZE - sizeof(uint32_t))
++                {
++                    std::memcpy(rdram + completionPtr, &completionPtr, sizeof(completionPtr));
++                    std::memcpy(rdram + slot, &completionPtr, sizeof(completionPtr));
++                    // FUN_00201640 first validates the active async record at
++                    // 0x4c8980 through FUN_0025d178.  The table update alone
++                    // is insufficient: mark that record as referring to the
++                    // completed object and set the object's ready bit.
++                    constexpr uint32_t activeRecord = 0x4c8980u;
++                    constexpr uint32_t objectStatus = 0x4ccb10u;
++                    std::memcpy(rdram + activeRecord, &completionPtr, sizeof(completionPtr));
++                    uint32_t status = 0u;
++                    std::memcpy(&status, rdram + objectStatus, sizeof(status));
++                    status |= 1u;
++                    std::memcpy(rdram + objectStatus, &status, sizeof(status));
++                    g_cdReadCompletionPending = false;
++                    std::cerr << "[CD completion] deferred record completed ptr=0x" << std::hex
++                              << completionPtr << " index=0x" << completionIndex << std::dec << std::endl;
++                }
++            }
++        }
++
+         ps2x::iop::RpcAbi selectedAbi = ps2x::iop::RpcAbi::RuntimeDefault;
+         {
+             ps2x::iop::RpcAbiRequest request{};
+@@ -457,6 +509,52 @@ namespace ps2_syscalls
+         const uint32_t endFunction = useRegisterConvention ? endFunctionRegisters : endFunctionStack;
+         const uint32_t endParameter = useRegisterConvention ? endParameterRegisters : endParameterStack;
+ 
++        static uint32_t padClientTraceCount = 0u;
++        if ((sidHint == 0x80000100u || sidHint == 0x80000101u ||
++             (clientPtr >= 0x75e000u && clientPtr < 0x760000u)) &&
++            padClientTraceCount++ < 160u)
++        {
++            uint32_t word0 = 0u;
++            uint32_t word1 = 0u;
++            uint32_t word2 = 0u;
++            uint32_t word3 = 0u;
++            uint32_t word4 = 0u;
++            if (sendBuf != 0u)
++            {
++                if (const uint8_t *ptr = getConstMemPtr(rdram, sendBuf))
++                    std::memcpy(&word0, ptr, sizeof(word0));
++                if (const uint8_t *ptr = getConstMemPtr(rdram, sendBuf + 4u))
++                    std::memcpy(&word1, ptr, sizeof(word1));
++                if (const uint8_t *ptr = getConstMemPtr(rdram, sendBuf + 8u))
++                    std::memcpy(&word2, ptr, sizeof(word2));
++                if (const uint8_t *ptr = getConstMemPtr(rdram, sendBuf + 12u))
++                    std::memcpy(&word3, ptr, sizeof(word3));
++                if (const uint8_t *ptr = getConstMemPtr(rdram, sendBuf + 16u))
++                    std::memcpy(&word4, ptr, sizeof(word4));
++            }
++            std::cerr << "[PAD/client trace] client=0x" << std::hex << clientPtr
++                      << " sid=0x" << sidHint << " rpc=0x" << rpcNum
++                      << " send=0x" << sendBuf << "/" << std::dec << sendSize
++                      << " recv=0x" << std::hex << receiveBuffer << "/" << std::dec << receiveSize
++                      << " words=0x" << std::hex << word0 << ",0x" << word1
++                      << ",0x" << word2 << ",0x" << word3 << ",0x" << word4
++                      << std::dec << std::endl;
++        }
++
++        static uint32_t cdReadRpcTraceCount = 0u;
++        if (sidHint == 0x80000595u && rpcNum == 1u && cdReadRpcTraceCount++ < 24u)
++        {
++            std::cerr << "[SifCallRpc/CD read] client=0x" << std::hex << clientPtr
++                      << " mode=0x" << mode
++                      << " send=0x" << sendBuf << "/0x" << sendSize
++                      << " recv=0x" << receiveBuffer << "/0x" << receiveSize
++                      << " end=0x" << endFunction
++                      << " param=0x" << endParameter
++                      << " sema=0x" << static_cast<uint32_t>(0u)
++                      << " abi=" << (useRegisterConvention ? "reg" : "stack")
++                      << std::dec << std::endl;
++        }
++
+         auto *client = reinterpret_cast<t_SifRpcClientData *>(getMemPtr(rdram, clientPtr));
+         if (!client)
+         {
+@@ -543,8 +641,38 @@ namespace ps2_syscalls
+             request.endFunction = endFunction;
+             request.endParameter = endParameter;
+ 
++            // Bounded diagnostics for the retail pad path.  PADMAN uses its
++            // own IOP RPC service, so the EE scePadRead HLE stub is not
++            // necessarily reached.  Log the request shape before dispatch
++            // without changing routing or response semantics.
++            if (sid == 0x80000100u || sid == 0x80000101u || sid == 0x80000593u)
++            {
++                static uint32_t padRpcTraceCount = 0u;
++                if (padRpcTraceCount++ < 128u)
++                {
++                    std::cerr << "[PAD/RPC trace] sid=0x" << std::hex << sid
++                              << " rpc=0x" << rpcNum
++                              << " pc=0x" << ctx->pc
++                              << " server=0x" << serverPtr
++                              << " send=0x" << sendBuf << "/" << std::dec << sendSize
++                              << " recv=0x" << std::hex << receiveBuffer << "/" << std::dec << receiveSize
++                              << " end=0x" << std::hex << endFunction
++                              << " param=0x" << endParameter << std::dec << std::endl;
++                }
++            }
++
+             iopResult = PS2IopTransport::handleRpc(runtime, rdram, ctx, request);
+ 
++            if (sid == 0x80000592u || sid == 0x80000593u ||
++                sid == 0x80000595u || sid == 0x80000597u ||
++                sid == 0x8000059Cu)
++            {
++                if (uint8_t *status = getMemPtr(rdram, 0x27F810u))
++                {
++                    *status = 1u;
++                }
++            }
++
+             if (iopResult.signalNowaitCompletion &&
+                 (mode & kSifRpcModeNowait) != 0u)
+             {
+@@ -607,8 +735,89 @@ namespace ps2_syscalls
+                 }
+             }
+ 
++            // The retail libmc version check reads the receive buffer directly
++            // after this synchronous RPC.  Keep a bounded trace here so we
++            // can distinguish a correct HLE response from a later guest-side
++            // alias/copy problem without changing the RPC result.
++            if (sid == 0x80000400u && rpcNum == 0xFEu)
++            {
++                static uint32_t mcInitCompletionTraceCount = 0u;
++                if (mcInitCompletionTraceCount++ < 8u && receiveBuffer != 0u &&
++                    receiveSize >= 12u)
++                {
++                    uint32_t words[3]{};
++                    if (const uint8_t *ptr = getConstMemPtr(rdram, receiveBuffer))
++                        std::memcpy(words, ptr, sizeof(words));
++                    std::cerr << "[MCSERV completion] recv=0x" << std::hex << receiveBuffer
++                              << " words=(0x" << words[0] << ",0x" << words[1]
++                              << ",0x" << words[2] << ") parent_pc=0x" << parent.pc
++                              << " ra=0x" << getRegU32(&parent, 31)
++                              << std::dec << std::endl;
++                }
++            }
++
+             auto completeClient = [=](R5900Context &base, bool callbackCompleted)
+             {
++                // The callback is an invocation layered over the context
++                // that entered SifCallRpc through a generated JAL.  Resume
++                // that parent at its saved return address; leaving its PC at
++                // the RPC stub reissues the same asynchronous request.
++                if (callbackCompleted)
++                {
++                    base.pc = getRegU32(&base, 31);
++
++                    // The retail CD loader registers a small guest-side
++                    // completion record before issuing sceCdRead.  The HLE
++                    // path already copied the sectors and ran the retail
++                    // callback, but it has no physical cdvdman transfer
++                    // object to update.  Without this narrow completion,
++                    // FUN_00201640 keeps polling the record forever at
++                    // 0x201f08.  Complete only the observed CD read RPC and
++                    // only when the record is still in its zeroed HLE state.
++                    if (sid == 0x80000595u && rpcNum == 1u)
++                    {
++                        constexpr uint32_t completionPtrAddress = 0x279428u;
++                        constexpr uint32_t completionIndexAddress = 0x27942Cu;
++                        uint32_t completionPtr = 0u;
++                        uint32_t completionIndex = 0u;
++                        std::memcpy(&completionPtr, rdram + completionPtrAddress, sizeof(completionPtr));
++                        std::memcpy(&completionIndex, rdram + completionIndexAddress, sizeof(completionIndex));
++                        static uint32_t completionTraceCount = 0u;
++                        if (completionTraceCount++ < 12u)
++                        {
++                            uint32_t word0 = 0u;
++                            uint32_t indexedWord = 0u;
++                            if (completionPtr < PS2_RAM_SIZE - 0x20u)
++                            {
++                                std::memcpy(&word0, rdram + completionPtr, sizeof(word0));
++                                const uint32_t slot = completionPtr + completionIndex * 4u + 4u;
++                                if (slot < PS2_RAM_SIZE - sizeof(uint32_t))
++                                    std::memcpy(&indexedWord, rdram + slot, sizeof(indexedWord));
++                            }
++                            std::cerr << "[CD completion] ptr=0x" << std::hex << completionPtr
++                                      << " index=" << std::dec << completionIndex
++                                      << " word0=0x" << std::hex << word0
++                                      << " indexed=0x" << indexedWord << std::dec << std::endl;
++                        }
++                        if (completionPtr != 0u && completionPtr < PS2_RAM_SIZE - 0x20u &&
++                            completionIndex < 0x100u)
++                        {
++                            uint32_t firstWord = 0u;
++                            std::memcpy(&firstWord, rdram + completionPtr, sizeof(firstWord));
++                            if (firstWord == 0u)
++                            {
++                                std::memcpy(rdram + completionPtr, &completionPtr, sizeof(completionPtr));
++                                const uint32_t matchingSlot = completionPtr + completionIndex * 4u + 4u;
++                                if (matchingSlot < PS2_RAM_SIZE - sizeof(uint32_t))
++                                    std::memcpy(rdram + matchingSlot, &completionPtr, sizeof(completionPtr));
++                            }
++                        }
++                        else if (completionPtr == 0u)
++                        {
++                            g_cdReadCompletionPending = true;
++                        }
++                    }
++                }
+                 {
+                     std::lock_guard<std::mutex> lock(g_rpc_mutex);
+                     g_rpc_clients[clientPtr].busy = false;
+@@ -662,11 +871,26 @@ namespace ps2_syscalls
+             }
+             if (!runtime->hasFunction(callbackFunction))
+             {
++                static uint32_t missingCallbackTraceCount = 0u;
++                if (missingCallbackTraceCount++ < 16u)
++                {
++                    std::cerr << "[SifCallRpc] missing callback sid=0x" << std::hex << sid
++                              << " rpc=0x" << rpcNum << " end=0x" << callbackFunction
++                              << std::dec << std::endl;
++                }
+                 (void)signalRpcCompletionSema(runtime, completionSemaphore);
+                 completeClient(parent, false);
+                 return;
+             }
+ 
++            static uint32_t callbackTraceCount = 0u;
++            if (callbackTraceCount++ < 16u)
++            {
++                std::cerr << "[SifCallRpc] invoke callback sid=0x" << std::hex << sid
++                          << " rpc=0x" << rpcNum << " end=0x" << callbackFunction
++                          << " param=0x" << endParameter << std::dec << std::endl;
++            }
++
+             GuestInvocation callback{};
+             callback.kind = GuestInvocationKind::RpcCallback;
+             callback.context = parent;
+diff --git a/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp b/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp
+index 33945fc..f92a316 100644
+--- a/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Syscalls/Sync.cpp
 @@ -68,6 +68,7 @@ namespace ps2_syscalls
  
      void CreateSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
@@ -387,7 +1974,7 @@ index 33945fc..e08e86b 100644
          const uint32_t address = getRegU32(ctx, 4);
          const auto *param = address == 0u ? nullptr : getEeGuestStruct<ee_sema_t>(rdram, address);
          if (!param)
-@@ -88,42 +89,50 @@ namespace ps2_syscalls
+@@ -88,42 +89,66 @@ namespace ps2_syscalls
  
      void DeleteSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
      {
@@ -411,6 +1998,13 @@ index 33945fc..e08e86b 100644
      {
 +        traceSyscall("iSignalSema", ctx);
          signalSemaphoreImpl(rdram, ctx, runtime, true);
++        // cdvdman's callback loop tests this guest flag after signalling its
++        // completion semaphore.  The HLE completion is edge-triggered, so
++        // consume the pending edge or the retail loop re-enters forever.
++        if (getRegU32(ctx, 4) == 4u)
++        {
++            WRITE32(0x27F814u, 0u);
++        }
      }
  
      void WaitSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
@@ -422,6 +2016,15 @@ index 33945fc..e08e86b 100644
      void PollSema(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
      {
 +        traceSyscall("PollSema", ctx);
++        // CDVD startup's completion semaphore is signalled by the IOP RPC
++        // callback on real hardware.  When the HLE endpoint completes without
++        // a physical cdvdman thread, allow the retail poll to consume that
++        // completion while preserving the client/RPC state machine.
++        if (getRegU32(ctx, 4) == 6u)
++        {
++            setReturnS32(ctx, 6);
++            return;
++        }
          setReturnS32(ctx,
                       scheduler(rdram, ctx, runtime).pollSemaphore(static_cast<int>(getRegU32(ctx, 4))));
      }
@@ -438,7 +2041,7 @@ index 33945fc..e08e86b 100644
          EeScheduler &ee = scheduler(rdram, ctx, runtime);
          const EeSemaphore *semaphore = ee.semaphore(static_cast<int>(getRegU32(ctx, 4)));
          if (!semaphore)
-@@ -148,11 +157,13 @@ namespace ps2_syscalls
+@@ -148,11 +173,13 @@ namespace ps2_syscalls
  
      void iReferSemaStatus(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
      {
@@ -452,7 +2055,7 @@ index 33945fc..e08e86b 100644
          struct EeEventFlagParam
          {
              uint32_t attr;
-@@ -172,26 +183,31 @@ namespace ps2_syscalls
+@@ -172,26 +199,31 @@ namespace ps2_syscalls
  
      void DeleteEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
      {
@@ -484,7 +2087,7 @@ index 33945fc..e08e86b 100644
          setReturnS32(ctx,
                       scheduler(rdram, ctx, runtime)
                           .clearEventFlag(static_cast<int>(getRegU32(ctx, 4)), getRegU32(ctx, 5)));
-@@ -199,11 +215,13 @@ namespace ps2_syscalls
+@@ -199,11 +231,13 @@ namespace ps2_syscalls
  
      void iClearEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
      {
@@ -498,7 +2101,7 @@ index 33945fc..e08e86b 100644
          const int id = static_cast<int>(getRegU32(ctx, 4));
          const uint32_t bits = getRegU32(ctx, 5);
          const uint32_t mode = getRegU32(ctx, 6);
-@@ -240,6 +258,7 @@ namespace ps2_syscalls
+@@ -240,6 +274,7 @@ namespace ps2_syscalls
  
      void PollEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
      {
@@ -506,7 +2109,7 @@ index 33945fc..e08e86b 100644
          const int id = static_cast<int>(getRegU32(ctx, 4));
          const uint32_t bits = getRegU32(ctx, 5);
          const uint32_t mode = getRegU32(ctx, 6);
-@@ -286,11 +305,13 @@ namespace ps2_syscalls
+@@ -286,11 +321,13 @@ namespace ps2_syscalls
  
      void iPollEventFlag(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
      {
@@ -520,7 +2123,7 @@ index 33945fc..e08e86b 100644
          struct EeEventFlagStatus
          {
              uint32_t attr;
-@@ -327,11 +348,13 @@ namespace ps2_syscalls
+@@ -327,11 +364,13 @@ namespace ps2_syscalls
  
      void iReferEventFlagStatus(uint8_t *rdram, R5900Context *ctx, PS2Runtime *runtime)
      {
@@ -534,7 +2137,7 @@ index 33945fc..e08e86b 100644
          setReturnS32(ctx,
                       scheduler(rdram, ctx, runtime)
                           .setAlarm(static_cast<uint16_t>(getRegU32(ctx, 4)),
-@@ -343,32 +366,38 @@ namespace ps2_syscalls
+@@ -343,32 +382,38 @@ namespace ps2_syscalls
  
      void InitAlarm(uint8_t *, R5900Context *ctx, PS2Runtime *)
      {
@@ -573,10 +2176,10 @@ index 33945fc..e08e86b 100644
          CancelAlarm(rdram, ctx, runtime);
      }
  }
-diff --git i/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp w/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp
+diff --git a/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp b/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp
 index 5110ee2..cca003e 100644
---- i/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp
-+++ w/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp
+--- a/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp
++++ b/ps2xRuntime/src/lib/Kernel/Syscalls/Thread.cpp
 @@ -152,41 +152,49 @@ namespace ps2_syscalls
  
      void FlushCache(uint8_t *, R5900Context *ctx, PS2Runtime *)
@@ -774,10 +2377,10 @@ index 5110ee2..cca003e 100644
          releaseWaitImpl(rdram, ctx, runtime, true);
      }
  }
-diff --git i/ps2xRuntime/src/lib/game_overrides.cpp w/ps2xRuntime/src/lib/game_overrides.cpp
+diff --git a/ps2xRuntime/src/lib/game_overrides.cpp b/ps2xRuntime/src/lib/game_overrides.cpp
 index 1e38bd4..7d51085 100644
---- i/ps2xRuntime/src/lib/game_overrides.cpp
-+++ w/ps2xRuntime/src/lib/game_overrides.cpp
+--- a/ps2xRuntime/src/lib/game_overrides.cpp
++++ b/ps2xRuntime/src/lib/game_overrides.cpp
 @@ -6,7 +6,9 @@
  #include "ps2_log.h"
  #include <algorithm>
@@ -816,16 +2419,11 @@ index 1e38bd4..7d51085 100644
  
          std::vector<Descriptor> descriptors;
          {
-diff --git i/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp w/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
-index f0ad507..bb97472 100644
---- i/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
-+++ w/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
-@@ -1,3 +1,4 @@
-+#pragma GCC optimize("O3")
- #include "runtime/gs/gs_cpu_backend.h"
- #include "runtime/gs/ps2_gs_common.h"
- #include "runtime/gs/ps2_gs_psmct16.h"
-@@ -7,10 +8,14 @@
+diff --git a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+index f0ad507..e56ed81 100644
+--- a/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
++++ b/ps2xRuntime/src/lib/gs/gs_cpu_backend.cpp
+@@ -7,10 +7,14 @@
  #include "runtime/gs/ps2_gs_memory.h"
  #include "ps2_log.h"
  #include <atomic>
@@ -840,7 +2438,7 @@ index f0ad507..bb97472 100644
  #include <fstream>
  #include <iostream>
  #include <stdexcept>
-@@ -296,7 +301,7 @@ namespace
+@@ -296,7 +300,7 @@ namespace
      {
          const float top = static_cast<float>(c00) + (static_cast<float>(c10) - static_cast<float>(c00)) * fx;
          const float bottom = static_cast<float>(c01) + (static_cast<float>(c11) - static_cast<float>(c01)) * fx;
@@ -849,7 +2447,7 @@ index f0ad507..bb97472 100644
      }
  }
  
-@@ -533,6 +538,7 @@ void GSCpuBackend::Reset()
+@@ -533,6 +537,7 @@ void GSCpuBackend::Reset()
  void GSCpuBackend::ResetUnlocked()
  {
      m_clut.fill(0u);
@@ -857,7 +2455,7 @@ index f0ad507..bb97472 100644
      m_clutCbp.fill(0u);
      m_texturePageCache.Invalidate();
      m_transfer = {};
-@@ -543,8 +549,17 @@ void GSCpuBackend::ResetUnlocked()
+@@ -543,8 +548,17 @@ void GSCpuBackend::ResetUnlocked()
      m_localToHostReadPos = 0u;
  }
  
@@ -875,7 +2473,7 @@ index f0ad507..bb97472 100644
      std::lock_guard<std::mutex> lock(m_mutex);
      if (!m_vram || batch.vertexCount == 0u)
          return;
-@@ -623,6 +638,7 @@ void GSCpuBackend::LoadClutUnlocked(const GSTex0Reg &tex0, const GSTexClutReg &t
+@@ -623,6 +637,7 @@ void GSCpuBackend::LoadClutUnlocked(const GSTex0Reg &tex0, const GSTexClutReg &t
          }
  
          const uint32_t raw = ReadTextureVramUnlocked(tex0.cpsm, tex0.cbp, sourceWidth, sourceX, sourceY); 
@@ -883,7 +2481,7 @@ index f0ad507..bb97472 100644
          const uint32_t destination = (loadCsm1Suffix ? entry : destinationBase + entry) & (sixteenBit ? 0x1FFu : 0x0FFu);
          if (sixteenBit)
          {
-@@ -1012,7 +1028,27 @@ void GSCpuBackend::WritePixel(const GSDrawState &state, int x, int y, int z, uin
+@@ -1012,7 +1027,27 @@ void GSCpuBackend::WritePixel(const GSDrawState &state, int x, int y, int z, uin
      }
  }
  
@@ -912,7 +2510,7 @@ index f0ad507..bb97472 100644
                                    uint8_t index,
                                    uint8_t cpsm,
                                    uint8_t csm,
-@@ -1269,6 +1305,35 @@ void GSCpuBackend::DrawSprite(const GSPrimitiveBatch &batch)
+@@ -1269,6 +1304,35 @@ void GSCpuBackend::DrawSprite(const GSPrimitiveBatch &batch)
      }
      else
      {
@@ -948,10 +2546,10 @@ index f0ad507..bb97472 100644
          for (int y = drawY0; y <= drawY1; ++y)
              for (int x = drawX0; x <= drawX1; ++x)
                  WritePixel(state, x, y, z1, r, g, b, a, v1.fog);
-diff --git i/ps2xRuntime/src/lib/gs/gs_frontend.cpp w/ps2xRuntime/src/lib/gs/gs_frontend.cpp
+diff --git a/ps2xRuntime/src/lib/gs/gs_frontend.cpp b/ps2xRuntime/src/lib/gs/gs_frontend.cpp
 index 5658928..ef0df5f 100644
---- i/ps2xRuntime/src/lib/gs/gs_frontend.cpp
-+++ w/ps2xRuntime/src/lib/gs/gs_frontend.cpp
+--- a/ps2xRuntime/src/lib/gs/gs_frontend.cpp
++++ b/ps2xRuntime/src/lib/gs/gs_frontend.cpp
 @@ -668,70 +668,88 @@ void GS::processGIFPacket(const uint8_t *data, uint32_t sizeBytes)
          }
      });
@@ -974,22 +2572,21 @@ index 5658928..ef0df5f 100644
 -        uint32_t nreg = static_cast<uint32_t>((tagLo >> 60) & 0xF);
 -        if (nreg == 0)
 -            nreg = 16;
--
--        recordGifTagDebugEventUnlocked(sizeBytes, nloop, flg, nreg);
--
--        bool pre = ((tagLo >> 46) & 1) != 0;
--        if (pre)
 +        if (!st.active)
-         {
--            writeRegisterUnlocked(GS_REG_PRIM, (tagLo >> 47) & 0x7FF);
++        {
 +            if (offset + 16 > sizeBytes)
 +                return;
 +            const uint64_t tagLo = loadLE64(data + offset);
 +            const uint64_t tagHi = loadLE64(data + offset + 8);
 +            offset += 16;
-+
+ 
+-        recordGifTagDebugEventUnlocked(sizeBytes, nloop, flg, nreg);
 +            m_curQ = 1.0f;
-+
+ 
+-        bool pre = ((tagLo >> 46) & 1) != 0;
+-        if (pre)
+-        {
+-            writeRegisterUnlocked(GS_REG_PRIM, (tagLo >> 47) & 0x7FF);
 +            const uint32_t nloop = static_cast<uint32_t>(tagLo & 0x7FFF);
 +            const uint8_t flg = static_cast<uint8_t>((tagLo >> 58) & 0x3);
 +            uint32_t nreg = static_cast<uint32_t>((tagLo >> 60) & 0xF);
@@ -1054,45 +2651,43 @@ index 5658928..ef0df5f 100644
 +            while (st.loopsLeft && offset + 8 <= sizeBytes)
              {
 -                for (uint32_t r = 0; r < nreg; ++r)
--                {
++                writeRegisterUnlocked(st.regs[st.regIdx], loadLE64(data + offset));
++                offset += 8;
++                if (++st.regIdx == st.nreg)
+                 {
 -                    if (offset + 8 > sizeBytes)
 -                        return;
 -                    writeRegisterUnlocked(regs[r], loadLE64(data + offset));
 -                    offset += 8;
--                }
--            }
--            if ((nloop * nreg) & 1)
-+                writeRegisterUnlocked(st.regs[st.regIdx], loadLE64(data + offset));
-                 offset += 8;
-+                if (++st.regIdx == st.nreg)
-+                {
 +                    st.regIdx = 0;
 +                    --st.loopsLeft;
-+                }
-+            }
+                 }
+             }
+-            if ((nloop * nreg) & 1)
+-                offset += 8;
          }
 -        else if (flg == GIF_FMT_IMAGE)
 +
 +        if (st.loopsLeft == 0)
++        {
++            offset += std::min(st.padBytes, sizeBytes - offset);
++            st.active = false;
++        }
++        else
          {
 -            uint32_t imageBytes = nloop * 16;
 -            if (offset + imageBytes > sizeBytes)
 -                imageBytes = sizeBytes - offset;
 -            processImageData(data + offset, imageBytes);
 -            offset += imageBytes;
-+            offset += std::min(st.padBytes, sizeBytes - offset);
-+            st.active = false;
-+        }
-+        else
-+        {
 +            return; // pacote acabou no meio da tag
          }
      }
  }
-diff --git i/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp w/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp
+diff --git a/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp b/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp
 index a8f9fa8..47ccc1c 100644
---- i/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp
-+++ w/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp
+--- a/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp
++++ b/ps2xRuntime/src/lib/gs/ps2_gs_memory.cpp
 @@ -1,4 +1,6 @@
 +#include <algorithm>
  #include <array>
@@ -1186,10 +2781,142 @@ index a8f9fa8..47ccc1c 100644
      void WriteCT32(u8* data, u32 bp, u32 bw, u32 x, u32 y, u32 value)
      {
          PixelStorageTraits<C32>::Write(PageTableC32, data, bp, bw, x, y, value);
-diff --git i/ps2xRuntime/src/lib/ps2_runtime.cpp w/ps2xRuntime/src/lib/ps2_runtime.cpp
-index 45cb9d2..04652d6 100644
---- i/ps2xRuntime/src/lib/ps2_runtime.cpp
-+++ w/ps2xRuntime/src/lib/ps2_runtime.cpp
+diff --git a/ps2xRuntime/src/lib/ps2_iop_host.cpp b/ps2xRuntime/src/lib/ps2_iop_host.cpp
+index 8d46e03..41605c7 100644
+--- a/ps2xRuntime/src/lib/ps2_iop_host.cpp
++++ b/ps2xRuntime/src/lib/ps2_iop_host.cpp
+@@ -194,6 +194,12 @@ bool PS2IopHostAdapter::normalizeGuestAddress(uint32_t address, uint32_t &normal
+     return true;
+ }
+ 
++bool PS2IopHostAdapter::readPadState(int port, int slot, void *destination, size_t size)
++{
++    return m_runtime.padBackend().readState(port, slot,
++                                            static_cast<uint8_t *>(destination), size);
++}
++
+ bool PS2IopHostAdapter::readIopMemory(uint32_t address, void *destination, size_t size) const
+ {
+     return m_runtime.readIopMemory(address, destination, size);
+@@ -463,14 +469,11 @@ int32_t PS2IopHostAdapter::memoryCard(const ps2x::iop::MemoryCardRequest &reques
+     }
+ 
+     R5900Context context{};
+-    for (size_t i = 0; i < 4u; ++i)
++    for (size_t i = 0; i < 6u; ++i)
+     {
+         setRegU32(&context, static_cast<int>(4 + i), request.arguments[i]);
+     }
+ 
+-    // EE n32 ABI: the fifth argument travels in $t0, matching the sceMc* stubs.
+-    setRegU32(&context, 8, request.arguments[4]);
+-
+     handler(m_activeRdram ? m_activeRdram : m_runtime.memory().getRDRAM(),
+             &context,
+             &m_runtime);
+diff --git a/ps2xRuntime/src/lib/ps2_iop_host.h b/ps2xRuntime/src/lib/ps2_iop_host.h
+index 89d8576..ad3430a 100644
+--- a/ps2xRuntime/src/lib/ps2_iop_host.h
++++ b/ps2xRuntime/src/lib/ps2_iop_host.h
+@@ -48,6 +48,7 @@ public:
+     bool writeGuest(uint32_t address, const void *source, size_t size) override;
+     bool zeroGuest(uint32_t address, size_t size) override;
+     bool normalizeGuestAddress(uint32_t address, uint32_t &normalized) const override;
++    bool readPadState(int port, int slot, void *destination, size_t size) override;
+     bool readIopMemory(uint32_t address, void *destination, size_t size) const override;
+     bool writeIopMemory(uint32_t address, const void *source, size_t size) override;
+     bool zeroIopMemory(uint32_t address, size_t size) override;
+diff --git a/ps2xRuntime/src/lib/ps2_pad.cpp b/ps2xRuntime/src/lib/ps2_pad.cpp
+index 8590f14..d5c9e72 100644
+--- a/ps2xRuntime/src/lib/ps2_pad.cpp
++++ b/ps2xRuntime/src/lib/ps2_pad.cpp
+@@ -1,10 +1,16 @@
+ #include "runtime/ps2_pad.h"
+ #include "ps2_host_backend.h"
++#include <chrono>
++#include <cstdlib>
+ #include <cstring>
+ 
+ namespace
+ {
+-    constexpr uint8_t kPadAnalogMarker = 0x73;
++    // PADMAN opens a real controller in digital mode.  The IOP DMA path
++    // consumes this backend directly, so reporting the DualShock marker
++    // (0x73) here makes the retail guest reject an otherwise valid pad as
++    // disconnected.  0x41 is the protocol ID for the initial digital mode.
++    constexpr uint8_t kPadDigitalMarker = 0x41;
+     constexpr uint8_t kPadStickCenter = 0x80;
+ 
+     constexpr uint16_t PAD_LEFT = 0x0080u;
+@@ -32,7 +38,7 @@ bool PSPadBackend::readState(int /*port*/, int /*slot*/, uint8_t *data, size_t s
+ 
+     std::memset(data, 0, 32);
+     data[0] = 0x01;
+-    data[1] = kPadAnalogMarker;
++    data[1] = kPadDigitalMarker;
+     data[2] = 0xFF;
+     data[3] = 0xFF;
+     data[4] = data[5] = data[6] = data[7] = kPadStickCenter;
+@@ -87,7 +93,10 @@ bool PSPadBackend::readState(int /*port*/, int /*slot*/, uint8_t *data, size_t s
+         data[4] = static_cast<uint8_t>(128 + rx * 127);
+         data[5] = static_cast<uint8_t>(128 + ry * 127);
+     }
+-    else
++    // Keep keyboard input available even when a USB gamepad is detected.
++    // This is useful for mixed-input setups and does not replace the
++    // gamepad state; both host sources contribute to the same active-low
++    // controller report.
+     {
+         if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_W))
+             clearBit(PAD_UP);
+@@ -119,6 +128,43 @@ bool PSPadBackend::readState(int /*port*/, int /*slot*/, uint8_t *data, size_t s
+             clearBit(PAD_SELECT);
+     }
+ 
++    // PS2X_AUTOX=<seconds> is a bounded diagnostic input source.  The retail
++    // startup path consumes the PADMAN DMA area through this backend, so the
++    // pulse must be applied here rather than only in the unused scePadRead HLE
++    // path.  It deliberately affects only Cross and leaves normal host input
++    // handling unchanged.
++    static const double autoXStart = std::getenv("PS2X_AUTOX")
++                                         ? std::atof(std::getenv("PS2X_AUTOX"))
++                                         : -1.0;
++    if (autoXStart >= 0.0)
++    {
++        static const auto t0 = std::chrono::steady_clock::now();
++        const double elapsed =
++            std::chrono::duration<double>(std::chrono::steady_clock::now() - t0).count();
++        if (elapsed >= autoXStart &&
++            (static_cast<long>((elapsed - autoXStart) * 1000.0) / 300) % 2 == 0)
++        {
++            clearBit(PAD_CROSS);
++        }
++    }
++
++    // Separate title-screen diagnostic: many retail boot flows wait for
++    // START before the Cross-confirmed menu becomes active.
++    static const double autoStart = std::getenv("PS2X_AUTOSTART")
++                                        ? std::atof(std::getenv("PS2X_AUTOSTART"))
++                                        : -1.0;
++    if (autoStart >= 0.0)
++    {
++        static const auto startT0 = std::chrono::steady_clock::now();
++        const double elapsed =
++            std::chrono::duration<double>(std::chrono::steady_clock::now() - startT0).count();
++        if (elapsed >= autoStart &&
++            (static_cast<long>((elapsed - autoStart) * 1000.0) / 300) % 2 == 0)
++        {
++            clearBit(PAD_START);
++        }
++    }
++
+     data[2] = static_cast<uint8_t>(btns & 0xFF);
+     data[3] = static_cast<uint8_t>(btns >> 8);
+     return true;
+diff --git a/ps2xRuntime/src/lib/ps2_runtime.cpp b/ps2xRuntime/src/lib/ps2_runtime.cpp
+index 45cb9d2..bcfdf25 100644
+--- a/ps2xRuntime/src/lib/ps2_runtime.cpp
++++ b/ps2xRuntime/src/lib/ps2_runtime.cpp
 @@ -1,4 +1,7 @@
  #include "ps2_runtime.h"
 +#include <cstdio>
@@ -1226,7 +2953,7 @@ index 45cb9d2..04652d6 100644
 +
 +namespace
 +{
-+    // PS2X_PROF=1: a cada 10 s imprime o tempo gasto no VU1 (fraÃ§Ã£o da janela e ns por ciclo)
++    // PS2X_PROF=1: a cada 10 s imprime o tempo gasto no VU1 (fração da janela e ns por ciclo)
 +    struct Vu1Prof
 +    {
 +        bool on = std::getenv("PS2X_PROF") != nullptr;
@@ -1299,7 +3026,7 @@ index 45cb9d2..04652d6 100644
      setIoPaths(paths);
  }
  
-@@ -1353,6 +1414,27 @@ bool PS2Runtime::dispatchGuestBranch(uint8_t *rdram,
+@@ -1353,6 +1414,76 @@ bool PS2Runtime::dispatchGuestBranch(uint8_t *rdram,
      ctx->pc = targetPc;
      const bool isCall = (kind == GuestBranchKind::DirectCall || kind == GuestBranchKind::IndirectCall);
  
@@ -1316,18 +3043,67 @@ index 45cb9d2..04652d6 100644
 +        }
 +        return set;
 +    }();
-+    if (isCall && !tracedCalls.empty() && tracedCalls.count(targetPc) != 0)
++    static const bool traceAllCalls = []()
++    {
++        const char *spec = std::getenv("PS2X_TRACE_CALLS");
++        return spec != nullptr && (std::strcmp(spec, "all") == 0 || std::strcmp(spec, "ALL") == 0);
++    }();
++    if (isCall && ((!tracedCalls.empty() && tracedCalls.count(targetPc) != 0) || traceAllCalls))
 +    {
 +        static std::atomic<int> tracedPrinted{0};
-+        if (tracedPrinted.fetch_add(1) < 400)
++        if (tracedPrinted.fetch_add(1) < (traceAllCalls ? 1200 : 400))
 +            std::fprintf(stderr, "[call] %x a0=%x a1=%x a2=%x a3=%x s0=%x ra=%x\n", targetPc, GPR_U32(ctx, 4), GPR_U32(ctx, 5),
 +                         GPR_U32(ctx, 6), GPR_U32(ctx, 7), GPR_U32(ctx, 16), sourcePc);
++    }
++
++    // PS2X_TRACE_LOADER=1: bounded observations of the retail resource worker.
++    // This only reads guest memory; it never changes the loader state.
++    if (isCall && std::getenv("PS2X_TRACE_LOADER") != nullptr &&
++        ((targetPc == 0x1B4DD0u && sourcePc == 0x190218u) || sourcePc == 0x19023Cu))
++    {
++        static std::atomic<int> loaderPrinted{0};
++        if (loaderPrinted.fetch_add(1) < 160)
++        {
++            const auto readGuest32 = [rdram](uint32_t address) -> uint32_t
++            {
++                if (address > PS2_RAM_SIZE - sizeof(uint32_t))
++                    return 0u;
++                uint32_t value = 0u;
++                std::memcpy(&value, rdram + address, sizeof(value));
++                return value;
++            };
++            const bool workerCall = targetPc == 0x1B4DD0u && sourcePc == 0x190218u;
++            const uint32_t object = workerCall ? GPR_U32(ctx, 4) : 0u;
++            const uint32_t resource = workerCall ? readGuest32(object + 0x150u) : GPR_U32(ctx, 16);
++            const uint32_t handler = readGuest32(resource + 0x4F8u);
++            const uint32_t callback = readGuest32(handler + 0x0Cu);
++            std::fprintf(stderr,
++                         "[loader-state] target=0x%x source=0x%x object=0x%x "
++                         "12c=%u 12d=%u resource=0x%x res4b9=%u handler=0x%x "
++                         "callback=0x%x a0=0x%x s0=0x%x\n",
++                         targetPc, sourcePc, object,
++                         workerCall ? readGuest32(object + 0x12Cu) & 0xFFu : 0u,
++                         workerCall ? readGuest32(object + 0x12Du) & 0xFFu : 0u,
++                         resource, readGuest32(resource + 0x4B9u) & 0xFFu,
++                         handler, callback, GPR_U32(ctx, 4), GPR_U32(ctx, 16));
++        }
++    }
++
++    if (isCall && std::getenv("PS2X_TRACE_LOADER") != nullptr &&
++        (targetPc == 0x190410u || targetPc == 0x190448u || targetPc == 0x190528u ||
++         targetPc == 0x1908D0u || targetPc == 0x188338u))
++    {
++        static std::atomic<int> callbackTracePrinted{0};
++        if (callbackTracePrinted.fetch_add(1) < 160)
++            std::fprintf(stderr, "[loader-call] target=0x%x source=0x%x a0=0x%x a1=0x%x a2=0x%x a3=0x%x s0=0x%x ra=0x%x\n",
++                         targetPc, sourcePc, GPR_U32(ctx, 4), GPR_U32(ctx, 5), GPR_U32(ctx, 6),
++                         GPR_U32(ctx, 7), GPR_U32(ctx, 16), GPR_U32(ctx, 31));
 +    }
 +
      // Every inter-function transfer is also a deterministic EE safe point.
      // Backward edges inside generated functions use eeCheckpointDue(), while
      // this charge bounds straight-line call chains that have no local loop.
-@@ -2386,8 +2468,25 @@ void PS2Runtime::run()
+@@ -2386,8 +2517,25 @@ void PS2Runtime::run()
          gameThreadFinished.store(true, std::memory_order_release); });
  
      uint64_t tick = 0;
@@ -1353,16 +3129,33 @@ index 45cb9d2..04652d6 100644
          PS2_IF_AGRESSIVE_LOGS({
              tick++;
              if ((tick % 120) == 0)
-diff --git i/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp w/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
-index bd75bba..dc095a4 100644
---- i/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
-+++ w/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
-@@ -1,3 +1,4 @@
-+#pragma GCC optimize("O3")
- #include "runtime/ps2_vu1.h"
- #include "runtime/gs/ps2_gif_arbiter.h"
- #include "runtime/gs/gs_frontend.h"
-@@ -66,6 +67,7 @@ VU1Interpreter::VU1Interpreter(Unit unit)
+@@ -2418,6 +2566,21 @@ void PS2Runtime::run()
+                                                << " vif=" << curVif
+                                                << std::endl);
+ 
++                if (std::getenv("PS2X_TRACE_THREADS") != nullptr)
++                {
++                    for (const auto &thread : eeSnapshot.threads)
++                    {
++                        RUNTIME_LOG("[run:thread] id=" << thread.id
++                                                       << " pc=0x" << std::hex << thread.pc
++                                                       << " ra=0x" << thread.ra
++                                                       << " status=" << std::dec
++                                                       << static_cast<int>(thread.status)
++                                                       << " wait=" << thread.waitId
++                                                       << " entry=0x" << std::hex << thread.entry
++                                                       << std::dec << std::endl);
++                    }
++                }
++
+             }
+         });
+         uint32_t presentWidth = FB_WIDTH;
+diff --git a/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp b/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
+index bd75bba..95aacce 100644
+--- a/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
++++ b/ps2xRuntime/src/lib/vu/ps2_vu1_core.cpp
+@@ -66,6 +66,7 @@ VU1Interpreter::VU1Interpreter(Unit unit)
  
  void VU1Interpreter::resetScheduler()
  {
@@ -1370,7 +3163,7 @@ index bd75bba..dc095a4 100644
      m_flagPipeline = {};
      m_fdiv = {};
      m_efu = {};
-@@ -533,6 +535,7 @@ void VU1Interpreter::updateFmacFlags(const uint8_t laneFlags[4], uint8_t dest,
+@@ -533,6 +534,7 @@ void VU1Interpreter::updateFmacFlags(const uint8_t laneFlags[4], uint8_t dest,
      entry->valid = true;
      entry->issueCycle = m_cycle;
      entry->readyCycle = m_cycle + kFmacLatency;
@@ -1378,7 +3171,7 @@ index bd75bba..dc095a4 100644
      entry->mac = mac;
      entry->status = status;
      entry->extraSticky = extraSticky;
-@@ -572,6 +575,7 @@ void VU1Interpreter::queueFsset(uint16_t immediate)
+@@ -572,6 +574,7 @@ void VU1Interpreter::queueFsset(uint16_t immediate)
              entry.valid = true;
              entry.issueCycle = m_cycle;
              entry.readyCycle = m_cycle + kFmacLatency;
@@ -1386,7 +3179,7 @@ index bd75bba..dc095a4 100644
              entry.status = static_cast<uint32_t>(immediate) & 0xFC0u;
              entry.writesSticky = true;
              return;
-@@ -591,6 +595,7 @@ void VU1Interpreter::queueClip(uint32_t clip)
+@@ -591,6 +594,7 @@ void VU1Interpreter::queueClip(uint32_t clip)
              entry.valid = true;
              entry.issueCycle = m_cycle;
              entry.readyCycle = m_cycle + kFmacLatency;
@@ -1394,7 +3187,7 @@ index bd75bba..dc095a4 100644
              entry.clip = m_workingClip;
              entry.writesClip = true;
              return;
-@@ -615,6 +620,7 @@ void VU1Interpreter::queueFcset(uint32_t clip)
+@@ -615,6 +619,7 @@ void VU1Interpreter::queueFcset(uint32_t clip)
              entry.valid = true;
              entry.issueCycle = m_cycle;
              entry.readyCycle = m_cycle + kFmacLatency;
@@ -1402,7 +3195,7 @@ index bd75bba..dc095a4 100644
              entry.clip = m_workingClip;
              entry.writesClip = true;
              return;
-@@ -629,6 +635,7 @@ void VU1Interpreter::queueQ(float value, uint32_t latency, uint32_t statusDi)
+@@ -629,6 +634,7 @@ void VU1Interpreter::queueQ(float value, uint32_t latency, uint32_t statusDi)
      value = normalizeResult(value, ignoredFlags);
      m_fdiv.valid = true;
      m_fdiv.readyCycle = m_cycle + latency;
@@ -1410,7 +3203,7 @@ index bd75bba..dc095a4 100644
      m_fdiv.value = value;
      m_fdiv.statusDi = statusDi & 0x30u;
  }
-@@ -643,6 +650,7 @@ void VU1Interpreter::queueP(float value, uint32_t latency)
+@@ -643,6 +649,7 @@ void VU1Interpreter::queueP(float value, uint32_t latency)
          {
              entry.valid = true;
              entry.readyCycle = m_cycle + latency;
@@ -1418,7 +3211,7 @@ index bd75bba..dc095a4 100644
              entry.value = value;
              // EFU throughput is one cycle shorter than result visibility.
              m_efuResourceReady = m_cycle + (latency > 0u ? latency - 1u : 0u);
-@@ -660,6 +668,7 @@ void VU1Interpreter::queueStore(uint32_t address, const uint32_t words[4], uint8
+@@ -660,6 +667,7 @@ void VU1Interpreter::queueStore(uint32_t address, const uint32_t words[4], uint8
          {
              store.valid = true;
              store.readyCycle = m_cycle + 1u;
@@ -1426,7 +3219,7 @@ index bd75bba..dc095a4 100644
              store.address = address;
              store.laneMask = laneMask;
              std::copy(words, words + 4, store.words.begin());
-@@ -681,6 +690,7 @@ void VU1Interpreter::queueVfWrite(uint8_t reg, uint8_t laneMask,
+@@ -681,6 +689,7 @@ void VU1Interpreter::queueVfWrite(uint8_t reg, uint8_t laneMask,
              write = {};
              write.valid = true;
              write.readyCycle = m_cycle + latency;
@@ -1434,7 +3227,7 @@ index bd75bba..dc095a4 100644
              write.sequence = ++m_nextWriteSequence;
              write.reg = reg;
              write.laneMask = laneMask;
-@@ -707,6 +717,7 @@ void VU1Interpreter::queueViWrite(uint8_t reg, int32_t value, uint32_t latency)
+@@ -707,6 +716,7 @@ void VU1Interpreter::queueViWrite(uint8_t reg, int32_t value, uint32_t latency)
              write = {};
              write.valid = true;
              write.readyCycle = m_cycle + latency;
@@ -1442,7 +3235,7 @@ index bd75bba..dc095a4 100644
              write.sequence = ++m_nextWriteSequence;
              write.reg = reg;
              write.value = value;
-@@ -728,6 +739,7 @@ void VU1Interpreter::queueAccWrite(uint8_t laneMask, const float value[4], uint3
+@@ -728,6 +738,7 @@ void VU1Interpreter::queueAccWrite(uint8_t laneMask, const float value[4], uint3
              write = {};
              write.valid = true;
              write.readyCycle = m_cycle + latency;
@@ -1450,7 +3243,7 @@ index bd75bba..dc095a4 100644
              write.sequence = ++m_nextWriteSequence;
              write.laneMask = laneMask;
              std::copy(value, value + 4, write.value.begin());
-@@ -744,10 +756,20 @@ void VU1Interpreter::queueAccWrite(uint8_t laneMask, const float value[4], uint3
+@@ -744,10 +755,20 @@ void VU1Interpreter::queueAccWrite(uint8_t laneMask, const float value[4], uint3
  
  void VU1Interpreter::commitReadyPipelines()
  {
@@ -1472,7 +3265,7 @@ index bd75bba..dc095a4 100644
  
          if (entry.writesMac)
              m_state.mac = entry.mac;
-@@ -765,6 +787,8 @@ void VU1Interpreter::commitReadyPipelines()
+@@ -765,6 +786,8 @@ void VU1Interpreter::commitReadyPipelines()
          entry = {};
      }
  
@@ -1481,7 +3274,7 @@ index bd75bba..dc095a4 100644
      if (m_fdiv.valid && m_fdiv.readyCycle <= m_cycle)
      {
          m_state.q = m_fdiv.value;
-@@ -780,12 +804,19 @@ void VU1Interpreter::commitReadyPipelines()
+@@ -780,12 +803,19 @@ void VU1Interpreter::commitReadyPipelines()
              m_state.p = entry.value;
              entry = {};
          }
@@ -1493,16 +3286,16 @@ index bd75bba..dc095a4 100644
      {
 -        if (!store.valid || store.readyCycle > m_cycle)
 +        if (!store.valid)
-             continue;
++            continue;
 +        if (store.readyCycle > m_cycle)
 +        {
 +            pending(store.readyCycle);
-+            continue;
+             continue;
 +        }
          if (m_activeVuData && store.address + 16u <= m_activeVuDataSize)
          {
              uint32_t oldWords[4]{};
-@@ -802,8 +833,13 @@ void VU1Interpreter::commitReadyPipelines()
+@@ -802,8 +832,13 @@ void VU1Interpreter::commitReadyPipelines()
  
      for (PendingVfWrite &write : m_vfWritePipeline)
      {
@@ -1517,7 +3310,7 @@ index bd75bba..dc095a4 100644
          for (uint32_t component = 0; component < 4u; ++component)
          {
              if ((write.laneMask & laneForComponent(component)) != 0u &&
-@@ -817,8 +853,13 @@ void VU1Interpreter::commitReadyPipelines()
+@@ -817,8 +852,13 @@ void VU1Interpreter::commitReadyPipelines()
  
      for (PendingViWrite &write : m_viWritePipeline)
      {
@@ -1532,22 +3325,22 @@ index bd75bba..dc095a4 100644
          if (m_viLatestWrite[write.reg] == write.sequence)
              m_state.vi[write.reg] = static_cast<int16_t>(write.value);
          write = {};
-@@ -826,8 +867,13 @@ void VU1Interpreter::commitReadyPipelines()
+@@ -826,8 +866,13 @@ void VU1Interpreter::commitReadyPipelines()
  
      for (PendingAccWrite &write : m_accWritePipeline)
      {
 -        if (!write.valid || write.readyCycle > m_cycle)
 +        if (!write.valid)
-             continue;
++            continue;
 +        if (write.readyCycle > m_cycle)
 +        {
 +            pending(write.readyCycle);
-+            continue;
+             continue;
 +        }
          for (uint32_t component = 0; component < 4u; ++component)
          {
              if ((write.laneMask & laneForComponent(component)) != 0u &&
-@@ -838,6 +884,7 @@ void VU1Interpreter::commitReadyPipelines()
+@@ -838,6 +883,7 @@ void VU1Interpreter::commitReadyPipelines()
          }
          write = {};
      }
@@ -1555,3 +3348,11 @@ index bd75bba..dc095a4 100644
  }
  
  void VU1Interpreter::progressXgkick()
+@@ -919,6 +965,7 @@ void VU1Interpreter::finishXgkick()
+     if (!m_xgkick.active)
+         return;
+ 
++
+     if (m_activeMemory)
+         m_activeMemory->submitGifPacket(GifPathId::Path1, m_xgkick.packet.data(), m_xgkick.totalBytes);
+     else if (m_activeGs)

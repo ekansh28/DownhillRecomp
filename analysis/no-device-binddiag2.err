@@ -1,0 +1,49 @@
+[SetupHeap] base=0x8a0400 alignedBase=0x8a0400 size=0xffffffff runtimeBase=0x8a0400 runtimeEnd=0x8a0400
+[syscall] CreateSema a0=93ca80 a1=ffffffff a2=0 a3=29e580 ra=25eedc
+[syscall] CreateSema a0=93caa0 a1=ffffffff a2=0 a3=29e580 ra=25eeec
+[syscall] CreateSema a0=93ca80 a1=ffffffff a2=28 a3=29e580 ra=25b1d8
+[syscall] CreateThread a0=93ca50 a1=2a40f0 a2=400 a3=29e580 ra=25b21c
+[syscall] StartThread a0=2 a1=761208 a2=400 a3=29e580 ra=25b250
+[syscall] WaitSema a0=3 a1=0 a2=0 a3=0 ra=25b118
+[syscall] ChangeThreadPriority a0=1 a1=1 a2=400 a3=29e580 ra=25b264
+[syscall] AddDmacHandler a0=5 a1=25c5f8 a2=0 a3=20 ra=25c2c0
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x0 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20df58 ra=0x20df58
+[call] 25cdb8 a0=7609e8 a1=80000592 a2=0 a3=280000 s0=760000 ra=247834
+[syscall] CreateSema a0=93c930 a1=1 a2=0 a3=280000 ra=25ce30
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c8a0 count=1
+[sceSifSetDma:DESC] i=0 src=0x20761d00 dst=0x0 size=0x40 attr=0x44 pc=0x25c554 ra=0x25c554
+[syscall] WaitSema a0=4 a1=1 a2=20761d00 a3=40 ra=25ce90
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=2 pc=0x25ce90 wait=2
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=2 pc=0x25ce90 wait=2
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=2 pc=0x25ce90 wait=2
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=2 pc=0x25ce90 wait=2
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=2 pc=0x25ce90 wait=2
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=2 pc=0x25ce90 wait=2
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=2 pc=0x25ce90 wait=2
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2
+[scheduler] idle threads=2 current=0
+[scheduler] thread id=1 status=2 pc=0x25ce90 wait=2
+[scheduler] thread id=2 status=2 pc=0x25b118 wait=2

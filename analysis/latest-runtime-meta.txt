@@ -1,0 +1,3 @@
+pid=2072
+out=C:\Users\ekansh\Documents\GitHub\Recomp-Domination\analysis\runtime-20261021-012922.out
+err=C:\Users\ekansh\Documents\GitHub\Recomp-Domination\analysis\runtime-20261021-012922.err

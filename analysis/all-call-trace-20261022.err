@@ -1,0 +1,1887 @@
+[SetupHeap] base=0x8a0400 alignedBase=0x8a0400 size=0xffffffff runtimeBase=0x8a0400 runtimeEnd=0x8a0400
+[call] 25f0a0 a0=8a0400 a1=ffffffff a2=0 a3=29e580 s0=0 ra=10a198
+[call] 25eeb8 a0=8a0400 a1=ffffffff a2=0 a3=29e580 s0=0 ra=25f0a8
+[call] 25a6e0 a0=93ca80 a1=ffffffff a2=0 a3=29e580 s0=0 ra=25eed4
+[call] 25a6e0 a0=93caa0 a1=ffffffff a2=0 a3=29e580 s0=0 ra=25eee4
+[call] 25ef90 a0=93caa0 a1=ffffffff a2=0 a3=29e580 s0=0 ra=25f0b0
+[call] 25f090 a0=83 a1=25ef38 a2=0 a3=29e580 s0=282218 ra=25efc8
+[call] 25f090 a0=5a a1=25ef00 a2=0 a3=29e580 s0=282218 ra=25efd4
+[call] 25ef78 a0=80000000 a1=80080000 a2=25ef38 a3=29e580 s0=282218 ra=25efe4
+[call] 25ef78 a0=80000000 a1=80080000 a2=25ef00 a3=29e580 s0=282218 ra=25eff8
+[call] 25f330 a0=80000000 a1=80080000 a2=25ef00 a3=29e580 s0=0 ra=25f0b8
+[call] 25f2c8 a0=5a a1=25f2e8 a2=25ef00 a3=29e580 s0=283160 ra=25f370
+[call] 25f2d8 a0=80076000 a1=2829f8 a2=740 a3=29e580 s0=283160 ra=25f388
+[call] 25f2d8 a0=82000 a1=283138 a2=28 a3=29e580 s0=283160 ra=25f3a0
+[call] 25a960 a0=0 a1=283138 a2=28 a3=29e580 s0=283160 ra=25f3a8
+[call] 25a960 a0=2 a1=283138 a2=28 a3=29e580 s0=283160 ra=25f3b0
+[call] 25f2c8 a0=5b a1=80076000 a2=28 a3=29e580 s0=283160 ra=25f3bc
+[call] 25f320 a0=fc a1=80076000 a2=28 a3=29e580 s0=283160 ra=25f3c8
+[call] 25f2c8 a0=fc a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3d8
+[call] 25f320 a0=fe a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3c8
+[call] 25f2c8 a0=fe a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3d8
+[call] 25f320 a0=fd a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3c8
+[call] 25f2c8 a0=fd a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3d8
+[call] 25f320 a0=ff a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3c8
+[call] 25f2c8 a0=ff a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3d8
+[call] 25f320 a0=12c a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3c8
+[call] 25f2c8 a0=12c a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3d8
+[call] 25f320 a0=8 a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3c8
+[call] 25f2c8 a0=8 a1=ffffffff a2=28 a3=29e580 s0=283160 ra=25f3d8
+[call] 25b1a8 a0=8 a1=ffffffff a2=28 a3=29e580 s0=0 ra=25f0c0
+[call] 25a6e0 a0=93ca80 a1=ffffffff a2=28 a3=29e580 s0=280000 ra=25b1d0
+[call] 25a4e0 a0=93ca50 a1=2a40f0 a2=400 a3=29e580 s0=280000 ra=25b214
+[call] 25a500 a0=2 a1=761208 a2=400 a3=29e580 s0=280000 ra=25b248
+[call] 25a720 a0=3 a1=0 a2=0 a3=0 s0=761211 ra=25b110
+[call] 25a5d0 a0=2 a1=761208 a2=400 a3=29e580 s0=280000 ra=25b250
+[call] 25a570 a0=1 a1=1 a2=400 a3=29e580 s0=280000 ra=25b25c
+[call] 25f1b0 a0=1 a1=1 a2=400 a3=29e580 s0=0 ra=25f0c8
+[call] 25f148 a0=1 a1=1 a2=400 a3=29e580 s0=0 ra=25f1c0
+[call] 25a790 a0=93ca60 a1=1 a2=400 a3=29e580 s0=0 ra=25f154
+[call] 25a780 a0=93ca64 a1=1 a2=400 a3=29e580 s0=93ca64 ra=25f178
+[call] 25a790 a0=93ca64 a1=1 a2=400 a3=29e580 s0=93ca64 ra=25f180
+[call] 25a780 a0=93ca60 a1=1 a2=400 a3=29e580 s0=93ca64 ra=25f188
+[call] 25f5b8 a0=5a a1=25f570 a2=400 a3=29e580 s0=283520 ra=25f5f0
+[call] 25f560 a0=80075000 a1=2831a0 a2=330 a3=29e580 s0=283520 ra=25f608
+[call] 25a960 a0=0 a1=2831a0 a2=330 a3=29e580 s0=283520 ra=25f610
+[call] 25a960 a0=2 a1=2831a0 a2=330 a3=29e580 s0=283520 ra=25f618
+[call] 25f5b8 a0=5b a1=80075000 a2=330 a3=29e580 s0=283520 ra=25f624
+[call] 25f5b8 a0=54 a1=25f940 a2=330 a3=29e580 s0=283520 ra=25f630
+[call] 25f5a8 a0=55 a1=25f940 a2=330 a3=29e580 s0=283520 ra=25f640
+[call] 25f5b8 a0=55 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f650
+[call] 25f5a8 a0=56 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f640
+[call] 25f5b8 a0=56 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f650
+[call] 25f5a8 a0=57 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f640
+[call] 25f5b8 a0=57 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f650
+[call] 25f5a8 a0=58 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f640
+[call] 25f5b8 a0=58 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f650
+[call] 25f5a8 a0=59 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f640
+[call] 25f5b8 a0=59 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f650
+[call] 25f5a8 a0=3 a1=ffffffff a2=330 a3=29e580 s0=283520 ra=25f664
+[call] 25a960 a0=0 a1=ffffffff a2=330 a3=29e580 s0=0 ra=10a1a0
+[call] 1b6708 a0=0 a1=29e584 a2=330 a3=29e580 s0=0 ra=10a1b8
+[call] 1fb6c0 a0=0 a1=29e584 a2=330 a3=29e580 s0=398c40 ra=1b6740
+[call] 260824 a0=0 a1=55 a2=330 a3=280000 s0=28393c ra=1fb69c
+[call] 242dc0 a0=283958 a1=766430 a2=330 a3=280000 s0=283938 ra=1fb69c
+[call] 242d90 a0=1 a1=ffff a2=330 a3=280000 s0=283938 ra=242dcc
+[call] 242d50 a0=75d3f0 a1=ffff a2=330 a3=280000 s0=283938 ra=242dac
+[call] 242290 a0=75d3f0 a1=ffff a2=330 a3=280000 s0=283934 ra=1fb69c
+[call] 242270 a0=1 a1=ffff a2=330 a3=280000 s0=283934 ra=24229c
+[call] 236e00 a0=1 a1=ffff a2=330 a3=280000 s0=283930 ra=1fb69c
+[call] 236dd0 a0=1 a1=ffff a2=330 a3=280000 s0=283930 ra=236e0c
+[call] 2369e0 a0=759780 a1=ffff a2=330 a3=280000 s0=283930 ra=236dec
+[call] 263ba8 a0=759780 a1=ffff a2=330 a3=280000 s0=759780 ra=2369f0
+[call] 263ba8 a0=759788 a1=ffff a2=330 a3=280000 s0=759780 ra=2369fc
+[call] 2244f0 a0=759788 a1=ffff a2=330 a3=280000 s0=28392c ra=1fb69c
+[call] 2244c8 a0=1 a1=ffff a2=330 a3=280000 s0=28392c ra=2244fc
+[call] 223b90 a0=1 a1=ffff a2=330 a3=280000 s0=283928 ra=1fb69c
+[call] 223b50 a0=1 a1=ffff a2=330 a3=280000 s0=283928 ra=223b9c
+[call] 223a98 a0=663b08 a1=7a5080 a2=fa000 a3=280000 s0=283928 ra=223b78
+[call] 223b00 a0=663b08 a1=7a5080 a2=fa000 a3=280000 s0=663b08 ra=223ab8
+[call] 223930 a0=663b08 a1=0 a2=fffffffc a3=280000 s0=283924 ra=1fb69c
+[call] 223900 a0=1 a1=ffff a2=fffffffc a3=280000 s0=283924 ra=22393c
+[call] 242fb0 a0=663140 a1=ffff a2=fffffffc a3=280000 s0=283924 ra=22391c
+[call] 21b7c8 a0=663140 a1=ffff a2=fffffffc a3=280000 s0=283920 ra=1fb69c
+[call] 21b798 a0=1 a1=ffff a2=fffffffc a3=280000 s0=283920 ra=21b7d4
+[call] 20b6b0 a0=1 a1=ffff a2=fffffffc a3=280000 s0=28391c ra=1fb69c
+[call] 20b628 a0=1 a1=ffff a2=fffffffc a3=280000 s0=28391c ra=20b6bc
+[call] 223a98 a0=4d0350 a1=93caf0 a2=c3500 a3=280000 s0=28391c ra=20b650
+[call] 223b00 a0=4d0350 a1=93caf0 a2=c3500 a3=280000 s0=4d0350 ra=223ab8
+[call] 223a98 a0=4d0368 a1=9ffff0 a2=1600000 a3=280000 s0=28391c ra=20b668
+[call] 223b00 a0=4d0368 a1=9ffff0 a2=1600000 a3=280000 s0=4d0368 ra=223ab8
+[call] 20d060 a0=4d0380 a1=0 a2=fffffffc a3=280000 s0=28391c ra=20b674
+[call] 20d060 a0=4d1a18 a1=0 a2=fffffffc a3=280000 s0=28391c ra=20b680
+[call] 20d060 a0=4d30b0 a1=0 a2=fffffffc a3=280000 s0=28391c ra=20b68c
+[call] 20d060 a0=4d4748 a1=0 a2=fffffffc a3=280000 s0=28391c ra=20b698
+[call] 2095d8 a0=4d4748 a1=0 a2=fffffffc a3=280000 s0=283918 ra=1fb69c
+[call] 209590 a0=1 a1=ffff a2=fffffffc a3=280000 s0=283918 ra=2095e4
+[call] 208318 a0=4d0338 a1=ffff a2=fffffffc a3=280000 s0=283914 ra=1fb69c
+[call] 2082e8 a0=1 a1=ffff a2=fffffffc a3=280000 s0=283914 ra=208324
+[call] 207f80 a0=4d02c0 a1=ffff a2=fffffffc a3=280000 s0=283914 ra=208304
+[call] 207720 a0=4d02c0 a1=ffff a2=fffffffc a3=280000 s0=283910 ra=1fb69c
+[call] 207630 a0=1 a1=ffff a2=fffffffc a3=280000 s0=283910 ra=20772c
+[call] 206e20 a0=262b48 a1=262c20 a2=262d30 a3=262fe0 s0=28390c ra=1fb69c
+[call] 206dd8 a0=1 a1=ffff a2=262d30 a3=262fe0 s0=28390c ra=206e2c
+[call] 1fb5e8 a0=4d007f a1=ffff a2=262d30 a3=262fe0 s0=283908 ra=1fb69c
+[call] 1fb5b8 a0=1 a1=ffff a2=262d30 a3=262fe0 s0=283908 ra=1fb5f4
+[call] 1f96c8 a0=1 a1=ffff a2=262d30 a3=262fe0 s0=283904 ra=1fb69c
+[call] 1f9620 a0=1 a1=ffff a2=262d30 a3=262fe0 s0=283904 ra=1f96d4
+[call] 18d9d0 a0=4c7530 a1=ffff a2=262d30 a3=262fe0 s0=4c7530 ra=1f9644
+[call] 18d9d0 a0=4c7a30 a1=1 a2=3f4b80 a3=3f4b60 s0=4c7530 ra=1f9660
+[call] 18d9d0 a0=4c7f50 a1=1 a2=3f4b80 a3=3f4b60 s0=4c7f50 ra=1f9680
+[call] 1ac780 a0=4c8450 a1=2 a2=1 a3=3f4b60 s0=4c7f50 ra=1f969c
+[call] 1f8420 a0=4c8450 a1=2 a2=1 a3=3f4b60 s0=283900 ra=1fb69c
+[call] 1f8200 a0=1 a1=ffff a2=1 a3=3f4b60 s0=283900 ra=1f842c
+[call] 2244b8 a0=4000000 a1=48ed840 a2=4578040 a3=48134c0 s0=4c5db0 ra=1f8284
+[call] 224498 a0=4000000 a1=48ed840 a2=4578040 a3=48134c0 s0=4c5db0 ra=1f828c
+[call] 2244a8 a0=4000000 a1=48ed840 a2=4578040 a3=48134c0 s0=4c5db0 ra=1f8294
+[call] 1eb0b0 a0=4c0000 a1=4c0000 a2=4c0000 a3=4c0000 s0=2838fc ra=1fb69c
+[call] 1eb060 a0=1 a1=ffff a2=4c0000 a3=4c0000 s0=2838fc ra=1eb0bc
+[call] 1e4bf0 a0=ffffffff a1=ffffffff a2=4c0000 a3=4c0000 s0=2838f8 ra=1fb69c
+[call] 1e4b78 a0=1 a1=ffff a2=4c0000 a3=4c0000 s0=2838f8 ra=1e4bfc
+[call] 18d9d0 a0=4c4720 a1=ffff a2=4c0000 a3=4c0000 s0=4c4720 ra=1e4b9c
+[call] 18d9d0 a0=4c4c30 a1=1 a2=3f4b80 a3=3f4b60 s0=4c4720 ra=1e4bb8
+[call] 1e47f0 a0=4c5130 a1=1 a2=3f4b80 a3=3f4b60 s0=4c4720 ra=1e4bd0
+[call] 18d9d0 a0=4c5130 a1=1 a2=3f4b80 a3=3f4b60 s0=4c5130 ra=1e4800
+[call] 18e638 a0=4c5130 a1=97 a2=29de68 a3=3 s0=4c5130 ra=1e4840
+[call] 18d898 a0=4c5568 a1=97 a2=29de68 a3=3 s0=4c5568 ra=18e650
+[call] 18e680 a0=4c5130 a1=97 a2=29de68 a3=3 s0=4c5130 ra=18e664
+[call] 1e3980 a0=46 a1=f a2=ffffffff a3=4c5568 s0=2838f4 ra=1fb69c
+[call] 1e3938 a0=1 a1=ffff a2=ffffffff a3=4c5568 s0=2838f4 ra=1e398c
+[call] 1e20e0 a0=4c37a0 a1=ffff a2=ffffffff a3=4c5568 s0=2838f4 ra=1e3954
+[call] 18d9d0 a0=4c37a0 a1=ffff a2=ffffffff a3=4c5568 s0=4c37a0 ra=1e20ec
+[call] 1e3618 a0=4c3d00 a1=1 a2=3f4b80 a3=3f4b60 s0=2838f4 ra=1e3960
+[call] 18f210 a0=4c3d00 a1=1 a2=3f4b80 a3=3f4b60 s0=4c3d00 ra=1e3624
+[call] 18d9d0 a0=4c3d00 a1=1 a2=3f4b80 a3=3f4b60 s0=4c3d00 ra=18f21c
+[call] 1e30a8 a0=4c4210 a1=2 a2=3 a3=1 s0=2838f4 ra=1e396c
+[call] 18d9d0 a0=4c4210 a1=2 a2=3 a3=1 s0=4c4210 ra=1e30b4
+[call] 1e20c0 a0=287320 a1=1 a2=3f4b80 a3=3f4b60 s0=2838f0 ra=1fb69c
+[call] 1e2078 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838f0 ra=1e20cc
+[call] 18d9d0 a0=4c3230 a1=ffff a2=3f4b80 a3=3f4b60 s0=4c3230 ra=1e2098
+[call] 1ddcd0 a0=287320 a1=1 a2=3f4b80 a3=3f4b60 s0=2838ec ra=1fb69c
+[call] 1ddca0 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838ec ra=1ddcdc
+[call] 1ddc70 a0=4c2120 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838ec ra=1ddcbc
+[call] 1dbc38 a0=4c2120 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838e8 ra=1fb69c
+[call] 1dbc10 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838e8 ra=1dbc44
+[call] 1dbae0 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838e4 ra=1fb69c
+[call] 1dbab0 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838e4 ra=1dbaec
+[call] 208ab0 a0=4bd840 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838e4 ra=1dbacc
+[call] 1bb780 a0=4bd840 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838e0 ra=1fb69c
+[call] 1bb750 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838e0 ra=1bb78c
+[call] 1b8c80 a0=4b25a0 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838e0 ra=1bb76c
+[call] 1c5a00 a0=4b2914 a1=ffff a2=3f4b80 a3=3f4b60 s0=4b25a0 ra=1b8c90
+[call] 2088d0 a0=4b2914 a1=ffff a2=3f4b80 a3=3f4b60 s0=4b2914 ra=1c5a0c
+[call] 1c4e58 a0=4b2a90 a1=ffff a2=3f4b80 a3=3f4b60 s0=4b25a0 ra=1b8c98
+[call] 1b5dc8 a0=3c3 a1=200 a2=399 a3=3f4b60 s0=2838dc ra=1fb69c
+[call] 1b5d78 a0=1 a1=ffff a2=399 a3=3f4b60 s0=2838dc ra=1b5dd4
+[call] 18d7d0 a0=4b1f50 a1=15d a2=c2 a3=ffffff90 s0=2838dc ra=1b5db4
+[call] 1b4080 a0=4b1f50 a1=15d a2=c2 a3=ffffff90 s0=2838d8 ra=1fb69c
+[call] 1b4050 a0=1 a1=ffff a2=c2 a3=ffffff90 s0=2838d8 ra=1b408c
+[call] 1b20b0 a0=4a9e40 a1=ffff a2=c2 a3=ffffff90 s0=2838d8 ra=1b406c
+[call] 230708 a0=4a9e40 a1=9 a2=c2 a3=ffffff90 s0=4a9e40 ra=1b20c0
+[call] 1acc88 a0=2887a0 a1=9 a2=c2 a3=ffffff90 s0=2838d4 ra=1fb69c
+[call] 1acbe0 a0=1 a1=ffff a2=c2 a3=ffffff90 s0=2838d4 ra=1acc94
+[call] 1ac780 a0=4a9160 a1=2 a2=1 a3=ffffff90 s0=4a91c4 ra=1acc28
+[call] 1ac780 a0=4a91c4 a1=2 a2=1 a3=ffffff90 s0=4a9228 ra=1acc28
+[call] 1ac780 a0=4a9228 a1=2 a2=1 a3=ffffff90 s0=4a928c ra=1acc28
+[call] 1ac780 a0=4a928c a1=2 a2=1 a3=ffffff90 s0=4a92f0 ra=1acc28
+[call] 1ac780 a0=4a92f0 a1=2 a2=1 a3=ffffff90 s0=4a9354 ra=1acc28
+[call] 1ac780 a0=4a9354 a1=2 a2=1 a3=ffffff90 s0=4a93b8 ra=1acc28
+[call] 1ac780 a0=4a93b8 a1=2 a2=1 a3=ffffff90 s0=4a941c ra=1acc28
+[call] 1ac780 a0=4a941c a1=2 a2=1 a3=ffffff90 s0=4a9480 ra=1acc28
+[call] 1ac780 a0=4a9480 a1=2 a2=1 a3=ffffff90 s0=4a94e4 ra=1acc28
+[call] 1ac780 a0=4a94e4 a1=2 a2=1 a3=ffffff90 s0=4a9548 ra=1acc28
+[call] 1ac780 a0=4a9548 a1=2 a2=1 a3=ffffff90 s0=4a95ac ra=1acc28
+[call] 1ac780 a0=4a95ac a1=2 a2=1 a3=ffffff90 s0=4a9610 ra=1acc28
+[call] 1ac780 a0=4a9610 a1=2 a2=1 a3=ffffff90 s0=4a9674 ra=1acc28
+[call] 1ac780 a0=4a9674 a1=2 a2=1 a3=ffffff90 s0=4a96d8 ra=1acc28
+[call] 1ac780 a0=4a96d8 a1=2 a2=1 a3=ffffff90 s0=4a973c ra=1acc28
+[call] 1ac780 a0=4a973c a1=2 a2=1 a3=ffffff90 s0=4a97a0 ra=1acc28
+[call] 1ac780 a0=4a97a0 a1=2 a2=1 a3=ffffff90 s0=4a9804 ra=1acc28
+[call] 1ac780 a0=4a9804 a1=2 a2=1 a3=ffffff90 s0=4a9868 ra=1acc28
+[call] 1ac780 a0=4a9868 a1=2 a2=1 a3=ffffff90 s0=4a98cc ra=1acc28
+[call] 1ac780 a0=4a98cc a1=2 a2=1 a3=ffffff90 s0=4a9930 ra=1acc28
+[call] 1ac780 a0=4a9930 a1=2 a2=1 a3=ffffff90 s0=4a9994 ra=1acc28
+[call] 1ac780 a0=4a9994 a1=2 a2=1 a3=ffffff90 s0=4a99f8 ra=1acc28
+[call] 1ac780 a0=4a99f8 a1=2 a2=1 a3=ffffff90 s0=4a9a5c ra=1acc28
+[call] 1ac780 a0=4a9a5c a1=2 a2=1 a3=ffffff90 s0=4a9ac0 ra=1acc28
+[call] 1ac780 a0=4a9ac0 a1=2 a2=1 a3=ffffff90 s0=4a9b24 ra=1acc28
+[call] 1ac780 a0=4a9b24 a1=2 a2=1 a3=ffffff90 s0=4a9b88 ra=1acc28
+[call] 1ac780 a0=4a9b88 a1=2 a2=1 a3=ffffff90 s0=4a9bec ra=1acc28
+[call] 1ac780 a0=4a9bec a1=2 a2=1 a3=ffffff90 s0=4a9c50 ra=1acc28
+[call] 1ac780 a0=4a9c50 a1=2 a2=1 a3=ffffff90 s0=4a9cb4 ra=1acc28
+[call] 1ac780 a0=4a9cb4 a1=2 a2=1 a3=ffffff90 s0=4a9d18 ra=1acc28
+[call] 1ac780 a0=4a9d18 a1=2 a2=1 a3=ffffff90 s0=4a9d7c ra=1acc28
+[call] 1ac780 a0=4a9d7c a1=2 a2=1 a3=ffffff90 s0=4a9de0 ra=1acc28
+[call] 1abbc8 a0=4a9de0 a1=2 a2=1 a3=ffffff90 s0=2838d0 ra=1fb69c
+[call] 1abba0 a0=1 a1=ffff a2=1 a3=ffffff90 s0=2838d0 ra=1abbd4
+[call] 1ab8a8 a0=1 a1=ffff a2=1 a3=ffffff90 s0=2838cc ra=1fb69c
+[call] 1ab808 a0=1 a1=ffff a2=1 a3=ffffff90 s0=2838cc ra=1ab8b4
+[call] 2318c0 a0=4a59d0 a1=ffffffff a2=1 a3=ffffff90 s0=6 ra=1ab874
+[call] 2318c0 a0=4a5b10 a1=ffffffff a2=1 a3=ffffff90 s0=5 ra=1ab874
+[call] 2318c0 a0=4a5c50 a1=ffffffff a2=1 a3=ffffff90 s0=4 ra=1ab874
+[call] 2318c0 a0=4a5d90 a1=ffffffff a2=1 a3=ffffff90 s0=3 ra=1ab874
+[call] 2318c0 a0=4a5ed0 a1=ffffffff a2=1 a3=ffffff90 s0=2 ra=1ab874
+[call] 2318c0 a0=4a6010 a1=ffffffff a2=1 a3=ffffff90 s0=1 ra=1ab874
+[call] 2318c0 a0=4a6150 a1=ffffffff a2=1 a3=ffffff90 s0=0 ra=1ab874
+[call] 2318c0 a0=4a6290 a1=ffffffff a2=1 a3=ffffff90 s0=ffffffff ra=1ab874
+[call] 1a4c30 a0=4a6290 a1=ffffffff a2=1 a3=ffffff90 s0=2838c8 ra=1fb69c
+[call] 1a4c28 a0=1 a1=ffff a2=1 a3=ffffff90 s0=2838c8 ra=1a4c3c
+[call] 1a2260 a0=1 a1=ffff a2=1 a3=ffffff90 s0=2838c4 ra=1fb69c
+[call] 1a2230 a0=1 a1=ffff a2=1 a3=ffffff90 s0=2838c4 ra=1a226c
+[call] 1a06f8 a0=43f350 a1=ffff a2=1 a3=ffffff90 s0=2838c4 ra=1a224c
+[call] 18f210 a0=43f350 a1=ffff a2=1 a3=ffffff90 s0=43f350 ra=1a0704
+[call] 18d9d0 a0=43f350 a1=ffff a2=1 a3=ffffff90 s0=43f350 ra=18f21c
+[call] 1a0608 a0=287308 a1=2 a2=3 a3=1 s0=2838c0 ra=1fb69c
+[call] 1a05e0 a0=1 a1=ffff a2=3 a3=1 s0=2838c0 ra=1a0614
+[call] 19e930 a0=1 a1=ffff a2=3 a3=1 s0=2838bc ra=1fb69c
+[call] 19e898 a0=1 a1=ffff a2=3 a3=1 s0=2838bc ra=19e93c
+[call] 19c1f0 a0=43dd38 a1=ffff a2=3 a3=1 s0=2838bc ra=19e8bc
+[call] 18d9d0 a0=43dd50 a1=ffff a2=3 a3=1 s0=43dd50 ra=19e8cc
+[call] 187378 a0=43e280 a1=1 a2=3f4b80 a3=3f4b60 s0=43dd50 ra=19e8ec
+[call] 18d9d0 a0=43e280 a1=1 a2=3f4b80 a3=3f4b60 s0=43e280 ra=187384
+[call] 1873f8 a0=43e280 a1=1 a2=3f4b80 a3=3f4b60 s0=43e280 ra=187398
+[call] 187378 a0=43e8b0 a1=1 a2=3f4b80 a3=3f4b60 s0=43e8b0 ra=19e908
+[call] 18d9d0 a0=43e8b0 a1=1 a2=3f4b80 a3=3f4b60 s0=43e8b0 ra=187384
+[call] 1873f8 a0=43e8b0 a1=1 a2=3f4b80 a3=3f4b60 s0=43e8b0 ra=187398
+[call] 19be70 a0=43edac a1=1 a2=3f4b80 a3=3f4b60 s0=2838b8 ra=1fb69c
+[call] 19be18 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838b8 ra=19be7c
+[call] 19a278 a0=43c850 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838b8 ra=19be34
+[call] 18d9d0 a0=43c850 a1=ffff a2=3f4b80 a3=3f4b60 s0=43c850 ra=19a284
+[call] 19a728 a0=43cd50 a1=1 a2=3f4b80 a3=3f4b60 s0=2838b8 ra=19be40
+[call] 18d9d0 a0=43cd50 a1=1 a2=3f4b80 a3=3f4b60 s0=43cd50 ra=19a734
+[call] 19b168 a0=43d2a0 a1=1 a2=3f4b80 a3=3f4b60 s0=2838b8 ra=19be4c
+[call] 18d9d0 a0=43d2a0 a1=1 a2=3f4b80 a3=3f4b60 s0=43d2a0 ra=19b174
+[call] 19b740 a0=43d7b0 a1=1 a2=3f4b80 a3=3f4b60 s0=2838b8 ra=19be58
+[call] 18f210 a0=43d7b0 a1=1 a2=3f4b80 a3=3f4b60 s0=43d7b0 ra=19b74c
+[call] 18d9d0 a0=43d7b0 a1=1 a2=3f4b80 a3=3f4b60 s0=43d7b0 ra=18f21c
+[call] 199318 a0=287308 a1=2 a2=3 a3=1 s0=2838b4 ra=1fb69c
+[call] 1992f0 a0=1 a1=ffff a2=3 a3=1 s0=2838b4 ra=199324
+[call] 199010 a0=1 a1=ffff a2=3 a3=1 s0=2838b0 ra=1fb69c
+[call] 198f70 a0=1 a1=ffff a2=3 a3=1 s0=2838b0 ra=19901c
+[call] 1969e8 a0=435500 a1=ffff a2=3 a3=1 s0=2838b0 ra=198f8c
+[call] 18d9d0 a0=435500 a1=ffff a2=3 a3=1 s0=435500 ra=1969f4
+[call] 197e50 a0=435a10 a1=1 a2=3f4b80 a3=3f4b60 s0=2838b0 ra=198f98
+[call] 18d9d0 a0=435a10 a1=1 a2=3f4b80 a3=3f4b60 s0=435a10 ra=197e5c
+[call] 198168 a0=435f20 a1=1 a2=3f4b80 a3=3f4b60 s0=2838b0 ra=198fa4
+[call] 18d9d0 a0=435f20 a1=1 a2=3f4b80 a3=3f4b60 s0=435f20 ra=198174
+[call] 198958 a0=436430 a1=1 a2=3f4b80 a3=3f4b60 s0=2838b0 ra=198fb0
+[call] 18d9d0 a0=436430 a1=1 a2=3f4b80 a3=3f4b60 s0=436430 ra=198964
+[call] 198780 a0=436940 a1=2 a2=3 a3=1 s0=2838b0 ra=198fbc
+[call] 18d9d0 a0=436940 a1=2 a2=3 a3=1 s0=436940 ra=19878c
+[call] 197ce0 a0=436e40 a1=1 a2=3f4b80 a3=3f4b60 s0=2838b0 ra=198fc8
+[call] 18d9d0 a0=436e40 a1=1 a2=3f4b80 a3=3f4b60 s0=436e40 ra=197cec
+[call] 18e638 a0=436e40 a1=5e a2=29de68 a3=3f4b60 s0=436e40 ra=197d0c
+[call] 18d898 a0=437278 a1=5e a2=29de68 a3=3f4b60 s0=437278 ra=18e650
+[call] 18e680 a0=436e40 a1=5e a2=29de68 a3=3f4b60 s0=436e40 ra=18e664
+[call] 18e3a8 a0=436e40 a1=22 a2=29de68 a3=1 s0=436e40 ra=197d28
+[call] 18d898 a0=436e58 a1=22 a2=29de68 a3=1 s0=436e40 ra=18e3cc
+[call] 18e3a8 a0=436e40 a1=59 a2=29de68 a3=1 s0=436e40 ra=197d40
+[call] 18d898 a0=436e68 a1=59 a2=29de68 a3=1 s0=436e40 ra=18e3cc
+[call] 18e3a8 a0=436e40 a1=29 a2=29de68 a3=1 s0=436e40 ra=197d58
+[call] 18d898 a0=436e78 a1=29 a2=29de68 a3=1 s0=436e40 ra=18e3cc
+[call] 18e3a8 a0=436e40 a1=1a a2=29de68 a3=1 s0=436e40 ra=197d70
+[call] 18d898 a0=436e88 a1=1a a2=29de68 a3=1 s0=436e40 ra=18e3cc
+[call] 197640 a0=437340 a1=1a a2=29de68 a3=1 s0=2838b0 ra=198fd4
+[call] 18d9d0 a0=437340 a1=1a a2=29de68 a3=1 s0=437340 ra=19764c
+[call] 198508 a0=437850 a1=1 a2=3f4b80 a3=3f4b60 s0=2838b0 ra=198fe0
+[call] 18d9d0 a0=437850 a1=1 a2=3f4b80 a3=3f4b60 s0=437850 ra=198514
+[call] 18e6b8 a0=437850 a1=10 a2=29de68 a3=3f4b60 s0=437850 ra=19854c
+[call] 18d898 a0=437c98 a1=10 a2=29de68 a3=3f4b60 s0=437c98 ra=18e6d0
+[call] 18e700 a0=437850 a1=10 a2=29de68 a3=3f4b60 s0=437850 ra=18e6e4
+[call] 18e3a8 a0=437850 a1=5b a2=29de68 a3=1 s0=437850 ra=198570
+[call] 18d898 a0=437868 a1=5b a2=29de68 a3=1 s0=437850 ra=18e3cc
+[call] 18e3a8 a0=437850 a1=5c a2=29de68 a3=1 s0=437850 ra=198588
+[call] 18d898 a0=437878 a1=5c a2=29de68 a3=1 s0=437850 ra=18e3cc
+[call] 18e3a8 a0=437850 a1=5d a2=29de68 a3=1 s0=437850 ra=1985a0
+[call] 18d898 a0=437888 a1=5d a2=29de68 a3=1 s0=437850 ra=18e3cc
+[call] 198bf8 a0=437d50 a1=5d a2=29de68 a3=1 s0=2838b0 ra=198fec
+[call] 18d9d0 a0=437d50 a1=5d a2=29de68 a3=1 s0=437d50 ra=198c04
+[call] 198dd0 a0=438250 a1=1 a2=3f4b80 a3=3f4b60 s0=2838b0 ra=198ff8
+[call] 18d9d0 a0=438250 a1=1 a2=3f4b80 a3=3f4b60 s0=438250 ra=198ddc
+[call] 1969c8 a0=287320 a1=1 a2=3f4b80 a3=3f4b60 s0=2838ac ra=1fb69c
+[call] 196970 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838ac ra=1969d4
+[call] 193ae0 a0=ffffffff a1=ffffffff a2=3f4b80 a3=3f4b60 s0=2838a8 ra=1fb69c
+[call] 193ab8 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838a8 ra=193aec
+[call] 1936a0 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838a4 ra=1fb69c
+[call] 193630 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=2838a4 ra=1936ac
+[call] 192920 a0=ffffffff a1=ffffffff a2=412510 a3=ffffffff s0=2838a0 ra=1fb69c
+[call] 1928d0 a0=1 a1=ffff a2=412510 a3=ffffffff s0=2838a0 ra=19292c
+[call] 191570 a0=ffffffff a1=ffffffff a2=412510 a3=ffffffff s0=28389c ra=1fb69c
+[call] 191528 a0=1 a1=ffff a2=412510 a3=ffffffff s0=28389c ra=19157c
+[call] 1b4a60 a0=3f52d0 a1=ffff a2=412510 a3=ffffffff s0=3f52d0 ra=191548
+[call] 190900 a0=3f5334 a1=ffff a2=412510 a3=ffffffff s0=3f52d0 ra=191550
+[call] 18f438 a0=3f5334 a1=80 a2=20 a3=4000 s0=283898 ra=1fb69c
+[call] 18f310 a0=1 a1=ffff a2=20 a3=4000 s0=283898 ra=18f444
+[call] 18d7d0 a0=3f4b20 a1=120 a2=a0 a3=ffffff9c s0=80 ra=18f350
+[call] 18d7d0 a0=3f4b40 a1=120 a2=a0 a3=ffffff9c s0=80 ra=18f37c
+[call] 18d7d0 a0=3f4b60 a1=1d0 a2=c0 a3=ffffff3b s0=80 ra=18f3a8
+[call] 18d7d0 a0=3f4b80 a1=15d a2=a7 a3=ffffff7a s0=80 ra=18f3d8
+[call] 18d2d0 a0=3f4d30 a1=ffffffff a2=a7 a3=ffffff7a s0=283894 ra=1fb69c
+[call] 18d168 a0=1 a1=ffff a2=a7 a3=ffffff7a s0=283894 ra=18d2dc
+[call] 18d9d0 a0=3ebac0 a1=ffff a2=a7 a3=ffffff7a s0=3ebac0 ra=18d1a0
+[call] 18d9d0 a0=3ebfd0 a1=1 a2=3f4b80 a3=3f4b60 s0=3ebac0 ra=18d1bc
+[call] 18d6f0 a0=3ec504 a1=1 a2=3f4b80 a3=3f4b60 s0=287170 ra=18d1e8
+[call] 18d6f0 a0=3ec520 a1=1 a2=3f4b80 a3=3f4b60 s0=287170 ra=18d200
+[call] 18ebc0 a0=3ebfd0 a1=1 a2=3f4b80 a3=3f4b60 s0=287170 ra=18d208
+[call] 18e398 a0=3ebfd0 a1=3ebfd0 a2=1 a3=3f4b60 s0=287170 ra=18ebf4
+[call] 262270 a0=3ec540 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec548 ra=18d260
+[call] 262270 a0=3ec548 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec550 ra=18d260
+[call] 262270 a0=3ec550 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec558 ra=18d260
+[call] 262270 a0=3ec558 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec560 ra=18d260
+[call] 262270 a0=3ec560 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec568 ra=18d260
+[call] 262270 a0=3ec568 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec570 ra=18d260
+[call] 262270 a0=3ec570 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec578 ra=18d260
+[call] 262270 a0=3ec578 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec580 ra=18d260
+[call] 262270 a0=3ec580 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec588 ra=18d260
+[call] 262270 a0=3ec588 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec590 ra=18d260
+[call] 262270 a0=3ec590 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec598 ra=18d260
+[call] 262270 a0=3ec598 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5a0 ra=18d260
+[call] 262270 a0=3ec5a0 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5a8 ra=18d260
+[call] 262270 a0=3ec5a8 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5b0 ra=18d260
+[call] 262270 a0=3ec5b0 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5b8 ra=18d260
+[call] 262270 a0=3ec5b8 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5c0 ra=18d260
+[call] 262270 a0=3ec5c0 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5c8 ra=18d260
+[call] 262270 a0=3ec5c8 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5d0 ra=18d260
+[call] 262270 a0=3ec5d0 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5d8 ra=18d260
+[call] 262270 a0=3ec5d8 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5e0 ra=18d260
+[call] 262270 a0=3ec5e0 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5e8 ra=18d260
+[call] 262270 a0=3ec5e8 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5f0 ra=18d260
+[call] 262270 a0=3ec5f0 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec5f8 ra=18d260
+[call] 262270 a0=3ec5f8 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec600 ra=18d260
+[call] 262270 a0=3ec600 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec608 ra=18d260
+[call] 262270 a0=3ec608 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec610 ra=18d260
+[call] 262270 a0=3ec610 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec618 ra=18d260
+[call] 262270 a0=3ec618 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec620 ra=18d260
+[call] 262270 a0=3ec620 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec628 ra=18d260
+[call] 262270 a0=3ec628 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec630 ra=18d260
+[call] 262270 a0=3ec630 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec638 ra=18d260
+[call] 262270 a0=3ec638 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec640 ra=18d260
+[call] 262270 a0=3ec640 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec648 ra=18d260
+[call] 262270 a0=3ec648 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec650 ra=18d260
+[call] 262270 a0=3ec650 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec658 ra=18d260
+[call] 262270 a0=3ec658 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec660 ra=18d260
+[call] 262270 a0=3ec660 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec668 ra=18d260
+[call] 262270 a0=3ec668 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec670 ra=18d260
+[call] 262270 a0=3ec670 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec678 ra=18d260
+[call] 262270 a0=3ec678 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec680 ra=18d260
+[call] 2620e0 a0=3ec680 a1=3ebfd0 a2=1 a3=3f4b60 s0=2 ra=18d294
+[call] 18d9d0 a0=3ec680 a1=3ebfd0 a2=1 a3=3f4b60 s0=3ec680 ra=262110
+[call] 18d6f0 a0=3ecbb8 a1=1 a2=3f4b80 a3=3f4b60 s0=3ec680 ra=26213c
+[call] 18d6f0 a0=3ecbd4 a1=1 a2=3f4b80 a3=3f4b60 s0=3ec680 ra=262154
+[call] 18ef08 a0=3ec680 a1=1 a2=3f4b80 a3=3f4b60 s0=3ec680 ra=26215c
+[call] 18e398 a0=3ec680 a1=3ecbb8 a2=3f4b80 a3=3f4b60 s0=3ec680 ra=18ef3c
+[call] 18f210 a0=3ecbf0 a1=3ecbb8 a2=3f4b80 a3=3f4b60 s0=3ec680 ra=262164
+[call] 18d9d0 a0=3ecbf0 a1=3ecbb8 a2=3f4b80 a3=3f4b60 s0=3ecbf0 ra=18f21c
+[call] 18f210 a0=3ed120 a1=2 a2=3 a3=1 s0=3ec680 ra=262194
+[call] 18d9d0 a0=3ed120 a1=2 a2=3 a3=1 s0=3ed120 ra=18f21c
+[call] 18d9d0 a0=3ed640 a1=2 a2=3 a3=1 s0=3ec680 ra=2621ac
+[call] 18e720 a0=3ed640 a1=1 a2=3f4b80 a3=3f4b60 s0=3ec680 ra=2621c0
+[call] 18e398 a0=3ed640 a1=1 a2=3f4b80 a3=3f4b60 s0=3ec680 ra=18e75c
+[call] 13ca68 a0=3edb80 a1=1 a2=3f4b80 a3=3f4b60 s0=3ec680 ra=2621c8
+[call] 18f210 a0=3edb80 a1=1 a2=3f4b80 a3=3f4b60 s0=3edb80 ra=13ca74
+[call] 18d9d0 a0=3edb80 a1=1 a2=3f4b80 a3=3f4b60 s0=3edb80 ra=18f21c
+[call] 18f210 a0=3ee160 a1=5 a2=3ee0c4 a3=3ee09c s0=3ec680 ra=2621d0
+[call] 18d9d0 a0=3ee160 a1=5 a2=3ee0c4 a3=3ee09c s0=3ee160 ra=18f21c
+[call] 2620e0 a0=3ee6c0 a1=3ee690 a2=3ee6a0 a3=1 s0=1 ra=18d294
+[call] 18d9d0 a0=3ee6c0 a1=3ee690 a2=3ee6a0 a3=1 s0=3ee6c0 ra=262110
+[call] 18d6f0 a0=3eebf8 a1=1 a2=3f4b80 a3=3f4b60 s0=3ee6c0 ra=26213c
+[call] 18d6f0 a0=3eec14 a1=1 a2=3f4b80 a3=3f4b60 s0=3ee6c0 ra=262154
+[call] 18ef08 a0=3ee6c0 a1=1 a2=3f4b80 a3=3f4b60 s0=3ee6c0 ra=26215c
+[call] 18e398 a0=3ee6c0 a1=3eebf8 a2=3f4b80 a3=3f4b60 s0=3ee6c0 ra=18ef3c
+[call] 18f210 a0=3eec30 a1=3eebf8 a2=3f4b80 a3=3f4b60 s0=3ee6c0 ra=262164
+[call] 18d9d0 a0=3eec30 a1=3eebf8 a2=3f4b80 a3=3f4b60 s0=3eec30 ra=18f21c
+[call] 18f210 a0=3ef160 a1=2 a2=3 a3=1 s0=3ee6c0 ra=262194
+[call] 18d9d0 a0=3ef160 a1=2 a2=3 a3=1 s0=3ef160 ra=18f21c
+[call] 18d9d0 a0=3ef680 a1=2 a2=3 a3=1 s0=3ee6c0 ra=2621ac
+[call] 18e720 a0=3ef680 a1=1 a2=3f4b80 a3=3f4b60 s0=3ee6c0 ra=2621c0
+[call] 18e398 a0=3ef680 a1=1 a2=3f4b80 a3=3f4b60 s0=3ee6c0 ra=18e75c
+[call] 13ca68 a0=3efbc0 a1=1 a2=3f4b80 a3=3f4b60 s0=3ee6c0 ra=2621c8
+[call] 18f210 a0=3efbc0 a1=1 a2=3f4b80 a3=3f4b60 s0=3efbc0 ra=13ca74
+[call] 18d9d0 a0=3efbc0 a1=1 a2=3f4b80 a3=3f4b60 s0=3efbc0 ra=18f21c
+[call] 18f210 a0=3f01a0 a1=5 a2=3f0104 a3=3f00dc s0=3ee6c0 ra=2621d0
+[call] 18d9d0 a0=3f01a0 a1=5 a2=3f0104 a3=3f00dc s0=3f01a0 ra=18f21c
+[call] 2620e0 a0=3f0700 a1=3f06d0 a2=3f06e0 a3=1 s0=0 ra=18d294
+[call] 18d9d0 a0=3f0700 a1=3f06d0 a2=3f06e0 a3=1 s0=3f0700 ra=262110
+[call] 18d6f0 a0=3f0c38 a1=1 a2=3f4b80 a3=3f4b60 s0=3f0700 ra=26213c
+[call] 18d6f0 a0=3f0c54 a1=1 a2=3f4b80 a3=3f4b60 s0=3f0700 ra=262154
+[call] 18ef08 a0=3f0700 a1=1 a2=3f4b80 a3=3f4b60 s0=3f0700 ra=26215c
+[call] 18e398 a0=3f0700 a1=3f0c38 a2=3f4b80 a3=3f4b60 s0=3f0700 ra=18ef3c
+[call] 18f210 a0=3f0c70 a1=3f0c38 a2=3f4b80 a3=3f4b60 s0=3f0700 ra=262164
+[call] 18d9d0 a0=3f0c70 a1=3f0c38 a2=3f4b80 a3=3f4b60 s0=3f0c70 ra=18f21c
+[call] 18f210 a0=3f11a0 a1=2 a2=3 a3=1 s0=3f0700 ra=262194
+[call] 18d9d0 a0=3f11a0 a1=2 a2=3 a3=1 s0=3f11a0 ra=18f21c
+[call] 18d9d0 a0=3f16c0 a1=2 a2=3 a3=1 s0=3f0700 ra=2621ac
+[call] 18e720 a0=3f16c0 a1=1 a2=3f4b80 a3=3f4b60 s0=3f0700 ra=2621c0
+[call] 18e398 a0=3f16c0 a1=1 a2=3f4b80 a3=3f4b60 s0=3f0700 ra=18e75c
+[call] 13ca68 a0=3f1c00 a1=1 a2=3f4b80 a3=3f4b60 s0=3f0700 ra=2621c8
+[call] 18f210 a0=3f1c00 a1=1 a2=3f4b80 a3=3f4b60 s0=3f1c00 ra=13ca74
+[call] 18d9d0 a0=3f1c00 a1=1 a2=3f4b80 a3=3f4b60 s0=3f1c00 ra=18f21c
+[call] 18f210 a0=3f21e0 a1=5 a2=3f2144 a3=3f211c s0=3f0700 ra=2621d0
+[call] 18d9d0 a0=3f21e0 a1=5 a2=3f2144 a3=3f211c s0=3f21e0 ra=18f21c
+[call] 2620e0 a0=3f2740 a1=3f2710 a2=3f2720 a3=1 s0=ffffffff ra=18d294
+[call] 18d9d0 a0=3f2740 a1=3f2710 a2=3f2720 a3=1 s0=3f2740 ra=262110
+[call] 18d6f0 a0=3f2c78 a1=1 a2=3f4b80 a3=3f4b60 s0=3f2740 ra=26213c
+[call] 18d6f0 a0=3f2c94 a1=1 a2=3f4b80 a3=3f4b60 s0=3f2740 ra=262154
+[call] 18ef08 a0=3f2740 a1=1 a2=3f4b80 a3=3f4b60 s0=3f2740 ra=26215c
+[call] 18e398 a0=3f2740 a1=3f2c78 a2=3f4b80 a3=3f4b60 s0=3f2740 ra=18ef3c
+[call] 18f210 a0=3f2cb0 a1=3f2c78 a2=3f4b80 a3=3f4b60 s0=3f2740 ra=262164
+[call] 18d9d0 a0=3f2cb0 a1=3f2c78 a2=3f4b80 a3=3f4b60 s0=3f2cb0 ra=18f21c
+[call] 18f210 a0=3f31e0 a1=2 a2=3 a3=1 s0=3f2740 ra=262194
+[call] 18d9d0 a0=3f31e0 a1=2 a2=3 a3=1 s0=3f31e0 ra=18f21c
+[call] 18d9d0 a0=3f3700 a1=2 a2=3 a3=1 s0=3f2740 ra=2621ac
+[call] 18e720 a0=3f3700 a1=1 a2=3f4b80 a3=3f4b60 s0=3f2740 ra=2621c0
+[call] 18e398 a0=3f3700 a1=1 a2=3f4b80 a3=3f4b60 s0=3f2740 ra=18e75c
+[call] 13ca68 a0=3f3c40 a1=1 a2=3f4b80 a3=3f4b60 s0=3f2740 ra=2621c8
+[call] 18f210 a0=3f3c40 a1=1 a2=3f4b80 a3=3f4b60 s0=3f3c40 ra=13ca74
+[call] 18d9d0 a0=3f3c40 a1=1 a2=3f4b80 a3=3f4b60 s0=3f3c40 ra=18f21c
+[call] 18f210 a0=3f4220 a1=5 a2=3f4184 a3=3f415c s0=3f2740 ra=2621d0
+[call] 18d9d0 a0=3f4220 a1=5 a2=3f4184 a3=3f415c s0=3f4220 ra=18f21c
+[call] 18b098 a0=3f4740 a1=3f4750 a2=3f4760 a3=1 s0=283890 ra=1fb69c
+[call] 18ae70 a0=1 a1=ffff a2=3f4760 a3=1 s0=283890 ra=18b0a4
+[call] 187378 a0=3e3d70 a1=ffff a2=3f4760 a3=1 s0=3e3d70 ra=18ae94
+[call] 18d9d0 a0=3e3d70 a1=ffff a2=3f4760 a3=1 s0=3e3d70 ra=187384
+[call] 1873f8 a0=3e3d70 a1=1 a2=3f4b80 a3=3f4b60 s0=3e3d70 ra=187398
+[call] 187378 a0=3e4390 a1=1 a2=3f4b80 a3=3f4b60 s0=3e3d70 ra=18aeb0
+[call] 18d9d0 a0=3e4390 a1=1 a2=3f4b80 a3=3f4b60 s0=3e4390 ra=187384
+[call] 1873f8 a0=3e4390 a1=1 a2=3f4b80 a3=3f4b60 s0=3e4390 ra=187398
+[call] 187378 a0=3e49b0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e49b0 ra=18aecc
+[call] 18d9d0 a0=3e49b0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e49b0 ra=187384
+[call] 1873f8 a0=3e49b0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e49b0 ra=187398
+[call] 187378 a0=3e4fc0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e49b0 ra=18aee8
+[call] 18d9d0 a0=3e4fc0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e4fc0 ra=187384
+[call] 1873f8 a0=3e4fc0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e4fc0 ra=187398
+[call] 187378 a0=3e55d0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e55d0 ra=18af04
+[call] 18d9d0 a0=3e55d0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e55d0 ra=187384
+[call] 1873f8 a0=3e55d0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e55d0 ra=187398
+[call] 187378 a0=3e5bf0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e55d0 ra=18af20
+[call] 18d9d0 a0=3e5bf0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e5bf0 ra=187384
+[call] 1873f8 a0=3e5bf0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e5bf0 ra=187398
+[call] 187378 a0=3e6210 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6210 ra=18af3c
+[call] 18d9d0 a0=3e6210 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6210 ra=187384
+[call] 1873f8 a0=3e6210 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6210 ra=187398
+[call] 187378 a0=3e6830 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6210 ra=18af58
+[call] 18d9d0 a0=3e6830 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6830 ra=187384
+[call] 1873f8 a0=3e6830 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6830 ra=187398
+[call] 187378 a0=3e6e50 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6e50 ra=18af74
+[call] 18d9d0 a0=3e6e50 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6e50 ra=187384
+[call] 1873f8 a0=3e6e50 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6e50 ra=187398
+[call] 187378 a0=3e80b0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e6e50 ra=18af90
+[call] 18d9d0 a0=3e80b0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e80b0 ra=187384
+[call] 1873f8 a0=3e80b0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e80b0 ra=187398
+[call] 187378 a0=3e86d0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e86d0 ra=18afac
+[call] 18d9d0 a0=3e86d0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e86d0 ra=187384
+[call] 1873f8 a0=3e86d0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e86d0 ra=187398
+[call] 187378 a0=3e8ce0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e86d0 ra=18afc8
+[call] 18d9d0 a0=3e8ce0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e8ce0 ra=187384
+[call] 1873f8 a0=3e8ce0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e8ce0 ra=187398
+[call] 187378 a0=3e92f0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e92f0 ra=18afe4
+[call] 18d9d0 a0=3e92f0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e92f0 ra=187384
+[call] 1873f8 a0=3e92f0 a1=1 a2=3f4b80 a3=3f4b60 s0=3e92f0 ra=187398
+[call] 187378 a0=3e9900 a1=1 a2=3f4b80 a3=3f4b60 s0=3e92f0 ra=18b000
+[call] 18d9d0 a0=3e9900 a1=1 a2=3f4b80 a3=3f4b60 s0=3e9900 ra=187384
+[call] 1873f8 a0=3e9900 a1=1 a2=3f4b80 a3=3f4b60 s0=3e9900 ra=187398
+[call] 187378 a0=3e9f10 a1=1 a2=3f4b80 a3=3f4b60 s0=3e9f10 ra=18b01c
+[call] 18d9d0 a0=3e9f10 a1=1 a2=3f4b80 a3=3f4b60 s0=3e9f10 ra=187384
+[call] 1873f8 a0=3e9f10 a1=1 a2=3f4b80 a3=3f4b60 s0=3e9f10 ra=187398
+[call] 187378 a0=3ea520 a1=1 a2=3f4b80 a3=3f4b60 s0=3e9f10 ra=18b038
+[call] 18d9d0 a0=3ea520 a1=1 a2=3f4b80 a3=3f4b60 s0=3ea520 ra=187384
+[call] 1873f8 a0=3ea520 a1=1 a2=3f4b80 a3=3f4b60 s0=3ea520 ra=187398
+[call] 187378 a0=3eab30 a1=1 a2=3f4b80 a3=3f4b60 s0=3eab30 ra=18b054
+[call] 18d9d0 a0=3eab30 a1=1 a2=3f4b80 a3=3f4b60 s0=3eab30 ra=187384
+[call] 1873f8 a0=3eab30 a1=1 a2=3f4b80 a3=3f4b60 s0=3eab30 ra=187398
+[call] 184940 a0=3eb140 a1=1 a2=3f4b80 a3=3f4b60 s0=3eab30 ra=18b06c
+[call] 187378 a0=3eb150 a1=1 a2=3f4b80 a3=3f4b60 s0=3eb140 ra=184960
+[call] 18d9d0 a0=3eb150 a1=1 a2=3f4b80 a3=3f4b60 s0=3eb150 ra=187384
+[call] 1873f8 a0=3eb150 a1=1 a2=3f4b80 a3=3f4b60 s0=3eb150 ra=187398
+[call] 187358 a0=3eb64c a1=1 a2=3f4b80 a3=3f4b60 s0=28388c ra=1fb69c
+[call] 187328 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=28388c ra=187364
+[call] 187008 a0=3e3bd0 a1=ffff a2=3f4b80 a3=3f4b60 s0=28388c ra=187344
+[call] 1b4a60 a0=3e3bd0 a1=ffff a2=3f4b80 a3=3f4b60 s0=3e3bd0 ra=187014
+[call] 187038 a0=3e3bd0 a1=ffff a2=3f4b80 a3=3f4b60 s0=3e3bd0 ra=18701c
+[call] 184310 a0=3e3bd0 a1=ffff a2=3f4b80 a3=3f4b60 s0=283888 ra=1fb69c
+[call] 1842c8 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283888 ra=18431c
+[call] 18d9d0 a0=3c6420 a1=ffff a2=3f4b80 a3=3f4b60 s0=3c6420 ra=1842e8
+[call] 183238 a0=287320 a1=1 a2=3f4b80 a3=3f4b60 s0=283884 ra=1fb69c
+[call] 183218 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283884 ra=183244
+[call] 182818 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283880 ra=1fb69c
+[call] 182750 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283880 ra=182824
+[call] 182178 a0=285e48 a1=285e20 a2=285df8 a3=285dd0 s0=28387c ra=1fb69c
+[call] 182148 a0=1 a1=ffff a2=285df8 a3=285dd0 s0=28387c ra=182184
+[call] 181940 a0=3c0000 a1=ffff a2=285df8 a3=285dd0 s0=283878 ra=1fb69c
+[call] 181918 a0=1 a1=ffff a2=285df8 a3=285dd0 s0=283878 ra=18194c
+[call] 181710 a0=1 a1=ffff a2=285df8 a3=285dd0 s0=283874 ra=1fb69c
+[call] 1816b0 a0=1 a1=ffff a2=285df8 a3=285dd0 s0=283874 ra=18171c
+[call] 17d700 a0=ffffffff a1=3bd330 a2=285df8 a3=285dd0 s0=283870 ra=1fb69c
+[call] 17d6b0 a0=1 a1=ffff a2=285df8 a3=285dd0 s0=283870 ra=17d70c
+[call] 17d170 a0=ffffffff a1=ffffffff a2=285df8 a3=285dd0 s0=28386c ra=1fb69c
+[call] 17d120 a0=1 a1=ffff a2=285df8 a3=285dd0 s0=28386c ra=17d17c
+[call] 17c940 a0=ffffffff a1=ffffffff a2=285df8 a3=285dd0 s0=283868 ra=1fb69c
+[call] 17c8d0 a0=1 a1=ffff a2=285df8 a3=285dd0 s0=283868 ra=17c94c
+[call] 261d60 a0=3b23c0 a1=ffff a2=285df8 a3=285dd0 s0=3b23c0 ra=17c90c
+[call] 261d60 a0=3b3740 a1=ffffffff a2=3b34a4 a3=3b34e4 s0=3b3740 ra=17c90c
+[call] 261d60 a0=3b4ac0 a1=ffffffff a2=3b4824 a3=3b4864 s0=3b4ac0 ra=17c90c
+[call] 261d60 a0=3b5e40 a1=ffffffff a2=3b5ba4 a3=3b5be4 s0=3b5e40 ra=17c90c
+[call] 174758 a0=ffffffff a1=ffffffff a2=3b6f24 a3=3b6f64 s0=283864 ra=1fb69c
+[call] 174730 a0=1 a1=ffff a2=3b6f24 a3=3b6f64 s0=283864 ra=174764
+[call] 1742c0 a0=1 a1=ffff a2=3b6f24 a3=3b6f64 s0=283860 ra=1fb69c
+[call] 174270 a0=1 a1=ffff a2=3b6f24 a3=3b6f64 s0=283860 ra=1742cc
+[call] 172488 a0=ffffffff a1=ffffffff a2=3b6f24 a3=3b6f64 s0=28385c ra=1fb69c
+[call] 172460 a0=1 a1=ffff a2=3b6f24 a3=3b6f64 s0=28385c ra=172494
+[call] 172330 a0=1 a1=ffff a2=3b6f24 a3=3b6f64 s0=283858 ra=1fb69c
+[call] 1722e0 a0=1 a1=ffff a2=3b6f24 a3=3b6f64 s0=283858 ra=17233c
+[call] 170380 a0=ffffffff a1=ffff a2=3b6f24 a3=3b6f64 s0=283854 ra=1fb69c
+[call] 1702c8 a0=1 a1=ffff a2=3b6f24 a3=3b6f64 s0=283854 ra=17038c
+[call] 1ac780 a0=3a6d18 a1=2 a2=1 a3=3b6f64 s0=3a7100 ra=170334
+[call] 1ac780 a0=3a6f48 a1=2 a2=1 a3=3b6f64 s0=3a7100 ra=170348
+[call] 1ac780 a0=3a73e8 a1=2 a2=1 a3=3b6f64 s0=3a77d0 ra=170334
+[call] 1ac780 a0=3a7618 a1=2 a2=1 a3=3b6f64 s0=3a77d0 ra=170348
+[call] 1ac780 a0=3a7ab8 a1=2 a2=1 a3=3b6f64 s0=3a7ea0 ra=170334
+[call] 1ac780 a0=3a7ce8 a1=2 a2=1 a3=3b6f64 s0=3a7ea0 ra=170348
+[call] 1ac780 a0=3a8188 a1=2 a2=1 a3=3b6f64 s0=3a8570 ra=170334
+[call] 1ac780 a0=3a83b8 a1=2 a2=1 a3=3b6f64 s0=3a8570 ra=170348
+[call] 1ac780 a0=3a8858 a1=2 a2=1 a3=3b6f64 s0=3a8c40 ra=170334
+[call] 1ac780 a0=3a8a88 a1=2 a2=1 a3=3b6f64 s0=3a8c40 ra=170348
+[call] 1ac780 a0=3a8f28 a1=2 a2=1 a3=3b6f64 s0=3a9310 ra=170334
+[call] 1ac780 a0=3a9158 a1=2 a2=1 a3=3b6f64 s0=3a9310 ra=170348
+[call] 1ac780 a0=3a95f8 a1=2 a2=1 a3=3b6f64 s0=3a99e0 ra=170334
+[call] 1ac780 a0=3a9828 a1=2 a2=1 a3=3b6f64 s0=3a99e0 ra=170348
+[call] 1ac780 a0=3a9cc8 a1=2 a2=1 a3=3b6f64 s0=3aa0b0 ra=170334
+[call] 1ac780 a0=3a9ef8 a1=2 a2=1 a3=3b6f64 s0=3aa0b0 ra=170348
+[call] 1ac780 a0=3aa398 a1=2 a2=1 a3=3b6f64 s0=3aa780 ra=170334
+[call] 1ac780 a0=3aa5c8 a1=2 a2=1 a3=3b6f64 s0=3aa780 ra=170348
+[call] 1ac780 a0=3aaa68 a1=2 a2=1 a3=3b6f64 s0=3aae50 ra=170334
+[call] 1ac780 a0=3aac98 a1=2 a2=1 a3=3b6f64 s0=3aae50 ra=170348
+[call] 16c490 a0=3aac98 a1=2 a2=1 a3=3b6f64 s0=283850 ra=1fb69c
+[call] 16c440 a0=1 a1=ffff a2=1 a3=3b6f64 s0=283850 ra=16c49c
+[call] 1ddcf0 a0=398c48 a1=ffff a2=1 a3=3b6f64 s0=398c40 ra=16c460
+[call] 222b08 a0=0 a1=a a2=1 a3=3b6f64 s0=398c48 ra=1ddd10
+[call] 243198 a0=663140 a1=a a2=1 a3=3b6f64 s0=0 ra=222b2c
+[call] 1bbef8 a0=39df94 a1=0 a2=0 a3=663140 s0=398c40 ra=16c468
+[call] 235420 a0=39df94 a1=0 a2=0 a3=663140 s0=39df94 ra=1bbf04
+[call] 232f80 a0=39df94 a1=0 a2=0 a3=663140 s0=39df94 ra=23542c
+[call] 234f38 a0=39df94 a1=0 a2=0 a3=663140 s0=39df94 ra=23302c
+[call] 1abbe8 a0=39e840 a1=8 a2=3fc a3=100 s0=398c40 ra=16c478
+[call] 230708 a0=39e840 a1=8 a2=3fc a3=100 s0=39e840 ra=1abbf4
+[call] 169e90 a0=2887a0 a1=8 a2=3fc a3=100 s0=28384c ra=1fb69c
+[call] 169de8 a0=1 a1=ffff a2=3fc a3=100 s0=28384c ra=169e9c
+[call] 18d9d0 a0=397180 a1=ffff a2=3fc a3=100 s0=397180 ra=169e10
+[call] 18d9d0 a0=397690 a1=1 a2=3f4b80 a3=3f4b60 s0=397180 ra=169e2c
+[call] 18d9d0 a0=397ba0 a1=1 a2=3f4b80 a3=3f4b60 s0=397180 ra=169e48
+[call] 18d9d0 a0=3980b0 a1=1 a2=3f4b80 a3=3f4b60 s0=3980b0 ra=169e64
+[call] 167730 a0=287320 a1=1 a2=3f4b80 a3=3f4b60 s0=283848 ra=1fb69c
+[call] 167700 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283848 ra=16773c
+[call] 166f28 a0=3965e0 a1=ffff a2=3f4b80 a3=3f4b60 s0=283848 ra=16771c
+[call] 18d9d0 a0=3965e0 a1=ffff a2=3f4b80 a3=3f4b60 s0=3965e0 ra=166f34
+[call] 166f00 a0=287320 a1=1 a2=3f4b80 a3=3f4b60 s0=283844 ra=1fb69c
+[call] 166e98 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283844 ra=166f0c
+[call] 164c38 a0=38dce0 a1=ffff a2=3f4b80 a3=3f4b60 s0=38dce0 ra=166ecc
+[call] 2318c0 a0=38dce0 a1=ffff a2=3f4b80 a3=3f4b60 s0=38dce0 ra=164c50
+[call] 1ac780 a0=38de98 a1=4 a2=3e7 a3=3f4b60 s0=38dce0 ra=164c60
+[call] 1ac780 a0=38defc a1=4 a2=3e7 a3=3f4b60 s0=38dce0 ra=164c70
+[call] 1ac780 a0=38df60 a1=4 a2=3e7 a3=3f4b60 s0=38dce0 ra=164c80
+[call] 1ac780 a0=38dfc4 a1=4 a2=3e7 a3=3f4b60 s0=38dce0 ra=164c90
+[call] 1ac780 a0=38e028 a1=4 a2=3e7 a3=3f4b60 s0=38dce0 ra=164ca0
+[call] 1ac780 a0=38e08c a1=4 a2=3e7 a3=3f4b60 s0=38dce0 ra=164cb0
+[call] 164c38 a0=38e140 a1=4 a2=3e7 a3=3f4b60 s0=38e140 ra=166ecc
+[call] 2318c0 a0=38e140 a1=4 a2=3e7 a3=3f4b60 s0=38e140 ra=164c50
+[call] 1ac780 a0=38e2f8 a1=4 a2=3e7 a3=3f4b60 s0=38e140 ra=164c60
+[call] 1ac780 a0=38e35c a1=4 a2=3e7 a3=3f4b60 s0=38e140 ra=164c70
+[call] 1ac780 a0=38e3c0 a1=4 a2=3e7 a3=3f4b60 s0=38e140 ra=164c80
+[call] 1ac780 a0=38e424 a1=4 a2=3e7 a3=3f4b60 s0=38e140 ra=164c90
+[call] 1ac780 a0=38e488 a1=4 a2=3e7 a3=3f4b60 s0=38e140 ra=164ca0
+[call] 1ac780 a0=38e4ec a1=4 a2=3e7 a3=3f4b60 s0=38e140 ra=164cb0
+[call] 164c38 a0=38e5a0 a1=4 a2=3e7 a3=3f4b60 s0=38e5a0 ra=166ecc
+[call] 2318c0 a0=38e5a0 a1=4 a2=3e7 a3=3f4b60 s0=38e5a0 ra=164c50
+[call] 1ac780 a0=38e758 a1=4 a2=3e7 a3=3f4b60 s0=38e5a0 ra=164c60
+[call] 1ac780 a0=38e7bc a1=4 a2=3e7 a3=3f4b60 s0=38e5a0 ra=164c70
+[call] 1ac780 a0=38e820 a1=4 a2=3e7 a3=3f4b60 s0=38e5a0 ra=164c80
+[call] 1ac780 a0=38e884 a1=4 a2=3e7 a3=3f4b60 s0=38e5a0 ra=164c90
+[call] 1ac780 a0=38e8e8 a1=4 a2=3e7 a3=3f4b60 s0=38e5a0 ra=164ca0
+[call] 1ac780 a0=38e94c a1=4 a2=3e7 a3=3f4b60 s0=38e5a0 ra=164cb0
+[call] 164c38 a0=38ea00 a1=4 a2=3e7 a3=3f4b60 s0=38ea00 ra=166ecc
+[call] 2318c0 a0=38ea00 a1=4 a2=3e7 a3=3f4b60 s0=38ea00 ra=164c50
+[call] 1ac780 a0=38ebb8 a1=4 a2=3e7 a3=3f4b60 s0=38ea00 ra=164c60
+[call] 1ac780 a0=38ec1c a1=4 a2=3e7 a3=3f4b60 s0=38ea00 ra=164c70
+[call] 1ac780 a0=38ec80 a1=4 a2=3e7 a3=3f4b60 s0=38ea00 ra=164c80
+[call] 1ac780 a0=38ece4 a1=4 a2=3e7 a3=3f4b60 s0=38ea00 ra=164c90
+[call] 1ac780 a0=38ed48 a1=4 a2=3e7 a3=3f4b60 s0=38ea00 ra=164ca0
+[call] 1ac780 a0=38edac a1=4 a2=3e7 a3=3f4b60 s0=38ea00 ra=164cb0
+[call] 164c38 a0=38ee60 a1=4 a2=3e7 a3=3f4b60 s0=38ee60 ra=166ecc
+[call] 2318c0 a0=38ee60 a1=4 a2=3e7 a3=3f4b60 s0=38ee60 ra=164c50
+[call] 1ac780 a0=38f018 a1=4 a2=3e7 a3=3f4b60 s0=38ee60 ra=164c60
+[call] 1ac780 a0=38f07c a1=4 a2=3e7 a3=3f4b60 s0=38ee60 ra=164c70
+[call] 1ac780 a0=38f0e0 a1=4 a2=3e7 a3=3f4b60 s0=38ee60 ra=164c80
+[call] 1ac780 a0=38f144 a1=4 a2=3e7 a3=3f4b60 s0=38ee60 ra=164c90
+[call] 1ac780 a0=38f1a8 a1=4 a2=3e7 a3=3f4b60 s0=38ee60 ra=164ca0
+[call] 1ac780 a0=38f20c a1=4 a2=3e7 a3=3f4b60 s0=38ee60 ra=164cb0
+[call] 164c38 a0=38f2c0 a1=4 a2=3e7 a3=3f4b60 s0=38f2c0 ra=166ecc
+[call] 2318c0 a0=38f2c0 a1=4 a2=3e7 a3=3f4b60 s0=38f2c0 ra=164c50
+[call] 1ac780 a0=38f478 a1=4 a2=3e7 a3=3f4b60 s0=38f2c0 ra=164c60
+[call] 1ac780 a0=38f4dc a1=4 a2=3e7 a3=3f4b60 s0=38f2c0 ra=164c70
+[call] 1ac780 a0=38f540 a1=4 a2=3e7 a3=3f4b60 s0=38f2c0 ra=164c80
+[call] 1ac780 a0=38f5a4 a1=4 a2=3e7 a3=3f4b60 s0=38f2c0 ra=164c90
+[call] 1ac780 a0=38f608 a1=4 a2=3e7 a3=3f4b60 s0=38f2c0 ra=164ca0
+[call] 1ac780 a0=38f66c a1=4 a2=3e7 a3=3f4b60 s0=38f2c0 ra=164cb0
+[call] 164c38 a0=38f720 a1=4 a2=3e7 a3=3f4b60 s0=38f720 ra=166ecc
+[call] 2318c0 a0=38f720 a1=4 a2=3e7 a3=3f4b60 s0=38f720 ra=164c50
+[call] 1ac780 a0=38f8d8 a1=4 a2=3e7 a3=3f4b60 s0=38f720 ra=164c60
+[call] 1ac780 a0=38f93c a1=4 a2=3e7 a3=3f4b60 s0=38f720 ra=164c70
+[call] 1ac780 a0=38f9a0 a1=4 a2=3e7 a3=3f4b60 s0=38f720 ra=164c80
+[call] 1ac780 a0=38fa04 a1=4 a2=3e7 a3=3f4b60 s0=38f720 ra=164c90
+[call] 1ac780 a0=38fa68 a1=4 a2=3e7 a3=3f4b60 s0=38f720 ra=164ca0
+[call] 1ac780 a0=38facc a1=4 a2=3e7 a3=3f4b60 s0=38f720 ra=164cb0
+[call] 164c38 a0=38fb80 a1=4 a2=3e7 a3=3f4b60 s0=38fb80 ra=166ecc
+[call] 2318c0 a0=38fb80 a1=4 a2=3e7 a3=3f4b60 s0=38fb80 ra=164c50
+[call] 1ac780 a0=38fd38 a1=4 a2=3e7 a3=3f4b60 s0=38fb80 ra=164c60
+[call] 1ac780 a0=38fd9c a1=4 a2=3e7 a3=3f4b60 s0=38fb80 ra=164c70
+[call] 1ac780 a0=38fe00 a1=4 a2=3e7 a3=3f4b60 s0=38fb80 ra=164c80
+[call] 1ac780 a0=38fe64 a1=4 a2=3e7 a3=3f4b60 s0=38fb80 ra=164c90
+[call] 1ac780 a0=38fec8 a1=4 a2=3e7 a3=3f4b60 s0=38fb80 ra=164ca0
+[call] 1ac780 a0=38ff2c a1=4 a2=3e7 a3=3f4b60 s0=38fb80 ra=164cb0
+[call] 164c38 a0=38ffe0 a1=4 a2=3e7 a3=3f4b60 s0=38ffe0 ra=166ecc
+[call] 2318c0 a0=38ffe0 a1=4 a2=3e7 a3=3f4b60 s0=38ffe0 ra=164c50
+[call] 1ac780 a0=390198 a1=4 a2=3e7 a3=3f4b60 s0=38ffe0 ra=164c60
+[call] 1ac780 a0=3901fc a1=4 a2=3e7 a3=3f4b60 s0=38ffe0 ra=164c70
+[call] 1ac780 a0=390260 a1=4 a2=3e7 a3=3f4b60 s0=38ffe0 ra=164c80
+[call] 1ac780 a0=3902c4 a1=4 a2=3e7 a3=3f4b60 s0=38ffe0 ra=164c90
+[call] 1ac780 a0=390328 a1=4 a2=3e7 a3=3f4b60 s0=38ffe0 ra=164ca0
+[call] 1ac780 a0=39038c a1=4 a2=3e7 a3=3f4b60 s0=38ffe0 ra=164cb0
+[call] 164c38 a0=390440 a1=4 a2=3e7 a3=3f4b60 s0=390440 ra=166ecc
+[call] 2318c0 a0=390440 a1=4 a2=3e7 a3=3f4b60 s0=390440 ra=164c50
+[call] 1ac780 a0=3905f8 a1=4 a2=3e7 a3=3f4b60 s0=390440 ra=164c60
+[call] 1ac780 a0=39065c a1=4 a2=3e7 a3=3f4b60 s0=390440 ra=164c70
+[call] 1ac780 a0=3906c0 a1=4 a2=3e7 a3=3f4b60 s0=390440 ra=164c80
+[call] 1ac780 a0=390724 a1=4 a2=3e7 a3=3f4b60 s0=390440 ra=164c90
+[call] 1ac780 a0=390788 a1=4 a2=3e7 a3=3f4b60 s0=390440 ra=164ca0
+[call] 1ac780 a0=3907ec a1=4 a2=3e7 a3=3f4b60 s0=390440 ra=164cb0
+[call] 164c38 a0=3908a0 a1=4 a2=3e7 a3=3f4b60 s0=3908a0 ra=166ecc
+[call] 2318c0 a0=3908a0 a1=4 a2=3e7 a3=3f4b60 s0=3908a0 ra=164c50
+[call] 1ac780 a0=390a58 a1=4 a2=3e7 a3=3f4b60 s0=3908a0 ra=164c60
+[call] 1ac780 a0=390abc a1=4 a2=3e7 a3=3f4b60 s0=3908a0 ra=164c70
+[call] 1ac780 a0=390b20 a1=4 a2=3e7 a3=3f4b60 s0=3908a0 ra=164c80
+[call] 1ac780 a0=390b84 a1=4 a2=3e7 a3=3f4b60 s0=3908a0 ra=164c90
+[call] 1ac780 a0=390be8 a1=4 a2=3e7 a3=3f4b60 s0=3908a0 ra=164ca0
+[call] 1ac780 a0=390c4c a1=4 a2=3e7 a3=3f4b60 s0=3908a0 ra=164cb0
+[call] 164c38 a0=390d00 a1=4 a2=3e7 a3=3f4b60 s0=390d00 ra=166ecc
+[call] 2318c0 a0=390d00 a1=4 a2=3e7 a3=3f4b60 s0=390d00 ra=164c50
+[call] 1ac780 a0=390eb8 a1=4 a2=3e7 a3=3f4b60 s0=390d00 ra=164c60
+[call] 1ac780 a0=390f1c a1=4 a2=3e7 a3=3f4b60 s0=390d00 ra=164c70
+[call] 1ac780 a0=390f80 a1=4 a2=3e7 a3=3f4b60 s0=390d00 ra=164c80
+[call] 1ac780 a0=390fe4 a1=4 a2=3e7 a3=3f4b60 s0=390d00 ra=164c90
+[call] 1ac780 a0=391048 a1=4 a2=3e7 a3=3f4b60 s0=390d00 ra=164ca0
+[call] 1ac780 a0=3910ac a1=4 a2=3e7 a3=3f4b60 s0=390d00 ra=164cb0
+[call] 164c38 a0=391160 a1=4 a2=3e7 a3=3f4b60 s0=391160 ra=166ecc
+[call] 2318c0 a0=391160 a1=4 a2=3e7 a3=3f4b60 s0=391160 ra=164c50
+[call] 1ac780 a0=391318 a1=4 a2=3e7 a3=3f4b60 s0=391160 ra=164c60
+[call] 1ac780 a0=39137c a1=4 a2=3e7 a3=3f4b60 s0=391160 ra=164c70
+[call] 1ac780 a0=3913e0 a1=4 a2=3e7 a3=3f4b60 s0=391160 ra=164c80
+[call] 1ac780 a0=391444 a1=4 a2=3e7 a3=3f4b60 s0=391160 ra=164c90
+[call] 1ac780 a0=3914a8 a1=4 a2=3e7 a3=3f4b60 s0=391160 ra=164ca0
+[call] 1ac780 a0=39150c a1=4 a2=3e7 a3=3f4b60 s0=391160 ra=164cb0
+[call] 164c38 a0=3915c0 a1=4 a2=3e7 a3=3f4b60 s0=3915c0 ra=166ecc
+[call] 2318c0 a0=3915c0 a1=4 a2=3e7 a3=3f4b60 s0=3915c0 ra=164c50
+[call] 1ac780 a0=391778 a1=4 a2=3e7 a3=3f4b60 s0=3915c0 ra=164c60
+[call] 1ac780 a0=3917dc a1=4 a2=3e7 a3=3f4b60 s0=3915c0 ra=164c70
+[call] 1ac780 a0=391840 a1=4 a2=3e7 a3=3f4b60 s0=3915c0 ra=164c80
+[call] 1ac780 a0=3918a4 a1=4 a2=3e7 a3=3f4b60 s0=3915c0 ra=164c90
+[call] 1ac780 a0=391908 a1=4 a2=3e7 a3=3f4b60 s0=3915c0 ra=164ca0
+[call] 1ac780 a0=39196c a1=4 a2=3e7 a3=3f4b60 s0=3915c0 ra=164cb0
+[call] 164c38 a0=391a20 a1=4 a2=3e7 a3=3f4b60 s0=391a20 ra=166ecc
+[call] 2318c0 a0=391a20 a1=4 a2=3e7 a3=3f4b60 s0=391a20 ra=164c50
+[call] 1ac780 a0=391bd8 a1=4 a2=3e7 a3=3f4b60 s0=391a20 ra=164c60
+[call] 1ac780 a0=391c3c a1=4 a2=3e7 a3=3f4b60 s0=391a20 ra=164c70
+[call] 1ac780 a0=391ca0 a1=4 a2=3e7 a3=3f4b60 s0=391a20 ra=164c80
+[call] 1ac780 a0=391d04 a1=4 a2=3e7 a3=3f4b60 s0=391a20 ra=164c90
+[call] 1ac780 a0=391d68 a1=4 a2=3e7 a3=3f4b60 s0=391a20 ra=164ca0
+[call] 1ac780 a0=391dcc a1=4 a2=3e7 a3=3f4b60 s0=391a20 ra=164cb0
+[call] 164c38 a0=391e80 a1=4 a2=3e7 a3=3f4b60 s0=391e80 ra=166ecc
+[call] 2318c0 a0=391e80 a1=4 a2=3e7 a3=3f4b60 s0=391e80 ra=164c50
+[call] 1ac780 a0=392038 a1=4 a2=3e7 a3=3f4b60 s0=391e80 ra=164c60
+[call] 1ac780 a0=39209c a1=4 a2=3e7 a3=3f4b60 s0=391e80 ra=164c70
+[call] 1ac780 a0=392100 a1=4 a2=3e7 a3=3f4b60 s0=391e80 ra=164c80
+[call] 1ac780 a0=392164 a1=4 a2=3e7 a3=3f4b60 s0=391e80 ra=164c90
+[call] 1ac780 a0=3921c8 a1=4 a2=3e7 a3=3f4b60 s0=391e80 ra=164ca0
+[call] 1ac780 a0=39222c a1=4 a2=3e7 a3=3f4b60 s0=391e80 ra=164cb0
+[call] 164c38 a0=3922e0 a1=4 a2=3e7 a3=3f4b60 s0=3922e0 ra=166ecc
+[call] 2318c0 a0=3922e0 a1=4 a2=3e7 a3=3f4b60 s0=3922e0 ra=164c50
+[call] 1ac780 a0=392498 a1=4 a2=3e7 a3=3f4b60 s0=3922e0 ra=164c60
+[call] 1ac780 a0=3924fc a1=4 a2=3e7 a3=3f4b60 s0=3922e0 ra=164c70
+[call] 1ac780 a0=392560 a1=4 a2=3e7 a3=3f4b60 s0=3922e0 ra=164c80
+[call] 1ac780 a0=3925c4 a1=4 a2=3e7 a3=3f4b60 s0=3922e0 ra=164c90
+[call] 1ac780 a0=392628 a1=4 a2=3e7 a3=3f4b60 s0=3922e0 ra=164ca0
+[call] 1ac780 a0=39268c a1=4 a2=3e7 a3=3f4b60 s0=3922e0 ra=164cb0
+[call] 164c38 a0=392740 a1=4 a2=3e7 a3=3f4b60 s0=392740 ra=166ecc
+[call] 2318c0 a0=392740 a1=4 a2=3e7 a3=3f4b60 s0=392740 ra=164c50
+[call] 1ac780 a0=3928f8 a1=4 a2=3e7 a3=3f4b60 s0=392740 ra=164c60
+[call] 1ac780 a0=39295c a1=4 a2=3e7 a3=3f4b60 s0=392740 ra=164c70
+[call] 1ac780 a0=3929c0 a1=4 a2=3e7 a3=3f4b60 s0=392740 ra=164c80
+[call] 1ac780 a0=392a24 a1=4 a2=3e7 a3=3f4b60 s0=392740 ra=164c90
+[call] 1ac780 a0=392a88 a1=4 a2=3e7 a3=3f4b60 s0=392740 ra=164ca0
+[call] 1ac780 a0=392aec a1=4 a2=3e7 a3=3f4b60 s0=392740 ra=164cb0
+[call] 164c38 a0=392ba0 a1=4 a2=3e7 a3=3f4b60 s0=392ba0 ra=166ecc
+[call] 2318c0 a0=392ba0 a1=4 a2=3e7 a3=3f4b60 s0=392ba0 ra=164c50
+[call] 1ac780 a0=392d58 a1=4 a2=3e7 a3=3f4b60 s0=392ba0 ra=164c60
+[call] 1ac780 a0=392dbc a1=4 a2=3e7 a3=3f4b60 s0=392ba0 ra=164c70
+[call] 1ac780 a0=392e20 a1=4 a2=3e7 a3=3f4b60 s0=392ba0 ra=164c80
+[call] 1ac780 a0=392e84 a1=4 a2=3e7 a3=3f4b60 s0=392ba0 ra=164c90
+[call] 1ac780 a0=392ee8 a1=4 a2=3e7 a3=3f4b60 s0=392ba0 ra=164ca0
+[call] 1ac780 a0=392f4c a1=4 a2=3e7 a3=3f4b60 s0=392ba0 ra=164cb0
+[call] 164c38 a0=393000 a1=4 a2=3e7 a3=3f4b60 s0=393000 ra=166ecc
+[call] 2318c0 a0=393000 a1=4 a2=3e7 a3=3f4b60 s0=393000 ra=164c50
+[call] 1ac780 a0=3931b8 a1=4 a2=3e7 a3=3f4b60 s0=393000 ra=164c60
+[call] 1ac780 a0=39321c a1=4 a2=3e7 a3=3f4b60 s0=393000 ra=164c70
+[call] 1ac780 a0=393280 a1=4 a2=3e7 a3=3f4b60 s0=393000 ra=164c80
+[call] 1ac780 a0=3932e4 a1=4 a2=3e7 a3=3f4b60 s0=393000 ra=164c90
+[call] 1ac780 a0=393348 a1=4 a2=3e7 a3=3f4b60 s0=393000 ra=164ca0
+[call] 1ac780 a0=3933ac a1=4 a2=3e7 a3=3f4b60 s0=393000 ra=164cb0
+[call] 164c38 a0=393460 a1=4 a2=3e7 a3=3f4b60 s0=393460 ra=166ecc
+[call] 2318c0 a0=393460 a1=4 a2=3e7 a3=3f4b60 s0=393460 ra=164c50
+[call] 1ac780 a0=393618 a1=4 a2=3e7 a3=3f4b60 s0=393460 ra=164c60
+[call] 1ac780 a0=39367c a1=4 a2=3e7 a3=3f4b60 s0=393460 ra=164c70
+[call] 1ac780 a0=3936e0 a1=4 a2=3e7 a3=3f4b60 s0=393460 ra=164c80
+[call] 1ac780 a0=393744 a1=4 a2=3e7 a3=3f4b60 s0=393460 ra=164c90
+[call] 1ac780 a0=3937a8 a1=4 a2=3e7 a3=3f4b60 s0=393460 ra=164ca0
+[call] 1ac780 a0=39380c a1=4 a2=3e7 a3=3f4b60 s0=393460 ra=164cb0
+[call] 164c38 a0=3938c0 a1=4 a2=3e7 a3=3f4b60 s0=3938c0 ra=166ecc
+[call] 2318c0 a0=3938c0 a1=4 a2=3e7 a3=3f4b60 s0=3938c0 ra=164c50
+[call] 1ac780 a0=393a78 a1=4 a2=3e7 a3=3f4b60 s0=3938c0 ra=164c60
+[call] 1ac780 a0=393adc a1=4 a2=3e7 a3=3f4b60 s0=3938c0 ra=164c70
+[call] 1ac780 a0=393b40 a1=4 a2=3e7 a3=3f4b60 s0=3938c0 ra=164c80
+[call] 1ac780 a0=393ba4 a1=4 a2=3e7 a3=3f4b60 s0=3938c0 ra=164c90
+[call] 1ac780 a0=393c08 a1=4 a2=3e7 a3=3f4b60 s0=3938c0 ra=164ca0
+[call] 1ac780 a0=393c6c a1=4 a2=3e7 a3=3f4b60 s0=3938c0 ra=164cb0
+[call] 164c38 a0=393d20 a1=4 a2=3e7 a3=3f4b60 s0=393d20 ra=166ecc
+[call] 2318c0 a0=393d20 a1=4 a2=3e7 a3=3f4b60 s0=393d20 ra=164c50
+[call] 1ac780 a0=393ed8 a1=4 a2=3e7 a3=3f4b60 s0=393d20 ra=164c60
+[call] 1ac780 a0=393f3c a1=4 a2=3e7 a3=3f4b60 s0=393d20 ra=164c70
+[call] 1ac780 a0=393fa0 a1=4 a2=3e7 a3=3f4b60 s0=393d20 ra=164c80
+[call] 1ac780 a0=394004 a1=4 a2=3e7 a3=3f4b60 s0=393d20 ra=164c90
+[call] 1ac780 a0=394068 a1=4 a2=3e7 a3=3f4b60 s0=393d20 ra=164ca0
+[call] 1ac780 a0=3940cc a1=4 a2=3e7 a3=3f4b60 s0=393d20 ra=164cb0
+[call] 164c38 a0=394180 a1=4 a2=3e7 a3=3f4b60 s0=394180 ra=166ecc
+[call] 2318c0 a0=394180 a1=4 a2=3e7 a3=3f4b60 s0=394180 ra=164c50
+[call] 1ac780 a0=394338 a1=4 a2=3e7 a3=3f4b60 s0=394180 ra=164c60
+[call] 1ac780 a0=39439c a1=4 a2=3e7 a3=3f4b60 s0=394180 ra=164c70
+[call] 1ac780 a0=394400 a1=4 a2=3e7 a3=3f4b60 s0=394180 ra=164c80
+[call] 1ac780 a0=394464 a1=4 a2=3e7 a3=3f4b60 s0=394180 ra=164c90
+[call] 1ac780 a0=3944c8 a1=4 a2=3e7 a3=3f4b60 s0=394180 ra=164ca0
+[call] 1ac780 a0=39452c a1=4 a2=3e7 a3=3f4b60 s0=394180 ra=164cb0
+[call] 164c38 a0=3945e0 a1=4 a2=3e7 a3=3f4b60 s0=3945e0 ra=166ecc
+[call] 2318c0 a0=3945e0 a1=4 a2=3e7 a3=3f4b60 s0=3945e0 ra=164c50
+[call] 1ac780 a0=394798 a1=4 a2=3e7 a3=3f4b60 s0=3945e0 ra=164c60
+[call] 1ac780 a0=3947fc a1=4 a2=3e7 a3=3f4b60 s0=3945e0 ra=164c70
+[call] 1ac780 a0=394860 a1=4 a2=3e7 a3=3f4b60 s0=3945e0 ra=164c80
+[call] 1ac780 a0=3948c4 a1=4 a2=3e7 a3=3f4b60 s0=3945e0 ra=164c90
+[call] 1ac780 a0=394928 a1=4 a2=3e7 a3=3f4b60 s0=3945e0 ra=164ca0
+[call] 1ac780 a0=39498c a1=4 a2=3e7 a3=3f4b60 s0=3945e0 ra=164cb0
+[call] 164c38 a0=394a40 a1=4 a2=3e7 a3=3f4b60 s0=394a40 ra=166ecc
+[call] 2318c0 a0=394a40 a1=4 a2=3e7 a3=3f4b60 s0=394a40 ra=164c50
+[call] 1ac780 a0=394bf8 a1=4 a2=3e7 a3=3f4b60 s0=394a40 ra=164c60
+[call] 1ac780 a0=394c5c a1=4 a2=3e7 a3=3f4b60 s0=394a40 ra=164c70
+[call] 1ac780 a0=394cc0 a1=4 a2=3e7 a3=3f4b60 s0=394a40 ra=164c80
+[call] 1ac780 a0=394d24 a1=4 a2=3e7 a3=3f4b60 s0=394a40 ra=164c90
+[call] 1ac780 a0=394d88 a1=4 a2=3e7 a3=3f4b60 s0=394a40 ra=164ca0
+[call] 1ac780 a0=394dec a1=4 a2=3e7 a3=3f4b60 s0=394a40 ra=164cb0
+[call] 164c38 a0=394ea0 a1=4 a2=3e7 a3=3f4b60 s0=394ea0 ra=166ecc
+[call] 2318c0 a0=394ea0 a1=4 a2=3e7 a3=3f4b60 s0=394ea0 ra=164c50
+[call] 1ac780 a0=395058 a1=4 a2=3e7 a3=3f4b60 s0=394ea0 ra=164c60
+[call] 1ac780 a0=3950bc a1=4 a2=3e7 a3=3f4b60 s0=394ea0 ra=164c70
+[call] 1ac780 a0=395120 a1=4 a2=3e7 a3=3f4b60 s0=394ea0 ra=164c80
+[call] 1ac780 a0=395184 a1=4 a2=3e7 a3=3f4b60 s0=394ea0 ra=164c90
+[call] 1ac780 a0=3951e8 a1=4 a2=3e7 a3=3f4b60 s0=394ea0 ra=164ca0
+[call] 1ac780 a0=39524c a1=4 a2=3e7 a3=3f4b60 s0=394ea0 ra=164cb0
+[call] 164c38 a0=395300 a1=4 a2=3e7 a3=3f4b60 s0=395300 ra=166ecc
+[call] 2318c0 a0=395300 a1=4 a2=3e7 a3=3f4b60 s0=395300 ra=164c50
+[call] 1ac780 a0=3954b8 a1=4 a2=3e7 a3=3f4b60 s0=395300 ra=164c60
+[call] 1ac780 a0=39551c a1=4 a2=3e7 a3=3f4b60 s0=395300 ra=164c70
+[call] 1ac780 a0=395580 a1=4 a2=3e7 a3=3f4b60 s0=395300 ra=164c80
+[call] 1ac780 a0=3955e4 a1=4 a2=3e7 a3=3f4b60 s0=395300 ra=164c90
+[call] 1ac780 a0=395648 a1=4 a2=3e7 a3=3f4b60 s0=395300 ra=164ca0
+[call] 1ac780 a0=3956ac a1=4 a2=3e7 a3=3f4b60 s0=395300 ra=164cb0
+[call] 164c38 a0=395760 a1=4 a2=3e7 a3=3f4b60 s0=395760 ra=166ecc
+[call] 2318c0 a0=395760 a1=4 a2=3e7 a3=3f4b60 s0=395760 ra=164c50
+[call] 1ac780 a0=395918 a1=4 a2=3e7 a3=3f4b60 s0=395760 ra=164c60
+[call] 1ac780 a0=39597c a1=4 a2=3e7 a3=3f4b60 s0=395760 ra=164c70
+[call] 1ac780 a0=3959e0 a1=4 a2=3e7 a3=3f4b60 s0=395760 ra=164c80
+[call] 1ac780 a0=395a44 a1=4 a2=3e7 a3=3f4b60 s0=395760 ra=164c90
+[call] 1ac780 a0=395aa8 a1=4 a2=3e7 a3=3f4b60 s0=395760 ra=164ca0
+[call] 1ac780 a0=395b0c a1=4 a2=3e7 a3=3f4b60 s0=395760 ra=164cb0
+[call] 164c38 a0=395bc0 a1=4 a2=3e7 a3=3f4b60 s0=395bc0 ra=166ecc
+[call] 2318c0 a0=395bc0 a1=4 a2=3e7 a3=3f4b60 s0=395bc0 ra=164c50
+[call] 1ac780 a0=395d78 a1=4 a2=3e7 a3=3f4b60 s0=395bc0 ra=164c60
+[call] 1ac780 a0=395ddc a1=4 a2=3e7 a3=3f4b60 s0=395bc0 ra=164c70
+[call] 1ac780 a0=395e40 a1=4 a2=3e7 a3=3f4b60 s0=395bc0 ra=164c80
+[call] 1ac780 a0=395ea4 a1=4 a2=3e7 a3=3f4b60 s0=395bc0 ra=164c90
+[call] 1ac780 a0=395f08 a1=4 a2=3e7 a3=3f4b60 s0=395bc0 ra=164ca0
+[call] 1ac780 a0=395f6c a1=4 a2=3e7 a3=3f4b60 s0=395bc0 ra=164cb0
+[call] 161848 a0=395f6c a1=4 a2=3e7 a3=3f4b60 s0=283840 ra=1fb69c
+[call] 161800 a0=1 a1=ffff a2=3e7 a3=3f4b60 s0=283840 ra=161854
+[call] 18d9d0 a0=38d650 a1=ffff a2=3e7 a3=3f4b60 s0=38d650 ra=161820
+[call] 1613c8 a0=287320 a1=1 a2=3f4b80 a3=3f4b60 s0=28383c ra=1fb69c
+[call] 161280 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=28383c ra=1613d4
+[call] 15ca50 a0=386680 a1=ffff a2=3f4b80 a3=3f4b60 s0=28383c ra=1612a0
+[call] 18d9d0 a0=386680 a1=ffff a2=3f4b80 a3=3f4b60 s0=386680 ra=15ca60
+[call] 18e638 a0=386680 a1=f a2=29de68 a3=2 s0=386680 ra=15cab0
+[call] 18d898 a0=386ab8 a1=f a2=29de68 a3=2 s0=386ab8 ra=18e650
+[call] 18e680 a0=386680 a1=f a2=29de68 a3=2 s0=386680 ra=18e664
+[call] 15cdd8 a0=386b90 a1=f a2=ffffffff a3=386ab8 s0=28383c ra=1612ac
+[call] 18d9d0 a0=386b90 a1=f a2=ffffffff a3=386ab8 s0=386b90 ra=15cde4
+[call] 15d0c8 a0=387090 a1=1 a2=3f4b80 a3=3f4b60 s0=28383c ra=1612b8
+[call] 18d9d0 a0=387090 a1=1 a2=3f4b80 a3=3f4b60 s0=387090 ra=15d0d4
+[call] 18e3a8 a0=387090 a1=28 a2=29de68 a3=1 s0=387090 ra=15d0fc
+[call] 18d898 a0=3870a8 a1=28 a2=29de68 a3=1 s0=387090 ra=18e3cc
+[call] 18e3a8 a0=387090 a1=29 a2=29de68 a3=1 s0=387090 ra=15d114
+[call] 18d898 a0=3870b8 a1=29 a2=29de68 a3=1 s0=387090 ra=18e3cc
+[call] 18e3a8 a0=387090 a1=1a a2=29de68 a3=1 s0=387090 ra=15d12c
+[call] 18d898 a0=3870c8 a1=1a a2=29de68 a3=1 s0=387090 ra=18e3cc
+[call] 15d4e8 a0=387590 a1=1a a2=29de68 a3=1 s0=28383c ra=1612c4
+[call] 18d9d0 a0=387590 a1=1a a2=29de68 a3=1 s0=387590 ra=15d4f4
+[call] 15dcd8 a0=387a90 a1=1 a2=3f4b80 a3=3f4b60 s0=28383c ra=1612d0
+[call] 18d9d0 a0=387a90 a1=1 a2=3f4b80 a3=3f4b60 s0=387a90 ra=15dce4
+[call] 15de00 a0=387f90 a1=1 a2=3f4b80 a3=3f4b60 s0=28383c ra=1612dc
+[call] 18d9d0 a0=387f90 a1=1 a2=3f4b80 a3=3f4b60 s0=387f90 ra=15de0c
+[call] 15df30 a0=388490 a1=1 a2=3f4b80 a3=3f4b60 s0=28383c ra=1612e8
+[call] 18d9d0 a0=388490 a1=1 a2=3f4b80 a3=3f4b60 s0=388490 ra=15df3c
+[call] 15db78 a0=388990 a1=1 a2=3f4b80 a3=3f4b60 s0=28383c ra=1612f4
+[call] 18d9d0 a0=388990 a1=1 a2=3f4b80 a3=3f4b60 s0=388990 ra=15db84
+[call] 18d9d0 a0=388e90 a1=1 a2=3f4b80 a3=3f4b60 s0=388e90 ra=161304
+[call] 15fb58 a0=389390 a1=1 a2=3f4b80 a3=3f4b60 s0=388e90 ra=16131c
+[call] 18d9d0 a0=389390 a1=1 a2=3f4b80 a3=3f4b60 s0=389390 ra=15fb64
+[call] 18e638 a0=389390 a1=40 a2=29de68 a3=3f4b60 s0=389390 ra=15fb84
+[call] 18d898 a0=3897c8 a1=40 a2=29de68 a3=3f4b60 s0=3897c8 ra=18e650
+[call] 18e680 a0=389390 a1=40 a2=29de68 a3=3f4b60 s0=389390 ra=18e664
+[call] 18e3a8 a0=389390 a1=41 a2=29de68 a3=0 s0=389390 ra=15fba0
+[call] 18d898 a0=3893a8 a1=41 a2=29de68 a3=0 s0=389390 ra=18e3cc
+[call] 18e3a8 a0=389390 a1=42 a2=29de68 a3=0 s0=389390 ra=15fbb8
+[call] 18d898 a0=3893b8 a1=42 a2=29de68 a3=0 s0=389390 ra=18e3cc
+[call] 18e3a8 a0=389390 a1=0 a2=29de68 a3=0 s0=389390 ra=15fbd0
+[call] 18d898 a0=3893c8 a1=0 a2=29de68 a3=0 s0=389390 ra=18e3cc
+[call] 18e3a8 a0=389390 a1=43 a2=29de68 a3=0 s0=389390 ra=15fbe8
+[call] 18d898 a0=3893d8 a1=43 a2=29de68 a3=0 s0=389390 ra=18e3cc
+[call] 18e3a8 a0=389390 a1=44 a2=29de68 a3=0 s0=389390 ra=15fc00
+[call] 18d898 a0=3893e8 a1=44 a2=29de68 a3=0 s0=389390 ra=18e3cc
+[call] 18e3a8 a0=389390 a1=0 a2=29de68 a3=0 s0=389390 ra=15fc18
+[call] 18d898 a0=3893f8 a1=0 a2=29de68 a3=0 s0=389390 ra=18e3cc
+[call] 18e3a8 a0=389390 a1=ab a2=29de68 a3=0 s0=389390 ra=15fc30
+[call] 18d898 a0=389408 a1=ab a2=29de68 a3=0 s0=389390 ra=18e3cc
+[call] 18e6b8 a0=389390 a1=45 a2=29de68 a3=0 s0=389390 ra=15fc44
+[call] 18d898 a0=3897d8 a1=45 a2=29de68 a3=0 s0=3897d8 ra=18e6d0
+[call] 18e700 a0=389390 a1=45 a2=29de68 a3=0 s0=389390 ra=18e6e4
+[call] 15fcb8 a0=389890 a1=cc a2=29de68 a3=0 s0=388e90 ra=161328
+[call] 18d9d0 a0=389890 a1=cc a2=29de68 a3=0 s0=389890 ra=15fcc4
+[call] 18e638 a0=389890 a1=3f a2=29de68 a3=3f4b60 s0=389890 ra=15fce4
+[call] 18d898 a0=389cc8 a1=3f a2=29de68 a3=3f4b60 s0=389cc8 ra=18e650
+[call] 18e680 a0=389890 a1=3f a2=29de68 a3=3f4b60 s0=389890 ra=18e664
+[call] 18e3a8 a0=389890 a1=19 a2=29de68 a3=1 s0=389890 ra=15fd00
+[call] 18d898 a0=3898a8 a1=19 a2=29de68 a3=1 s0=389890 ra=18e3cc
+[call] 18e3a8 a0=389890 a1=46 a2=29de68 a3=1 s0=389890 ra=15fd18
+[call] 18d898 a0=3898b8 a1=46 a2=29de68 a3=1 s0=389890 ra=18e3cc
+[call] 15e6a0 a0=389d90 a1=46 a2=29de68 a3=1 s0=388e90 ra=161334
+[call] 18d9d0 a0=389d90 a1=46 a2=29de68 a3=1 s0=389d90 ra=15e6ac
+[call] 15fed8 a0=38a2c0 a1=1 a2=3f4b80 a3=3f4b60 s0=388e90 ra=161340
+[call] 18d9d0 a0=38a2c0 a1=1 a2=3f4b80 a3=3f4b60 s0=38a2c0 ra=15fee4
+[call] 18e6b8 a0=38a2c0 a1=7c a2=29de68 a3=3f4b60 s0=38a2c0 ra=15ff0c
+[call] 18d898 a0=38a708 a1=7c a2=29de68 a3=3f4b60 s0=38a708 ra=18e6d0
+[call] 18e700 a0=38a2c0 a1=7c a2=29de68 a3=3f4b60 s0=38a2c0 ra=18e6e4
+[call] 1604d8 a0=38a7d0 a1=cc a2=29de68 a3=3f4b60 s0=388e90 ra=16134c
+[call] 18d9d0 a0=38a7d0 a1=cc a2=29de68 a3=3f4b60 s0=38a7d0 ra=1604e4
+[call] 18e6b8 a0=38a7d0 a1=10 a2=29de68 a3=3f4b60 s0=38a7d0 ra=160514
+[call] 18d898 a0=38ac18 a1=10 a2=29de68 a3=3f4b60 s0=38ac18 ra=18e6d0
+[call] 18e700 a0=38a7d0 a1=10 a2=29de68 a3=3f4b60 s0=38a7d0 ra=18e6e4
+[call] 160a10 a0=38ace0 a1=cc a2=29de68 a3=3f4b60 s0=388e90 ra=161358
+[call] 18d9d0 a0=38ace0 a1=cc a2=29de68 a3=3f4b60 s0=38ace0 ra=160a1c
+[call] 15d240 a0=38b1f0 a1=1 a2=3f4b80 a3=3f4b60 s0=388e90 ra=161364
+[call] 18d9d0 a0=38b1f0 a1=1 a2=3f4b80 a3=3f4b60 s0=38b1f0 ra=15d24c
+[call] 18d9d0 a0=38b6f0 a1=1 a2=3f4b80 a3=3f4b60 s0=38b6f0 ra=161374
+[call] 15e130 a0=38bc00 a1=1 a2=3f4b80 a3=3f4b60 s0=38b6f0 ra=16138c
+[call] 18d9d0 a0=38bc00 a1=1 a2=3f4b80 a3=3f4b60 s0=38bc00 ra=15e13c
+[call] 18e638 a0=38bc00 a1=14 a2=29de68 a3=3f4b60 s0=38bc00 ra=15e15c
+[call] 18d898 a0=38c038 a1=14 a2=29de68 a3=3f4b60 s0=38c038 ra=18e650
+[call] 18e680 a0=38bc00 a1=14 a2=29de68 a3=3f4b60 s0=38bc00 ra=18e664
+[call] 18e6b8 a0=38bc00 a1=a5 a2=29de68 a3=38c038 s0=38bc00 ra=15e170
+[call] 18d898 a0=38c048 a1=a5 a2=29de68 a3=38c038 s0=38c048 ra=18e6d0
+[call] 18e700 a0=38bc00 a1=a5 a2=29de68 a3=38c038 s0=38bc00 ra=18e6e4
+[call] 15f5d0 a0=38c100 a1=cc a2=29de68 a3=38c038 s0=38b6f0 ra=161398
+[call] 18d9d0 a0=38c100 a1=cc a2=29de68 a3=38c038 s0=38c100 ra=15f5dc
+[call] 15fa10 a0=38c610 a1=1 a2=3f4b80 a3=3f4b60 s0=38b6f0 ra=1613a4
+[call] 18d9d0 a0=38c610 a1=1 a2=3f4b80 a3=3f4b60 s0=38c610 ra=15fa1c
+[call] 161110 a0=38cb10 a1=1 a2=3f4b80 a3=3f4b60 s0=38b6f0 ra=1613b0
+[call] 18d9d0 a0=38cb10 a1=1 a2=3f4b80 a3=3f4b60 s0=38cb10 ra=16111c
+[call] 15bf80 a0=287320 a1=1 a2=3f4b80 a3=3f4b60 s0=283838 ra=1fb69c
+[call] 15bf10 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283838 ra=15bf8c
+[call] 1521f0 a0=ffffffff a1=ffffffff a2=3f4b80 a3=3f4b60 s0=283834 ra=1fb69c
+[call] 152168 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283834 ra=1521fc
+[call] 151d90 a0=ffffffff a1=ffffffff a2=3f4b80 a3=3f4b60 s0=283830 ra=1fb69c
+[call] 151ce8 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283830 ra=151d9c
+[call] 18d9d0 a0=37f870 a1=ffff a2=3f4b80 a3=3f4b60 s0=37f870 ra=151d0c
+[call] 18d9d0 a0=37fd70 a1=1 a2=3f4b80 a3=3f4b60 s0=37f870 ra=151d28
+[call] 150410 a0=380270 a1=1 a2=3f4b80 a3=3f4b60 s0=37f870 ra=151d40
+[call] 18d9d0 a0=380270 a1=1 a2=3f4b80 a3=3f4b60 s0=380270 ra=15041c
+[call] 18e6b8 a0=380270 a1=10 a2=29de68 a3=3f4b60 s0=380270 ra=150444
+[call] 18d898 a0=3806b8 a1=10 a2=29de68 a3=3f4b60 s0=3806b8 ra=18e6d0
+[call] 18e700 a0=380270 a1=10 a2=29de68 a3=3f4b60 s0=380270 ra=18e6e4
+[call] 150890 a0=380770 a1=cc a2=29de68 a3=3f4b60 s0=37f870 ra=151d4c
+[call] 18d9d0 a0=380770 a1=cc a2=29de68 a3=3f4b60 s0=380770 ra=15089c
+[call] 150e80 a0=380d00 a1=1 a2=3f4b80 a3=3f4b60 s0=37f870 ra=151d58
+[call] 18d9d0 a0=380d00 a1=1 a2=3f4b80 a3=3f4b60 s0=380d00 ra=150e8c
+[call] 18d9d0 a0=3817d0 a1=1 a2=3f4b80 a3=3f4b60 s0=3817d0 ra=151d68
+[call] 14dd58 a0=287320 a1=1 a2=3f4b80 a3=3f4b60 s0=28382c ra=1fb69c
+[call] 14dd00 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=28382c ra=14dd64
+[call] 1481c8 a0=ffffffff a1=ffffffff a2=3f4b80 a3=3f4b60 s0=283828 ra=1fb69c
+[call] 148148 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283828 ra=1481d4
+[call] 147a80 a0=ffffffff a1=ffffffff a2=3f4b80 a3=3f4b60 s0=283824 ra=1fb69c
+[call] 147a30 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283824 ra=147a8c
+[call] 1475b8 a0=ffffffff a1=ffffffff a2=3f4b80 a3=3f4b60 s0=283820 ra=1fb69c
+[call] 147508 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283820 ra=1475c4
+[call] 2318c0 a0=372660 a1=ffff a2=3f4b80 a3=3f4b60 s0=372650 ra=147554
+[call] 2318c0 a0=372800 a1=ffff a2=3f4b80 a3=3f4b60 s0=3727f0 ra=147554
+[call] 2318c0 a0=3729a0 a1=ffff a2=3f4b80 a3=3f4b60 s0=372990 ra=147554
+[call] 2318c0 a0=372b40 a1=ffff a2=3f4b80 a3=3f4b60 s0=372b30 ra=147554
+[call] 2318c0 a0=372ce0 a1=ffff a2=3f4b80 a3=3f4b60 s0=372cd0 ra=147554
+[call] 2318c0 a0=372e80 a1=ffff a2=3f4b80 a3=3f4b60 s0=372e70 ra=147554
+[call] 2318c0 a0=373020 a1=ffff a2=3f4b80 a3=3f4b60 s0=373010 ra=147554
+[call] 2318c0 a0=3731c0 a1=ffff a2=3f4b80 a3=3f4b60 s0=3731b0 ra=147554
+[call] 146060 a0=3731c0 a1=ffff a2=3f4b80 a3=3f4b60 s0=28381c ra=1fb69c
+[call] 146038 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=28381c ra=14606c
+[call] 145f20 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283818 ra=1fb69c
+[call] 145ed0 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283818 ra=145f2c
+[call] 1447a0 a0=ffffffff a1=ffffffff a2=3f4b80 a3=3f4b60 s0=283814 ra=1fb69c
+[call] 144778 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283814 ra=1447ac
+[call] 143e18 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283810 ra=1fb69c
+[call] 143db0 a0=1 a1=ffff a2=3f4b80 a3=3f4b60 s0=283810 ra=143e24
+[call] 141be0 a0=ffffffff a1=fffffffe a2=ffffffff a3=3f4b60 s0=28380c ra=1fb69c
+[call] 141b88 a0=1 a1=ffff a2=ffffffff a3=3f4b60 s0=28380c ra=141bec
+[call] 223a98 a0=36b760 a1=0 a2=0 a3=3f4b60 s0=36b730 ra=141bb0
+[call] 223a98 a0=36b778 a1=0 a2=0 a3=3f4b60 s0=36b730 ra=141bc0
+[call] 207f80 a0=36b790 a1=0 a2=0 a3=3f4b60 s0=36b730 ra=141bc8
+[call] 140bf8 a0=36b790 a1=0 a2=0 a3=3f4b60 s0=283808 ra=1fb69c
+[call] 140810 a0=1 a1=ffff a2=0 a3=3f4b60 s0=283808 ra=140c04
+[call] 208378 a0=3623a0 a1=ffff a2=0 a3=3f4b60 s0=283808 ra=140840
+[call] 208338 a0=3623a0 a1=ffff a2=0 a3=3f4b60 s0=3623a0 ra=2083a4
+[call] 208360 a0=3623a0 a1=ffff a2=0 a3=3f4b60 s0=3623a0 ra=208344
+[call] 208338 a0=3623b0 a1=ffff a2=0 a3=3f4b60 s0=3623b0 ra=2083a4
+[call] 208360 a0=3623b0 a1=ffff a2=0 a3=3f4b60 s0=3623b0 ra=208344
+[call] 208338 a0=3623c0 a1=ffff a2=0 a3=3f4b60 s0=3623c0 ra=2083a4
+[call] 208360 a0=3623c0 a1=ffff a2=0 a3=3f4b60 s0=3623c0 ra=208344
+[call] 208338 a0=3623d0 a1=ffff a2=0 a3=3f4b60 s0=3623d0 ra=2083a4
+[call] 208360 a0=3623d0 a1=ffff a2=0 a3=3f4b60 s0=3623d0 ra=208344
+[call] 208338 a0=3623e0 a1=ffff a2=0 a3=3f4b60 s0=3623e0 ra=2083a4
+[call] 208360 a0=3623e0 a1=ffff a2=0 a3=3f4b60 s0=3623e0 ra=208344
+[call] 208338 a0=3623f0 a1=ffff a2=0 a3=3f4b60 s0=3623f0 ra=2083a4
+[call] 208360 a0=3623f0 a1=ffff a2=0 a3=3f4b60 s0=3623f0 ra=208344
+[call] 208338 a0=362400 a1=ffff a2=0 a3=3f4b60 s0=362400 ra=2083a4
+[call] 208360 a0=362400 a1=ffff a2=0 a3=3f4b60 s0=362400 ra=208344
+[call] 208338 a0=362410 a1=ffff a2=0 a3=3f4b60 s0=362410 ra=2083a4
+[call] 208360 a0=362410 a1=ffff a2=0 a3=3f4b60 s0=362410 ra=208344
+[call] 208338 a0=362420 a1=ffff a2=0 a3=3f4b60 s0=362420 ra=2083a4
+[call] 208360 a0=362420 a1=ffff a2=0 a3=3f4b60 s0=362420 ra=208344
+[call] 208338 a0=362430 a1=ffff a2=0 a3=3f4b60 s0=362430 ra=2083a4
+[call] 208360 a0=362430 a1=ffff a2=0 a3=3f4b60 s0=362430 ra=208344
+[call] 208338 a0=362440 a1=ffff a2=0 a3=3f4b60 s0=362440 ra=2083a4
+[call] 208360 a0=362440 a1=ffff a2=0 a3=3f4b60 s0=362440 ra=208344
+[call] 208338 a0=362450 a1=ffff a2=0 a3=3f4b60 s0=362450 ra=2083a4
+[call] 208360 a0=362450 a1=ffff a2=0 a3=3f4b60 s0=362450 ra=208344
+[call] 2083e8 a0=3623a0 a1=ffff a2=0 a3=3f4b60 s0=362460 ra=2083bc
+[call] 208360 a0=3623a0 a1=ffff a2=0 a3=3f4b60 s0=3623a0 ra=20840c
+[call] 208360 a0=3623b0 a1=ffff a2=0 a3=3f4b60 s0=3623b0 ra=20840c
+[call] 208360 a0=3623c0 a1=ffff a2=0 a3=3f4b60 s0=3623c0 ra=20840c
+[call] 208360 a0=3623d0 a1=ffff a2=0 a3=3f4b60 s0=3623d0 ra=20840c
+[call] 208360 a0=3623e0 a1=ffff a2=0 a3=3f4b60 s0=3623e0 ra=20840c
+[call] 208360 a0=3623f0 a1=ffff a2=0 a3=3f4b60 s0=3623f0 ra=20840c
+[call] 208360 a0=362400 a1=ffff a2=0 a3=3f4b60 s0=362400 ra=20840c
+[call] 208360 a0=362410 a1=ffff a2=0 a3=3f4b60 s0=362410 ra=20840c
+[call] 208360 a0=362420 a1=ffff a2=0 a3=3f4b60 s0=362420 ra=20840c
+[call] 208360 a0=362430 a1=ffff a2=0 a3=3f4b60 s0=362430 ra=20840c
+[call] 208360 a0=362440 a1=ffff a2=0 a3=3f4b60 s0=362440 ra=20840c
+[call] 208360 a0=362450 a1=ffff a2=0 a3=3f4b60 s0=362450 ra=20840c
+[call] 18d7d0 a0=362468 a1=120 a2=a0 a3=ffffff90 s0=283808 ra=14086c
+[call] 18d9d0 a0=362490 a1=120 a2=a0 a3=ffffff90 s0=362490 ra=14087c
+[call] 18d9d0 a0=362990 a1=1 a2=3f4b80 a3=3f4b60 s0=362490 ra=140898
+[call] 18d9d0 a0=362e90 a1=1 a2=3f4b80 a3=3f4b60 s0=362e90 ra=1408b4
+[call] 18d9d0 a0=363390 a1=1 a2=3f4b80 a3=3f4b60 s0=362e90 ra=1408d0
+[call] 18d9d0 a0=3638a0 a1=1 a2=3f4b80 a3=3f4b60 s0=3638a0 ra=1408ec
+[call] 13b830 a0=363da0 a1=1 a2=3f4b80 a3=3f4b60 s0=3638a0 ra=140910
+[call] 18d9d0 a0=363da0 a1=1 a2=3f4b80 a3=3f4b60 s0=363da0 ra=13b83c
+[call] 13b830 a0=3642d0 a1=ffffffff a2=3f4b80 a3=3f4b60 s0=3638a0 ra=14091c
+[call] 18d9d0 a0=3642d0 a1=ffffffff a2=3f4b80 a3=3f4b60 s0=3642d0 ra=13b83c
+[call] 13b830 a0=364800 a1=ffffffff a2=3f4b80 a3=3f4b60 s0=3638a0 ra=140928
+[call] 18d9d0 a0=364800 a1=ffffffff a2=3f4b80 a3=3f4b60 s0=364800 ra=13b83c
+[call] 13b830 a0=364d30 a1=ffffffff a2=3f4b80 a3=3f4b60 s0=3638a0 ra=140934
+[call] 18d9d0 a0=364d30 a1=ffffffff a2=3f4b80 a3=3f4b60 s0=364d30 ra=13b83c
+[call] 13b830 a0=365260 a1=ffffffff a2=3f4b80 a3=3f4b60 s0=3638a0 ra=140940
+[call] 18d9d0 a0=365260 a1=ffffffff a2=3f4b80 a3=3f4b60 s0=365260 ra=13b83c
+[call] 1ac780 a0=365790 a1=2 a2=1 a3=3f4b60 s0=3638a0 ra=140954
+[call] 13ca68 a0=365800 a1=2 a2=1 a3=3f4b60 s0=3638a0 ra=140960
+[call] 18f210 a0=365800 a1=2 a2=1 a3=3f4b60 s0=365800 ra=13ca74
+[call] 18d9d0 a0=365800 a1=2 a2=1 a3=3f4b60 s0=365800 ra=18f21c
+[call] 18f210 a0=365de0 a1=5 a2=365d44 a3=365d1c s0=365de0 ra=140970
+[call] 18d9d0 a0=365de0 a1=5 a2=365d44 a3=365d1c s0=365de0 ra=18f21c
+[call] 18f210 a0=3662f0 a1=2 a2=3 a3=1 s0=365de0 ra=140988
+[call] 18d9d0 a0=3662f0 a1=2 a2=3 a3=1 s0=3662f0 ra=18f21c
+[call] 18f210 a0=366800 a1=2 a2=3 a3=1 s0=366800 ra=14099c
+[call] 18d9d0 a0=366800 a1=2 a2=3 a3=1 s0=366800 ra=18f21c
+[call] 18d9d0 a0=366f20 a1=2 a2=3 a3=1 s0=366800 ra=1409b0
+[call] 18f210 a0=3674f0 a1=1 a2=3f4b80 a3=3f4b60 s0=3674f0 ra=1409cc
+[call] 18d9d0 a0=3674f0 a1=1 a2=3f4b80 a3=3f4b60 s0=3674f0 ra=18f21c
+[call] 18d9d0 a0=367c10 a1=2 a2=3 a3=1 s0=3674f0 ra=1409dc
+[call] 18f210 a0=3681e0 a1=1 a2=3f4b80 a3=3f4b60 s0=3681e0 ra=1409f4
+[call] 18d9d0 a0=3681e0 a1=1 a2=3f4b80 a3=3f4b60 s0=3681e0 ra=18f21c
+[call] 18d9d0 a0=368900 a1=2 a2=3 a3=1 s0=3681e0 ra=140a00
+[call] 18d9d0 a0=368ed0 a1=1 a2=3f4b80 a3=3f4b60 s0=368ed0 ra=140a14
+[call] 18e720 a0=368ed0 a1=1 a2=3f4b80 a3=3f4b60 s0=368ed0 ra=140a28
+[call] 18e398 a0=368ed0 a1=1 a2=3f4b80 a3=3f4b60 s0=368ed0 ra=18e75c
+[call] 18d9d0 a0=369410 a1=1 a2=3f4b80 a3=3f4b60 s0=369410 ra=140a38
+[call] 18e720 a0=369410 a1=1 a2=3f4b80 a3=3f4b60 s0=369410 ra=140a44
+[call] 18e398 a0=369410 a1=1 a2=3f4b80 a3=3f4b60 s0=369410 ra=18e75c
+[call] 18d9d0 a0=369950 a1=1 a2=3f4b80 a3=3f4b60 s0=369950 ra=140a54
+[call] 18e720 a0=369950 a1=1 a2=3f4b80 a3=3f4b60 s0=369950 ra=140a60
+[call] 18e398 a0=369950 a1=1 a2=3f4b80 a3=3f4b60 s0=369950 ra=18e75c
+[call] 18d9d0 a0=369e90 a1=1 a2=3f4b80 a3=3f4b60 s0=369e90 ra=140a70
+[call] 18e720 a0=369e90 a1=1 a2=3f4b80 a3=3f4b60 s0=369e90 ra=140a7c
+[call] 18e398 a0=369e90 a1=1 a2=3f4b80 a3=3f4b60 s0=369e90 ra=18e75c
+[call] 18d9d0 a0=36a3d0 a1=1 a2=3f4b80 a3=3f4b60 s0=36a3d0 ra=140a8c
+[call] 18f210 a0=36abd0 a1=1 a2=3f4b80 a3=3f4b60 s0=36a3d0 ra=140aa8
+[call] 18d9d0 a0=36abd0 a1=1 a2=3f4b80 a3=3f4b60 s0=36abd0 ra=18f21c
+[call] 18d7d0 a0=36b0e0 a1=15d a2=c2 a3=ffffff90 s0=36a3d0 ra=140ae0
+[call] 18d7d0 a0=36b100 a1=15d a2=c2 a3=ffffff90 s0=36a3d0 ra=140b0c
+[call] 18d7d0 a0=36b120 a1=13d a2=b0 a3=ffffff90 s0=36a3d0 ra=140b38
+[call] 18d7d0 a0=36b140 a1=13d a2=b0 a3=ffffff90 s0=36a3d0 ra=140b64
+[call] 18d7d0 a0=36b160 a1=180 a2=d8 a3=ffffff90 s0=36a3d0 ra=140b90
+[call] 140450 a0=36b338 a1=ffffffff a2=d8 a3=ffffff90 s0=36a3d0 ra=140bd0
+[call] 139bc0 a0=36b338 a1=ffffffff a2=d8 a3=ffffff90 s0=283804 ra=1fb69c
+[call] 139b90 a0=1 a1=ffff a2=d8 a3=ffffff90 s0=283804 ra=139bcc
+[call] 138900 a0=32fc60 a1=ffff a2=d8 a3=ffffff90 s0=283804 ra=139bac
+[call] 12b600 a0=32fc60 a1=35bb80 a2=d8 a3=ffffff90 s0=283800 ra=1fb69c
+[call] 12b5b0 a0=1 a1=ffff a2=d8 a3=ffffff90 s0=283800 ra=12b60c
+[call] 128818 a0=ffffffff a1=ffffffff a2=d8 a3=ffffff90 s0=2837fc ra=1fb69c
+[call] 128720 a0=1 a1=ffff a2=d8 a3=ffffff90 s0=2837fc ra=128824
+[call] 1ac780 a0=30eb78 a1=2 a2=1 a3=ffffff90 s0=30eb10 ra=1287a4
+[call] 1ac780 a0=30eda8 a1=2 a2=1 a3=ffffff90 s0=30ed40 ra=1287a4
+[call] 1ac780 a0=30efd8 a1=2 a2=1 a3=ffffff90 s0=30ef70 ra=1287a4
+[call] 1ac780 a0=30f208 a1=2 a2=1 a3=ffffff90 s0=30f1a0 ra=1287a4
+[call] 1ac780 a0=30f438 a1=2 a2=1 a3=ffffff90 s0=30f3d0 ra=1287a4
+[call] 1ac780 a0=30f668 a1=2 a2=1 a3=ffffff90 s0=30f600 ra=1287a4
+[call] 1ac780 a0=30f898 a1=2 a2=1 a3=ffffff90 s0=30f830 ra=1287a4
+[call] 1ac780 a0=30fac8 a1=2 a2=1 a3=ffffff90 s0=30fa60 ra=1287a4
+[call] 1ac780 a0=30fcf8 a1=2 a2=1 a3=ffffff90 s0=30fc90 ra=1287a4
+[call] 1ac780 a0=30ff28 a1=2 a2=1 a3=ffffff90 s0=30fec0 ra=1287a4
+[call] 1ac780 a0=310158 a1=2 a2=1 a3=ffffff90 s0=3100f0 ra=1287a4
+[call] 1ac780 a0=310388 a1=2 a2=1 a3=ffffff90 s0=310320 ra=1287a4
+[call] 1ac780 a0=3105b8 a1=2 a2=1 a3=ffffff90 s0=310550 ra=1287a4
+[call] 1ac780 a0=3107e8 a1=2 a2=1 a3=ffffff90 s0=310780 ra=1287a4
+[call] 1ac780 a0=310a18 a1=2 a2=1 a3=ffffff90 s0=3109b0 ra=1287a4
+[call] 1ac780 a0=310c48 a1=2 a2=1 a3=ffffff90 s0=310be0 ra=1287a4
+[call] 1ac780 a0=310e78 a1=2 a2=1 a3=ffffff90 s0=310e10 ra=1287a4
+[call] 1ac780 a0=3110a8 a1=2 a2=1 a3=ffffff90 s0=311040 ra=1287a4
+[call] 1ac780 a0=3112d8 a1=2 a2=1 a3=ffffff90 s0=311270 ra=1287a4
+[call] 1ac780 a0=311508 a1=2 a2=1 a3=ffffff90 s0=3114a0 ra=1287a4
+[call] 1ac780 a0=311738 a1=2 a2=1 a3=ffffff90 s0=3116d0 ra=1287a4
+[call] 1ac780 a0=311968 a1=2 a2=1 a3=ffffff90 s0=311900 ra=1287a4
+[call] 1ac780 a0=311b98 a1=2 a2=1 a3=ffffff90 s0=311b30 ra=1287a4
+[call] 1ac780 a0=311dc8 a1=2 a2=1 a3=ffffff90 s0=311d60 ra=1287a4
+[call] 1ac780 a0=311ff8 a1=2 a2=1 a3=ffffff90 s0=311f90 ra=1287a4
+[call] 1ac780 a0=312228 a1=2 a2=1 a3=ffffff90 s0=3121c0 ra=1287a4
+[call] 1ac780 a0=312458 a1=2 a2=1 a3=ffffff90 s0=3123f0 ra=1287a4
+[call] 1ac780 a0=312688 a1=2 a2=1 a3=ffffff90 s0=312620 ra=1287a4
+[call] 1ac780 a0=3128b8 a1=2 a2=1 a3=ffffff90 s0=312850 ra=1287a4
+[call] 1ac780 a0=312ae8 a1=2 a2=1 a3=ffffff90 s0=312a80 ra=1287a4
+[call] 1ac780 a0=312d18 a1=2 a2=1 a3=ffffff90 s0=312cb0 ra=1287a4
+[call] 1ac780 a0=312f48 a1=2 a2=1 a3=ffffff90 s0=312ee0 ra=1287a4
+[call] 1ac780 a0=313178 a1=2 a2=1 a3=ffffff90 s0=313110 ra=1287a4
+[call] 1ac780 a0=3133a8 a1=2 a2=1 a3=ffffff90 s0=313340 ra=1287a4
+[call] 1ac780 a0=3135d8 a1=2 a2=1 a3=ffffff90 s0=313570 ra=1287a4
+[call] 1ac780 a0=313808 a1=2 a2=1 a3=ffffff90 s0=3137a0 ra=1287a4
+[call] 1ac780 a0=313a38 a1=2 a2=1 a3=ffffff90 s0=3139d0 ra=1287a4
+[call] 1ac780 a0=313c68 a1=2 a2=1 a3=ffffff90 s0=313c00 ra=1287a4
+[call] 1ac780 a0=313e98 a1=2 a2=1 a3=ffffff90 s0=313e30 ra=1287a4
+[call] 1ac780 a0=3140c8 a1=2 a2=1 a3=ffffff90 s0=314060 ra=1287a4
+[call] 1ac780 a0=3142f8 a1=2 a2=1 a3=ffffff90 s0=314290 ra=1287a4
+[call] 1ac780 a0=314528 a1=2 a2=1 a3=ffffff90 s0=3144c0 ra=1287a4
+[call] 1ac780 a0=314758 a1=2 a2=1 a3=ffffff90 s0=3146f0 ra=1287a4
+[call] 1ac780 a0=314988 a1=2 a2=1 a3=ffffff90 s0=314920 ra=1287a4
+[call] 1ac780 a0=314bb8 a1=2 a2=1 a3=ffffff90 s0=314b50 ra=1287a4
+[call] 1ac780 a0=314de8 a1=2 a2=1 a3=ffffff90 s0=314d80 ra=1287a4
+[call] 1ac780 a0=315018 a1=2 a2=1 a3=ffffff90 s0=314fb0 ra=1287a4
+[call] 1ac780 a0=315248 a1=2 a2=1 a3=ffffff90 s0=3151e0 ra=1287a4
+[call] 1ac780 a0=315478 a1=2 a2=1 a3=ffffff90 s0=315410 ra=1287a4
+[call] 1ac780 a0=3156a8 a1=2 a2=1 a3=ffffff90 s0=315640 ra=1287a4
+[call] 1ac780 a0=3158d8 a1=2 a2=1 a3=ffffff90 s0=315870 ra=1287a4
+[call] 1ac780 a0=315b08 a1=2 a2=1 a3=ffffff90 s0=315aa0 ra=1287a4
+[call] 1ac780 a0=315d38 a1=2 a2=1 a3=ffffff90 s0=315cd0 ra=1287a4
+[call] 1ac780 a0=315f68 a1=2 a2=1 a3=ffffff90 s0=315f00 ra=1287a4
+[call] 1ac780 a0=316198 a1=2 a2=1 a3=ffffff90 s0=316130 ra=1287a4
+[call] 1ac780 a0=3163c8 a1=2 a2=1 a3=ffffff90 s0=316360 ra=1287a4
+[call] 1ac780 a0=3165f8 a1=2 a2=1 a3=ffffff90 s0=316590 ra=1287a4
+[call] 1ac780 a0=316828 a1=2 a2=1 a3=ffffff90 s0=3167c0 ra=1287a4
+[call] 1ac780 a0=316a58 a1=2 a2=1 a3=ffffff90 s0=3169f0 ra=1287a4
+[call] 1ac780 a0=316c88 a1=2 a2=1 a3=ffffff90 s0=316c20 ra=1287a4
+[call] 1ac780 a0=316eb8 a1=2 a2=1 a3=ffffff90 s0=316e50 ra=1287a4
+[call] 1ac780 a0=3170e8 a1=2 a2=1 a3=ffffff90 s0=317080 ra=1287a4
+[call] 1ac780 a0=317318 a1=2 a2=1 a3=ffffff90 s0=3172b0 ra=1287a4
+[call] 1ac780 a0=317548 a1=2 a2=1 a3=ffffff90 s0=3174e0 ra=1287a4
+[call] 1ac780 a0=317778 a1=2 a2=1 a3=ffffff90 s0=317710 ra=1287a4
+[call] 1ac780 a0=3179a8 a1=2 a2=1 a3=ffffff90 s0=317940 ra=1287a4
+[call] 1ac780 a0=317bd8 a1=2 a2=1 a3=ffffff90 s0=317b70 ra=1287a4
+[call] 1ac780 a0=317e08 a1=2 a2=1 a3=ffffff90 s0=317da0 ra=1287a4
+[call] 1ac780 a0=318038 a1=2 a2=1 a3=ffffff90 s0=317fd0 ra=1287a4
+[call] 1ac780 a0=318268 a1=2 a2=1 a3=ffffff90 s0=318200 ra=1287a4
+[call] 1ac780 a0=318498 a1=2 a2=1 a3=ffffff90 s0=318430 ra=1287a4
+[call] 1ac780 a0=3186c8 a1=2 a2=1 a3=ffffff90 s0=318660 ra=1287a4
+[call] 1ac780 a0=3188f8 a1=2 a2=1 a3=ffffff90 s0=318890 ra=1287a4
+[call] 1ac780 a0=318b28 a1=2 a2=1 a3=ffffff90 s0=318ac0 ra=1287a4
+[call] 1ac780 a0=318d58 a1=2 a2=1 a3=ffffff90 s0=318cf0 ra=1287a4
+[call] 1ac780 a0=318f88 a1=2 a2=1 a3=ffffff90 s0=318f20 ra=1287a4
+[call] 1ac780 a0=3191b8 a1=2 a2=1 a3=ffffff90 s0=319150 ra=1287a4
+[call] 1ac780 a0=3193e8 a1=2 a2=1 a3=ffffff90 s0=319380 ra=1287a4
+[call] 1ac780 a0=319618 a1=2 a2=1 a3=ffffff90 s0=3195b0 ra=1287a4
+[call] 1ac780 a0=319848 a1=2 a2=1 a3=ffffff90 s0=3197e0 ra=1287a4
+[call] 1ac780 a0=319a78 a1=2 a2=1 a3=ffffff90 s0=319a10 ra=1287a4
+[call] 1ac780 a0=319ca8 a1=2 a2=1 a3=ffffff90 s0=319c40 ra=1287a4
+[call] 1ac780 a0=319ed8 a1=2 a2=1 a3=ffffff90 s0=319e70 ra=1287a4
+[call] 1ac780 a0=31a108 a1=2 a2=1 a3=ffffff90 s0=31a0a0 ra=1287a4
+[call] 1ac780 a0=31a338 a1=2 a2=1 a3=ffffff90 s0=31a2d0 ra=1287a4
+[call] 1ac780 a0=31a568 a1=2 a2=1 a3=ffffff90 s0=31a500 ra=1287a4
+[call] 1ac780 a0=31a798 a1=2 a2=1 a3=ffffff90 s0=31a730 ra=1287a4
+[call] 1ac780 a0=31a9c8 a1=2 a2=1 a3=ffffff90 s0=31a960 ra=1287a4
+[call] 1ac780 a0=31abf8 a1=2 a2=1 a3=ffffff90 s0=31ab90 ra=1287a4
+[call] 1ac780 a0=31ae28 a1=2 a2=1 a3=ffffff90 s0=31adc0 ra=1287a4
+[call] 1ac780 a0=31b058 a1=2 a2=1 a3=ffffff90 s0=31aff0 ra=1287a4
+[call] 1ac780 a0=31b288 a1=2 a2=1 a3=ffffff90 s0=31b220 ra=1287a4
+[call] 1ac780 a0=31b4b8 a1=2 a2=1 a3=ffffff90 s0=31b450 ra=1287a4
+[call] 1ac780 a0=31b6e8 a1=2 a2=1 a3=ffffff90 s0=31b680 ra=1287a4
+[call] 1ac780 a0=31b918 a1=2 a2=1 a3=ffffff90 s0=31b8b0 ra=1287a4
+[call] 1ac780 a0=31bb48 a1=2 a2=1 a3=ffffff90 s0=31bae0 ra=1287a4
+[call] 1ac780 a0=31bd78 a1=2 a2=1 a3=ffffff90 s0=31bd10 ra=1287a4
+[call] 1ac780 a0=31bfa8 a1=2 a2=1 a3=ffffff90 s0=31bf40 ra=1287a4
+[call] 1ac780 a0=31c1d8 a1=2 a2=1 a3=ffffff90 s0=31c170 ra=1287a4
+[call] 1ac780 a0=31c408 a1=2 a2=1 a3=ffffff90 s0=31c3a0 ra=1287a4
+[call] 1ac780 a0=31c638 a1=2 a2=1 a3=ffffff90 s0=31c5d0 ra=1287a4
+[call] 1ac780 a0=31c868 a1=2 a2=1 a3=ffffff90 s0=31c800 ra=1287a4
+[call] 1ac780 a0=31ca98 a1=2 a2=1 a3=ffffff90 s0=31ca30 ra=1287a4
+[call] 1ac780 a0=31ccc8 a1=2 a2=1 a3=ffffff90 s0=31cc60 ra=1287a4
+[call] 1ac780 a0=31cef8 a1=2 a2=1 a3=ffffff90 s0=31ce90 ra=1287a4
+[call] 1ac780 a0=31d128 a1=2 a2=1 a3=ffffff90 s0=31d0c0 ra=1287a4
+[call] 1ac780 a0=31d358 a1=2 a2=1 a3=ffffff90 s0=31d2f0 ra=1287a4
+[call] 1ac780 a0=31d588 a1=2 a2=1 a3=ffffff90 s0=31d520 ra=1287a4
+[call] 1ac780 a0=31d7b8 a1=2 a2=1 a3=ffffff90 s0=31d750 ra=1287a4
+[call] 1ac780 a0=31d9e8 a1=2 a2=1 a3=ffffff90 s0=31d980 ra=1287a4
+[call] 1ac780 a0=31dc18 a1=2 a2=1 a3=ffffff90 s0=31dbb0 ra=1287a4
+[call] 1ac780 a0=31de48 a1=2 a2=1 a3=ffffff90 s0=31dde0 ra=1287a4
+[call] 1ac780 a0=31e078 a1=2 a2=1 a3=ffffff90 s0=31e010 ra=1287a4
+[call] 1ac780 a0=31e2a8 a1=2 a2=1 a3=ffffff90 s0=31e240 ra=1287a4
+[call] 1ac780 a0=31e4d8 a1=2 a2=1 a3=ffffff90 s0=31e470 ra=1287a4
+[call] 1ac780 a0=31e708 a1=2 a2=1 a3=ffffff90 s0=31e6a0 ra=1287a4
+[call] 1ac780 a0=31e938 a1=2 a2=1 a3=ffffff90 s0=31e8d0 ra=1287a4
+[call] 1ac780 a0=31eb68 a1=2 a2=1 a3=ffffff90 s0=31eb00 ra=1287a4
+[call] 1ac780 a0=31ed98 a1=2 a2=1 a3=ffffff90 s0=31ed30 ra=1287a4
+[call] 1ac780 a0=31efc8 a1=2 a2=1 a3=ffffff90 s0=31ef60 ra=1287a4
+[call] 1ac780 a0=31f1f8 a1=2 a2=1 a3=ffffff90 s0=31f190 ra=1287a4
+[call] 1ac780 a0=31f428 a1=2 a2=1 a3=ffffff90 s0=31f3c0 ra=1287a4
+[call] 1ac780 a0=31f658 a1=2 a2=1 a3=ffffff90 s0=31f5f0 ra=1287a4
+[call] 1ac780 a0=31f888 a1=2 a2=1 a3=ffffff90 s0=31f820 ra=1287a4
+[call] 1ac780 a0=31fab8 a1=2 a2=1 a3=ffffff90 s0=31fa50 ra=1287a4
+[call] 1ac780 a0=31fce8 a1=2 a2=1 a3=ffffff90 s0=31fc80 ra=1287a4
+[call] 1ac780 a0=31ff18 a1=2 a2=1 a3=ffffff90 s0=31feb0 ra=1287a4
+[call] 1ac780 a0=320148 a1=2 a2=1 a3=ffffff90 s0=3200e0 ra=1287a4
+[call] 1ac780 a0=320378 a1=2 a2=1 a3=ffffff90 s0=320310 ra=1287a4
+[call] 1ac780 a0=3205a8 a1=2 a2=1 a3=ffffff90 s0=320540 ra=1287a4
+[call] 1ac780 a0=3207d8 a1=2 a2=1 a3=ffffff90 s0=320770 ra=1287a4
+[call] 1ac780 a0=320a08 a1=2 a2=1 a3=ffffff90 s0=3209a0 ra=1287a4
+[call] 1ac780 a0=320c38 a1=2 a2=1 a3=ffffff90 s0=320bd0 ra=1287a4
+[call] 1ac780 a0=320e68 a1=2 a2=1 a3=ffffff90 s0=320e00 ra=1287a4
+[call] 1ac780 a0=321098 a1=2 a2=1 a3=ffffff90 s0=321030 ra=1287a4
+[call] 1ac780 a0=3212c8 a1=2 a2=1 a3=ffffff90 s0=321260 ra=1287a4
+[call] 1ac780 a0=3214f8 a1=2 a2=1 a3=ffffff90 s0=321490 ra=1287a4
+[call] 1ac780 a0=321728 a1=2 a2=1 a3=ffffff90 s0=3216c0 ra=1287a4
+[call] 1ac780 a0=321958 a1=2 a2=1 a3=ffffff90 s0=3218f0 ra=1287a4
+[call] 1ac780 a0=321b88 a1=2 a2=1 a3=ffffff90 s0=321b20 ra=1287a4
+[call] 1ac780 a0=321db8 a1=2 a2=1 a3=ffffff90 s0=321d50 ra=1287a4
+[call] 1ac780 a0=321fe8 a1=2 a2=1 a3=ffffff90 s0=321f80 ra=1287a4
+[call] 1ac780 a0=322218 a1=2 a2=1 a3=ffffff90 s0=3221b0 ra=1287a4
+[call] 1ac780 a0=322448 a1=2 a2=1 a3=ffffff90 s0=3223e0 ra=1287a4
+[call] 1ac780 a0=322678 a1=2 a2=1 a3=ffffff90 s0=322610 ra=1287a4
+[call] 1ac780 a0=3228a8 a1=2 a2=1 a3=ffffff90 s0=322840 ra=1287a4
+[call] 1ac780 a0=322ad8 a1=2 a2=1 a3=ffffff90 s0=322a70 ra=1287a4
+[call] 1ac780 a0=322d08 a1=2 a2=1 a3=ffffff90 s0=322ca0 ra=1287a4
+[call] 1ac780 a0=322f38 a1=2 a2=1 a3=ffffff90 s0=322ed0 ra=1287a4
+[call] 1ac780 a0=323168 a1=2 a2=1 a3=ffffff90 s0=323100 ra=1287a4
+[call] 1ac780 a0=323398 a1=2 a2=1 a3=ffffff90 s0=323330 ra=1287a4
+[call] 1ac780 a0=3235c8 a1=2 a2=1 a3=ffffff90 s0=323560 ra=1287a4
+[call] 1ac780 a0=3237f8 a1=2 a2=1 a3=ffffff90 s0=323790 ra=1287a4
+[call] 1ac780 a0=323a28 a1=2 a2=1 a3=ffffff90 s0=3239c0 ra=1287a4
+[call] 1ac780 a0=323c58 a1=2 a2=1 a3=ffffff90 s0=323bf0 ra=1287a4
+[call] 1ac780 a0=323e88 a1=2 a2=1 a3=ffffff90 s0=323e20 ra=1287a4
+[call] 1ac780 a0=3240b8 a1=2 a2=1 a3=ffffff90 s0=324050 ra=1287a4
+[call] 1ac780 a0=3242e8 a1=2 a2=1 a3=ffffff90 s0=324280 ra=1287a4
+[call] 1ac780 a0=324518 a1=2 a2=1 a3=ffffff90 s0=3244b0 ra=1287a4
+[call] 1ac780 a0=324748 a1=2 a2=1 a3=ffffff90 s0=3246e0 ra=1287a4
+[call] 1ac780 a0=324978 a1=2 a2=1 a3=ffffff90 s0=324910 ra=1287a4
+[call] 1ac780 a0=324ba8 a1=2 a2=1 a3=ffffff90 s0=324b40 ra=1287a4
+[call] 1ac780 a0=324dd8 a1=2 a2=1 a3=ffffff90 s0=324d70 ra=1287a4
+[call] 1ac780 a0=325008 a1=2 a2=1 a3=ffffff90 s0=324fa0 ra=1287a4
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x0 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20df58 ra=0x20df58
+[SifBindRpc] sid=0x80000592 client=0x7609e8 server=0x1f10000 guestServer=0x1f10000
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25ebf8 ra=0x25ebf8
+[sceSifSetReg] reg=0x4 prev=0x20000 value=0x40000 pc=0x25eca8 ra=0x25eca8
+[sceSifSetDma:CALL] pc=0x25ecb4 ra=0x25ecb4 list=0x93c990 count=1
+[sceSifSetDma:DESC] i=0 src=0x765140 dst=0x0 size=0x68 attr=0x44 pc=0x25ecb4 ra=0x25ecb4
+[sceSifSetReg] reg=0x4 prev=0x40000 value=0x10000 pc=0x25ecc4 ra=0x25ecc4
+[sceSifSetReg] reg=0x4 prev=0x10000 value=0x20000 pc=0x25ecd0 ra=0x25ecd0
+[sceSifSetReg] reg=0x80000002 prev=0x1 value=0x0 pc=0x25ece0 ra=0x25ece0
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25ecec ra=0x25ecec
+[sceSifGetReg] reg=0x4 value=0x60000 pc=0x25ed20 ra=0x25ed20
+[sceSifGetReg] reg=0x80000000 value=0x0 pc=0x25c2dc ra=0x25c2dc
+[sceSifGetReg] reg=0x4 value=0x20000 pc=0x25c330 ra=0x25c330
+[sceSifGetReg] reg=0x2 value=0x0 pc=0x25c344 ra=0x25c344
+[sceSifSetReg] reg=0x80000000 prev=0x0 value=0x0 pc=0x25c354 ra=0x25c354
+[sceSifSetReg] reg=0x80000001 prev=0x761b58 value=0x761b58 pc=0x25c364 ra=0x25c364
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761b40 dst=0x0 size=0x14 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifGetReg] reg=0x80000002 value=0x0 pc=0x25c8f8 ra=0x25c8f8
+[sceSifSetDma:CALL] pc=0x25c554 ra=0x25c554 list=0x93c980 count=1
+[sceSifSetDma:DESC] i=0 src=0x761d40 dst=0x0 size=0x10 attr=0x44 pc=0x25c554 ra=0x25c554
+[sceSifSetReg] reg=0x80000002 prev=0x0 value=0x1 pc=0x20dfa4 ra=0x20dfa4
+[SifBindRpc] sid=0x80000592 client=0x7609e8 server=0x1f10000 guestServer=0x1f10000
+[SifBindRpc] sid=0x80000593 client=0x281380 server=0x1f10080 guestServer=0x1f10080
+[PAD/RPC trace] sid=0x80000593 rpc=0x22 pc=0x25cf88 server=0x1f10080 send=0x280e40/4 recv=0x280a00/4 end=0x0 param=0x0
+[Deci2Call:kputs] NEW DiskReady Call
+[SifBindRpc] sid=0x8000059c client=0x760a10 server=0x1f10100 guestServer=0x1f10100
+[Deci2Call:kputs] DiskReady ended
+[SifBindRpc] sid=0x80000595 client=0x2809d0 server=0x1f10180 guestServer=0x1f10180
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=16 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=261 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=261 bytes=30000501000000000105de0300000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=262 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=262 bytes=30000601000000000106f00200000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=263 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=263 bytes=30000701000000000107b00200000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=264 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=264 bytes=30000801000000000108d80000000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=265 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=265 bytes=30000901000000000109dc1e00000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=266 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=266 bytes=3c0046f60d00000df64600689a00009a
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=267 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=267 bytes=3e0039850e00000e853960ed15000015
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=268 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=268 bytes=3c0035e60e00000ee63500a011000011
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=269 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=269 bytes=30000d0100000000010d160100000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=270 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[IOP/CD preview] lbn=270 bytes=30000e0100000000010e7c3300000000
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=271 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[CD completion] ptr=0x0 index=0 word0=0x0 indexed=0x0
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=272 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=273 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=274 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=275 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[SifCallRpc] invoke callback sid=0x80000595 rpc=0x1 end=0x246cd0 param=0x280900
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=276 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=277 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=278 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=279 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=280 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=281 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=282 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[SifCallRpc/CD read] client=0x2809d0 mode=0x1 send=0x27f900/0x18 recv=0x0/0x0 end=0x246cd0 param=0x280900 sema=0x0 abi=reg
+[IOP/CD read] lbn=283 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=284 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=285 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=286 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=287 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=288 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=289 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=290 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=291 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=292 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=293 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=294 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=295 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=296 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=297 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=298 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=299 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=300 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=301 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=302 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=303 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=304 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=305 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=306 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=307 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=308 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=309 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=310 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=311 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=312 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=313 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=314 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=315 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=316 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=317 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=318 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=319 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=320 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=321 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=322 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=323 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=324 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=325 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=326 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=327 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=328 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=329 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=330 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=331 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=332 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=333 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=334 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=335 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=336 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] call cdread cmd
+[IOP/CD read] lbn=337 sectors=1 dest=0x4f2980 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[Deci2Call:kputs] cdread end
+[Deci2Call:kputs] N cmd wait
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[SifBindRpc] sid=0x80000901 client=0x75f040 server=0x1f10200 guestServer=0x1f10200
+[SifBindRpc] sid=0x80000902 client=0x75f068 server=0x1f10280 guestServer=0x1f10280
+[SifBindRpc] sid=0x80000903 client=0x75f090 server=0x1f10300 guestServer=0x1f10300
+[SifBindRpc] sid=0x80000905 client=0x75f0e0 server=0x1f10400 guestServer=0x1f10400
+[PAD/client trace] client=0x75f0e0 sid=0x80000905 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x0,0x0,0x0,0x0,0x0
+[PAD/client trace] client=0x75f040 sid=0x80000901 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x0,0x0,0x0,0x0,0x0
+[PAD/client trace] client=0x75f040 sid=0x80000901 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x1,0x1,0x0,0x0,0x0
+[PAD/client trace] client=0x75f040 sid=0x80000901 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x2,0x1,0x0,0x0,0x0
+[PAD/client trace] client=0x75f040 sid=0x80000901 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x3,0x1,0x0,0x0,0x0
+[PAD/client trace] client=0x75f1c0 sid=0x80000400 rpc=0xfe send=0x75f240/48 recv=0x760780/12 words=0x0,0x0,0x0,0x0,0x0
+[ps2xIOP] [MCSERV init] recv=0x760780/0xc flavor=XMC result=0x0 response=(0x0,0x20a,0x20e) written=1 readBack=1 observed=(0x0,0x20a,0x20e)
+[MCSERV completion] recv=0x760780 words=(0x0,0x20a,0x20e) parent_pc=0x25cf88 ra=0x245f9c
+[PAD/client trace] client=0x75f090 sid=0x80000903 rpc=0x1 send=0x75f140/128 recv=0x75f140/128 words=0x0,0x1,0x0,0x0,0x0
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x0,0x0,0x0,0x660380
+[IOP/PAD] sid=0x0 command=0x1 result=0x1
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x0,0x1,0x1,0x660580
+[IOP/PAD] sid=0x0 command=0x1 result=0x1
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x0,0x2,0x1,0x660780
+[IOP/PAD] sid=0x0 command=0x1 result=0x1
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x0,0x3,0x1,0x660980
+[IOP/PAD] sid=0x0 command=0x1 result=0x1
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x1,0x0,0x1,0x660480
+[IOP/PAD] sid=0x0 command=0x1 result=0x1
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x1,0x1,0x1,0x660680
+[IOP/PAD] sid=0x0 command=0x1 result=0x1
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x1,0x2,0x1,0x660880
+[IOP/PAD] sid=0x0 command=0x1 result=0x1
+[PAD/client trace] client=0x75ed80 sid=0x0 rpc=0x1 send=0x75efc0/128 recv=0x75efc0/128 words=0x1,0x1,0x3,0x1,0x660a80
+[IOP/PAD] sid=0x0 command=0x1 result=0x1
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[CD poll] result=0 ptr=0x4ccb00 index=1 first=0x0 slot=0x0 active=0x0 activeNext=0x0 objectStatus=0x0 status=0x0
+[Deci2Call:kputs] NEW DiskReady Call
+[CD completion] deferred record completed ptr=0x4ccb00 index=0x1
+[Deci2Call:kputs] DiskReady ended
+[SifBindRpc] sid=0x80000597 client=0x7609c0 server=0x1f10500 guestServer=0x1f10500
+[Deci2Call:kputs] ee call cmd search \SKAT\DHSKAT.SKX;1
+[IOP/CD search] path=SKAT/DHSKAT.SKX size=101288144 lbn=1048576
+[Deci2Call:kputs] search name DHSKAT.SKX
+[Deci2Call:kputs] search size 101288144
+[Deci2Call:kputs] search loc lbn 1048576
+[Deci2Call:kputs] N cmd wait
+[loader-index] a0=0x93c9b0 a1=0x93c940 a2=0x93c950 path="\SND\SHELL_S.BNK;1" tableCount=17 p0=0x4da358 p1=0x4da37c p2=0x4da3a0 p3=0x4da478
+[CD poll] result=0 ptr=0x0 index=1 first=0x0 slot=0x0 active=0x4ccb00 activeNext=0x0 objectStatus=0x1 status=0x0
+[CD poll] result=0 ptr=0x0 index=18 first=0x0 slot=0x0 active=0x4ccb00 activeNext=0x0 objectStatus=0x1 status=0x0
+[CD poll] result=0 ptr=0x0 index=1 first=0x0 slot=0x0 active=0x4ccb00 activeNext=0x0 objectStatus=0x1 status=0x0
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[loader-index] a0=0x93c970 a1=0x93c9a0 a2=0x25 path="\VAG\SHELL2-L.VAG;1" tableCount=17 p0=0x4da358 p1=0x4da37c p2=0x4da3a0 p3=0x4da478
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[loader-index] a0=0x93c970 a1=0x93c9a0 a2=0x25 path="\VAG\SHELL2-R.VAG;1" tableCount=17 p0=0x4da358 p1=0x4da37c p2=0x4da3a0 p3=0x4da478
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[loader-index] a0=0x93c970 a1=0x93c9a0 a2=0x25 path="\VAG\SHELL3IL.VAG;1" tableCount=17 p0=0x4da358 p1=0x4da37c p2=0x4da3a0 p3=0x4da478
+[Deci2Call:kputs] NEW DiskReady Call
+[Deci2Call:kputs] DiskReady ended
+[Deci2Call:kputs] NEW DiskReady Call
+[IOP/CD read] lbn=754681 sectors=1 dest=0xa00000 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[PAD/RPC trace] sid=0x80000593 rpc=0x4 pc=0x25cf88 server=0x1f10080 send=0x0/0 recv=0x280a00/4 end=0x0 param=0x0
+[IOP/CD read] lbn=754682 sectors=1 dest=0x7a8a70 bytes=0x800
+[IOP/CD read] hostRead=1 bytesRead=2048
+[IOP/CD read] response=0x280900 guestWrite=1
+[PAD/RPC trace] sid=0x80000593 rpc=0x4 pc=0x25cf88 server=0x1f10080 send=0x0/0 recv=0x280a00/4 end=0x0 param=0x0
+[IOP/CD read] lbn=754683 sectors=65 dest=0xa00400 bytes=0x20800
+[IOP/CD read] hostRead=1 bytesRead=133120
+[IOP/CD read] response=0x280900 guestWrite=1
+[PAD/RPC trace] sid=0x80000593 rpc=0x4 pc=0x25cf88 server=0x1f10080 send=0x0/0 recv=0x280a00/4 end=0x0 param=0x0
+[IOP/CD read] lbn=754748 sectors=129 dest=0xa20a00 bytes=0x40800
+[IOP/CD read] hostRead=1 bytesRead=264192
+[IOP/CD read] response=0x280900 guestWrite=1
+[PAD/RPC trace] sid=0x80000593 rpc=0x4 pc=0x25cf88 server=0x1f10080 send=0x0/0 recv=0x280a00/4 end=0x0 param=0x0
+[PAD/client trace] client=0x75f1c0 sid=0x80000400 rpc=0x1 send=0x75f240/48 recv=0x760780/4 words=0x0,0x0,0x0,0x1,0x1
+[PAD/client trace] client=0x75f1c0 sid=0x80000400 rpc=0x1 send=0x75f240/48 recv=0x760780/4 words=0x0,0x0,0x0,0x1,0x1
+[CD loader completion] table=0x4c8980 index=1
+[CD loader poll] v0=0x0 completed=0 ptr=0x4c8980 active=0x4c8980 object=0x1
+[CD loader poll] v0=0x1 completed=1 ptr=0x0 active=0x4c8980 object=0x1
+[IOP/CD stream] cmd=5 lbn=80 sectors=5 dest=0x0 result=1 ok=1
+[IOP/CD stream] cmd=1 lbn=3944 sectors=0 dest=0x0 result=1 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e635d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e735d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e835d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e935d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1ea35d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e635d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e735d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e835d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e935d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1ea35d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e635d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e735d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e835d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e935d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1ea35d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e635d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e735d0 result=32 ok=1
+[IOP/CD stream] cmd=2 lbn=0 sectors=32 dest=0x1e835d0 result=32 ok=1
